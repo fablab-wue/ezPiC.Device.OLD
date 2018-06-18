@@ -1,0 +1,60 @@
+{{ include t_std_head.html }}
+
+<h4>
+  <i class="fas fa-clipboard-list"></i> Variables</h4>
+
+<div class="float-right">
+  <a class="btn btn-info" href="/variables/" role="button">
+    <i class="fas fa-book"></i> All</a>
+  <a class="btn btn-info" href="/variables/{{ last_tick }}/" role="button">
+    <i class="fas fa-bookmark"></i> News</a>
+</div>
+<p>
+  All actual variables (values, measurements) with Tick &gt; {{ act_tick }}. Last Tick = {{ last_tick }}
+</p>
+
+<br />
+<table class="table table-hover table-sm sortable tablesorter-bootstrap">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Name</th>
+      <th scope="col">Value</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{ for key in variable_list }}
+    <tr>
+      <th scope="row">{{key}}</th>
+      <td>{{variable_list[key]}}</td>
+    </tr>
+    {{ end }}
+  </tbody>
+</table>
+
+<br />
+<hr>
+
+<form action="/variables" method="POST">
+  Add/Set a Variable
+  <div class="input-group">
+    <div class="input-group-prepend">
+      <span class="input-group-text" id="basic-addon1">Name:</span>
+    </div>
+    <input type="text" class="form-control" placeholder="type a name" aria-describedby="basic-addon1" id="key" name="key" value="{{ add_key }}">
+
+    <div class="input-group-prepend">
+      <span class="input-group-text" id="basic-addon2">Value:</span>
+    </div>
+    <input type="text" class="form-control" placeholder="type a value" aria-describedby="basic-addon2" id="value" name="value"
+      value="{{ add_value }}">
+
+    <div class="input-group-append">
+      <button class="btn btn-success" type="submit">
+        <i class="fas fa-plus"></i> Add/Set</button>
+    </div>
+  </div>
+  <!-- /input-group -->
+
+</form>
+
+{{ include t_std_foot.html }}

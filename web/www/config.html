@@ -1,0 +1,127 @@
+{{ include t_std_head.html }}
+
+<h4><i class="fas fa-sliders-h"></i> <i class="far fa-square"></i> <i class="fas fa-hdd"></i> <i class="far fa-hdd"></i> <i class="fas fa-share-alt-square"></i> <i class="fas fa-cogs"></i> <i class="fas fa-code-branch"></i> Device Configuration '{{ name }}'</h4>
+
+<form method="post">
+
+  <button type="submit" class="btn btn-warning btn-lg float-right">Submit</button>
+  <button type="submit" class="btn btn-info btn-lg float-right">Submit</button>
+  
+  <h4>
+    <span class="badge badge-dark col-sm-12">Device Settings</span>
+  </h4>
+
+  <div class="form-group row">
+    <label for="name" class="col-sm-2">Device Name</label>
+    <div class="col-sm-3">
+      <input type="text" class="form-control" name="name" id="name" value="{{name}}">
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <label for="info" class="col-sm-2">Description</label>
+    <div class="col-sm-10">
+      <textarea class="form-control" name="info" id="info" rows="5">{{info}}</textarea>
+    </div>
+  </div>
+
+
+  <h4>
+    <span class="badge badge-dark col-sm-12">Security Settings</span>
+  </h4>
+
+  <div class="form-group row">
+    <label for="password" class="col-sm-2">Web-Access-Password</label>
+    <div class="col-sm-6">
+      <input type="password" class="form-control" name="password" id="password" placeholder="Password">
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <div class="col-sm-2 form-text">Accessibility</div>
+    <div class="col-sm-10">
+      <div class="form-check">
+        <label class="form-check-label form-text">
+          <input class="form-check-input" name="isCmdWeb" type="checkbox" checked> Web Command
+        </label>
+        <label class="form-check-label form-text">
+          <input class="form-check-input" name="isCmdTelnet" type="checkbox" checked> Telnet Command
+        </label>
+        <label class="form-check-label form-text">
+          <input class="form-check-input" name="isCmdXXX" type="checkbox" checked> XXX Command
+        </label>
+      </div>
+    </div>
+  </div>
+
+
+
+
+  <h4>
+    <span class="badge badge-secondary col-sm-12">Example heading</span>
+  </h4>
+
+  <div class="form-group row">
+    <label for="exampleInputEmail1" class="col-sm-2 form-text">Email address</label>
+    <div class="col-sm-3">
+      <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+    </div>
+    <small class="col-sm-7 form-text text-muted">We'll never share your email with anyone else.</small>
+  </div>
+
+  <div class="form-group row">
+    <label for="xyz" class="col-sm-2">Text</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" name="xyz" id="xyz" value="{{xyz}}">
+    </div>
+  </div>
+
+  <div class="form-group row align-items-center">
+    <label for="exampleInputBtn" class="col-sm-2">Test</label>
+    <div class="col-sm-3">
+      <a class="btn btn-primary" href="#" role="button">Link</a>
+    </div>
+  </div>
+
+  <h4>
+    <span class="badge badge-secondary col-sm-12">Example heading</span>
+  </h4>
+
+  <div class="form-group row">
+    <label for="abc" class="col-sm-2 form-text">Number</label>
+    <div class="input-group col-sm-3">
+      <input type="number" class="form-control" name="abc" id="abc" value="{{abc}}">
+      <div class="input-group-append">
+        <span class="input-group-text">sec</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group row align-items-center">
+    <label for="exampleFormControlSelect1" class="col-sm-2">Example select</label>
+    <div class="col-sm-3">
+      <select class="form-control" id="exampleFormControlSelect1" value="4">
+        <option value="1">Lorem</option>
+        <option value="2">Ipsum</option>
+        <option value="3">Dolor</option>
+        <option value="4">Sit</option>
+        <option value="5">Amet</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <label for="gpio1" class="col-sm-2 form-text">GPIO Pin Number</label>
+    <div class="input-group col-sm-2">
+      <input type="number" min="0" max="31" class="form-control" name="gpio1" id="gpio1" value="123">
+    </div>
+  </div>
+
+
+  <hr>
+
+  <button type="submit" class="btn btn-warning btn-lg float-right">Submit</button>
+
+</form>
+
+{{ include t_std_foot.html }}

@@ -1,0 +1,4 @@
+[submodule "MicroWebSrv"]
+	path = MicroWebSrv
+	url = https://github.com/jczic/MicroWebSrv.git
+	branch = master

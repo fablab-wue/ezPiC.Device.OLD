@@ -1,0 +1,26 @@
+{{ include t_std_head.html }}
+
+<img src="/static/ezPiC.svg" style="margin:8px" class="float-right align-top mr-0" alt="">
+
+<h4>Hello, world!</h4>
+
+<br />
+
+<table class="table table-hover table-sm">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Property</th>
+      <th scope="col">Value</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{ for item in info }}
+    <tr>
+      <th scope="row">{{item}}</th>
+      <td>{{info[item]}}</td>
+    </tr>
+    {{ end }}
+  </tbody>
+</table>
+
+{{ include t_std_foot.html }}

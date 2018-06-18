@@ -1,0 +1,29 @@
+{{ include t_std_head.html }}
+
+<h4><i class="fas fa-terminal"></i> Command</h4>
+
+<br />
+
+<form action="/cmd" method="post">
+
+  <div class="input-group">
+    <div class="input-group-prepend">
+      <span class="input-group-text" id="basic-addon1">Command:</span>
+    </div>
+    <input type="text" class="form-control" placeholder="type a command" aria-describedby="basic-addon1" id="cmd" name="cmd"
+      value="{{cmd}}">
+    <div class="input-group-append">
+      <button class="btn btn-info" type="submit">Excecute</button>
+    </div>
+
+  </div>
+  <!-- /input-group -->
+
+</form>
+
+<hr> [{{err}}]
+<pre>
+{{ret}}
+</pre>
+
+<hr> {{ include t_std_foot.html }}

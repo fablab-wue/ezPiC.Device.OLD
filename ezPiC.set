@@ -1,0 +1,146 @@
+{
+  "Device": {
+    "name": "ezPiC-Device",
+    "version": 1
+  },
+  "machines": [
+    {
+      "MAPID": "TestPC",
+      "version": "1.0",
+      "params": {
+        "abc": 123,
+        "xyz": 456
+      }
+    }
+  ],
+  "gadgets": [
+    {
+      "GDPID": "TestA",
+      "version": "1.0",
+      "params": {
+        "name": "A11111111111",
+        "enable": true,
+        "timer": 3,
+        "name_t": "T",
+        "name_h": "H",
+        "name_p": "P",
+        "abc": 123,
+        "xyz": "456",
+        "sel": "1",
+        "qwe": "Lorem ipsum",
+        "asd": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ]
+      }
+    },
+    {
+      "GDPID": "TestB",
+      "version": "1.0",
+      "params": {
+        "name": "BbbbbbbB",
+        "enable": true,
+        "timer": 5,
+        "abc": "12345",
+        "xyz": 67890
+      }
+    },
+    {
+      "GDPID": "TestA",
+      "version": "1.0",
+      "params": {
+        "name": "A222",
+        "enable": false,
+        "timer": 10,
+        "name_t": "T",
+        "name_h": "H",
+        "name_p": "P",
+        "abc": 123,
+        "xyz": "456",
+        "sel": "1",
+        "qwe": "Lorem ipsum",
+        "asd": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ]
+      }
+    },
+    {
+      "GDPID": "GPIOout",
+      "version": "1.0",
+      "params": {
+        "name": "A",
+        "enable": true,
+        "timer": 0,
+        "out_key": "a",
+        "out_val_0": "0 off OFF",
+        "out_val_1": "1 on ON",
+        "gpio": "GPIO2 (Dolor)"
+      }
+    }
+  ],
+  "gateways": [
+    {
+      "GWPID": "TestGatewayG",
+      "version": "1.0",
+      "params": {
+        "name": "G",
+        "enable": false,
+        "timer": 3,
+        "filter": null,
+        "name_t": "T",
+        "name_h": "H",
+        "name_p": "P",
+        "abc": 123,
+        "xyz": 456,
+        "sel": 2,
+        "qwe": "Lorem ipsum",
+        "asd": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ]
+      }
+    },
+    {
+      "GWPID": "FileLogger",
+      "version": "1.0",
+      "params": {
+        "name": "Logger",
+        "enable": true,
+        "timer": 0,
+        "filter": "abc\r\nLorem.A*\r\nxyz\r\n*bbbB",
+        "file_name": "Logger.log",
+        "separator": ","
+      }
+    }
+  ],
+  "rules": [
+    {
+      "RUPID": "TimeSw",
+      "version": "1.0",
+      "params": {
+        "name": "TimeSwitch",
+        "enable": true,
+        "trigger_key": "Bbbb.Voltage",
+        "trigger_val": "",
+        "trigger_re": true,
+        "out_key": "TimeSwitchOut",
+        "out_val_0": "0",
+        "out_val_1": "1",
+        "out_time": 10,
+        "if_key": "",
+        "if_val": "0",
+        "if_com": "="
+      }
+    }
+  ]
+}

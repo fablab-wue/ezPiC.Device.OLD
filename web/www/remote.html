@@ -1,0 +1,56 @@
+{{ include t_std_head.html }}
+
+<h4><i class="fas fa-external-link-alt"></i> Remote Port</h4>
+
+<br />
+
+<form action="/remote" method="GET">
+
+  <div class="input-group">
+    <div class="input-group-prepend">
+      <span class="input-group-text" id="basic-addon1">Port:</span>
+    </div>
+    <input type="text" class="form-control" placeholder="type a port name" aria-describedby="basic-addon1" id="port" name="port"
+      value="{{port}}">
+    <div class="input-group-append">
+      <button class="btn btn-info" type="submit">Connect</button>
+    </div>
+
+  </div>
+  <!-- /input-group -->
+
+</form>
+
+<br>
+<a href="/remote/close" type="button" class="btn btn-danger float-right">Close</a>
+
+Status: {{status}}
+
+<hr>
+
+<h5>COM Ports:</h5>
+
+<ul class="">
+  {{ for port in com_ports }}
+    <li>
+      <a href="/remote?port={{port[0]}}"><b>{{port[0]}}</b></a>
+       - {{port[1]}}
+       - <div class="disabled text-muted font-weight-light">{{port[2]}}</div>
+    </li>
+  {{ end }}
+</ul>
+
+<h5>Possible Port Names:</h5>
+
+<ul class="">
+  <li><code class=""><span class="pre">/dev/ttyUSB0</span></code> (Linux)</li>
+  <li><code class=""><span class="pre">COM3</span></code> (Windows)</li>
+  <li><code class=""><span class="pre">rfc2217://&lt;host&gt;:&lt;port&gt;[?&lt;option&gt;[&amp;&lt;option&gt;...]]</span></code></li>
+  <li><code class=""><span class="pre">socket://&lt;host&gt;:&lt;port&gt;[?logging={debug|info|warning|error}]</span></code></li>
+  <li><code class=""><span class="pre">loop://[?logging={debug|info|warning|error}]</span></code></li>
+  <li><code class=""><span class="pre">hwgrep://&lt;regexp&gt;[&amp;skip_busy][&amp;n=N]</span></code></li>
+  <li><code class=""><span class="pre">spy://port[?option[=value][&amp;option[=value]]]</span></code></li>
+  <li><code class=""><span class="pre">alt://port?class=&lt;classname&gt;</span></code></li>
+</ul>
+
+<hr> {{ include t_std_foot.html }}

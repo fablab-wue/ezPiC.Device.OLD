@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+
+  <title>e&middot;z&middot;Pi&middot;C</title>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=gadget-width, initial-scale=1, shrink-to-fit=no">
+
+  <link rel="icon" href="/static/ezPiC.png" type="image/png">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="/static/css/bootstrap.min.css" crossorigin="anonymous">
+  <script defer src="/static/js/fontawesome-all.min.js"></script>
+
+  <link rel="stylesheet" type="text/css" href="/static/css/style.css">
+
+</head>
+
+<body>
+  <main class="container mt-5" role="main">
+  <header>
+    <!-- fixed-top -->
+    <nav class="navbar nav-tabs navbar-expand-md fixed-top navbar-dark bg-dark py-1 ezTest">
+      <a class="navbar-brand p-0" href="/">
+        <img src="/static/ezPiC.svg" width="32" height="32" class="d-inline-block align-top m-0" alt="">
+      </a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse justify-content-between" id="navbarNavAltMarkup">
+        <ul class="navbar-nav">
+          <a class="nav-item nav-link {{ if menu=='main' }}active{{ end }}" href="/main/"><i class="fas fa-home"></i> Main</a>
+          <a class="nav-item nav-link {{ if menu=='gadgets' }}active{{ end }}" href="/gadgets/"><i class="fas fa-microchip"></i> Gadgets</a>
+          <a class="nav-item nav-link {{ if menu=='gateways' }}active{{ end }}" href="/gateways/"><i class="fas fa-cloud-upload-alt"></i> Gateways</a>
+          <a class="nav-item nav-link {{ if menu=='rules' }}active{{ end }}" href="/rules/"><i class="fas fa-filter"></i> Rules</a>
+          <a class="nav-item nav-link {{ if menu=='config' }}active{{ end }}" href="/config/"><i class="fas fa-sliders-h"></i> Device</a>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle {{ if menu=='tools' }}active{{ end }} " href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <i class="fas fa-puzzle-piece"></i> Tools
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="/cmd/"><i class="fas fa-terminal"></i> Command Input</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="/variables/"><i class="fas fa-clipboard-list"></i> Show Variables</a>
+              <a class="dropdown-item" href="/variablesfull/"><i class="fas fa-clipboard-list"></i> Show Variables (Full)</a>
+            </div>
+          </li>
+        </ul>
+        <ul class="nav navbar-nav">
+            <a class="nav-item nav-link {{ if menu=='remote' }}active{{ end }} pull-right" href="/remote/"><i class="fas fa-external-link-alt"></i> Remote</a>
+        </ul>
+    </div>
+    </nav>
+  </header>
+  <br>
+  {{ if MESSAGE_TEXT }}
+    <div class="alert alert-{{ MESSAGE_STYLE }} hide" role="alert">
+      <strong>{{ MESSAGE_TEXT }}</strong>
+    </div>
+  {{ end }}

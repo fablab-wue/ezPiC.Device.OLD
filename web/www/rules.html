@@ -1,0 +1,47 @@
+{{ include t_std_head.html }}
+
+<h4>
+  <i class="fas fa-filter"></i> Active Rules</h4>
+
+<a class="btn btn-success float-right" href="/rules/list/" role="button">
+  <i class="fas fa-plus"></i> Add Rule</a>
+<p>
+  Choose a rule and click the [
+  <i class="fas fa-pencil-alt"></i>] button to edit
+</p>
+
+<div class="rules">
+  {{ for rule in rule_list }} {{ py }} index=rule['idx'] {{ end }}
+  <div class="card">
+    <div class="rules card-header p-2" role="tab" id="heading{{ index }}">
+      <h5 class="d-flex align-items-start m-0 ">
+        <a class="btn btn-secondary btn-sm mx-1 ml-0 mr-3" data-toggle="collapse" href="#collapse{{ index }}" aria-expanded="false"
+          aria-controls="collapse{{ index }}">
+          <i class="fas fa-chevron-down"></i>
+        </a>
+        {{ if rule['enable'] == True }}
+        <i class="fas fa-check-circle text-success"></i>
+        {{ else }}
+        <i class="fas fa-times-circle text-danger"></i>
+        {{ end }} &nbsp;
+        <a class="mr-auto" data-toggle="collapse" href="#collapse{{ index }}" aria-expanded="false" aria-controls="collapse{{ index }}">
+          #{{ index }} [{{ rule['RUPID'] }}] {{ rule['PNAME'] }} - {{ rule['name'] }}
+        </a>
+        <a href="/rules/edit/{{ index }}/" class="btn btn-warning btn-sm mx-1">
+          <i class="fas fa-pencil-alt"></i>
+        </a>
+        <a href="/rules/del/{{ index }}/" class="btn btn-danger btn-sm mx-1">
+          <i class="fas fa-trash-alt"></i>
+        </a>
+      </h5>
+    </div>
+    <div id="collapse{{ index }}" class="collapse" role="tabpanel" aria-labelledby="heading{{ index }}">
+      <div class="card-body">
+        {{ rule['info'] }}
+      </div>
+    </div>
+  </div>
+  {{ end }}
+</div>
+
+{{ include t_std_foot.html }}

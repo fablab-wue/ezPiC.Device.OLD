@@ -1,0 +1,40 @@
+{{ include ../t_std_head.html }}
+
+<h4>Rule TestR Configuration #{{index}} '{{ name }}'</h4>
+
+<form method="post">
+
+  <button type="submit" class="btn btn-warning btn-lg float-right">Submit</button>
+
+  <h3>
+    <span class="badge badge-dark col-sm-12">Rule</span>
+  </h3>
+
+  <div class="form-group row">
+    <label for="name" class="col-sm-2">Rule Name</label>
+    <div class="col-sm-2">
+      <input type="text" class="form-control" name="name" id="name" value="{{name}}">
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <div class="col-sm-2 form-text">Enabled</div>
+    <div class="col-sm-10">
+      <div class="form-check">
+        <label class="form-check-label form-text">
+          <input class="form-check-input" type="checkbox" name="enable" id="enable" value="ACTIVE" {{if enable}}checked{{end}}>
+        </label>
+      </div>
+    </div>
+  </div>
+
+
+  <hr>
+
+  <button type="submit" class="btn btn-warning btn-lg float-right">Submit</button>
+
+</form>
+
+
+
+{{ include ../t_std_foot.html }}
