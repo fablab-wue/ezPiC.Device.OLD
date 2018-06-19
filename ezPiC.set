@@ -3,16 +3,7 @@
     "name": "ezPiC-Device",
     "version": 1
   },
-  "machines": [
-    {
-      "MAPID": "TestPC",
-      "version": "1.0",
-      "params": {
-        "abc": 123,
-        "xyz": 456
-      }
-    }
-  ],
+  "machines": [],
   "gadgets": [
     {
       "GDPID": "TestA",
@@ -82,6 +73,32 @@
         "out_val_0": "0 off OFF",
         "out_val_1": "1 on ON",
         "gpio": "GPIO2 (Dolor)"
+      }
+    },
+    {
+      "GDPID": "SerialGPIO",
+      "version": "1.0",
+      "params": {
+        "name": "SerialGPIO",
+        "enable": false,
+        "timer": 0,
+        "out_key": "TimeSwitchOut",
+        "out_val_0": "0 off OFF",
+        "out_val_1": "1 on ON",
+        "gpio": ""
+      }
+    },
+    {
+      "GDPID": "SerialGPIO",
+      "version": "1.0",
+      "params": {
+        "name": "SerialGPIO",
+        "enable": false,
+        "timer": 0,
+        "out_key": "TimeSwitchOut",
+        "out_val_0": "0 off OFF",
+        "out_val_1": "1 on ON",
+        "gpio": ""
       }
     }
   ],

@@ -42,16 +42,19 @@ class PluginGadget(Gadget.PluginGadgetBase):
         super().init()
 
         try:
-            ser = serial.serial_for_url('COM3')
-            ser.baudrate = 115200
-            ser.timeout = 2.5
+            self._ser = serial.Serial('COM17')
+            self._ser.baudrate = 115200
+            self._ser.timeout = 2.5
 
-            ser.in_waiting
+            self._ser.in_waiting
 
-            ser.write(b'hello')
+            self._ser.write(b'hello')
 
-            ser.is_open
-
+            self._ser.is_open
+            cts = self._ser.cts
+            dsr = self._ser.dsr
+            ri = self._ser.ri
+            cd = self._ser.cd
 
 
             key = self.param['out_key']
