@@ -13,7 +13,7 @@ import dev.Variable as Variable
 # Globals:
 
 GDPID = 'SerialGPIO'
-PNAME = 'PC Serial GPIO'
+PNAME = 'PC Serial Adapter GPIO'
 PINFO = 'GPIO with USB-Serial-Adapter at Windows/Linux'
 
 #######
@@ -25,14 +25,29 @@ class PluginGadget(Gadget.PluginGadgetBase):
         super().__init__(module)
         self.param = {
             # must be params
-            'name':'SerialGPIO',
-            'enable':False,
+            'NAME':'SerialGPIO',
+            'ENABLE':False,
             'timer':0,
             # instance specific params
             'out_key':'TimeSwitchOut',
             'out_val_0':'0 off OFF',
             'out_val_1':'1 on ON',
             'gpio':'',
+
+            'TrigVarDTR':'',
+            'TrigVarRTS':'',
+            'TrigVarTXD':'',
+            'TrigVals1':'1 on ON',
+
+            'RespVarDSR':'',
+            'RespVarCTS':'',
+            'RespVarRI':'',
+            'RespVarCD':'',
+            'RespVarRXD':'',
+            'RespVal0':'0',
+            'RespVal1':'1',
+
+            'Port':'COM3',
             }
         self._pin = None
 

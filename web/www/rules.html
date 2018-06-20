@@ -19,13 +19,13 @@
           aria-controls="collapse{{ index }}">
           <i class="fas fa-chevron-down"></i>
         </a>
-        {{ if rule['enable'] == True }}
+        {{ if rule['ENABLE'] == True }}
         <i class="fas fa-check-circle text-success"></i>
         {{ else }}
         <i class="fas fa-times-circle text-danger"></i>
         {{ end }} &nbsp;
         <a class="mr-auto" data-toggle="collapse" href="#collapse{{ index }}" aria-expanded="false" aria-controls="collapse{{ index }}">
-          #{{ index }} [{{ rule['RUPID'] }}] {{ rule['PNAME'] }} - {{ rule['name'] }}
+          #{{ index }} {{ rule['PNAME'] }} - '{{ rule['NAME'] }}'
         </a>
         <a href="/rules/edit/{{ index }}/" class="btn btn-warning btn-sm mx-1">
           <i class="fas fa-pencil-alt"></i>
@@ -37,7 +37,8 @@
     </div>
     <div id="collapse{{ index }}" class="collapse" role="tabpanel" aria-labelledby="heading{{ index }}">
       <div class="card-body">
-        {{ rule['info'] }}
+        RUPID: [{{ rule['RUPID'] }}]<br>
+        Params: {{ rule['info'] }}
       </div>
     </div>
   </div>

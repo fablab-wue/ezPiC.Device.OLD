@@ -19,13 +19,13 @@
           aria-controls="collapse{{ index }}">
           <i class="fas fa-chevron-down"></i>
         </a>
-        {{ if gadget['enable'] == True }}
+        {{ if gadget['ENABLE'] == True }}
         <i class="fas fa-check-circle text-success"></i>
         {{ else }}
         <i class="fas fa-times-circle text-danger"></i>
         {{ end }} &nbsp;
         <a class="mr-auto" data-toggle="collapse" href="#collapse{{ index }}" aria-expanded="false" aria-controls="collapse{{ index }}">
-          #{{ index }} [{{ gadget['GDPID'] }}] {{ gadget['PNAME'] }} - {{ gadget['name'] }}
+          #{{ index }} {{ gadget['PNAME'] }} - '{{ gadget['NAME'] }}'
         </a>
         <a href="/gadgets/edit/{{ index }}/" class="btn btn-warning btn-sm mx-1">
           <i class="fas fa-pencil-alt"></i>
@@ -37,7 +37,8 @@
     </div>
     <div id="collapse{{ index }}" class="collapse" role="tabpanel" aria-labelledby="heading{{ index }}">
       <div class="card-body">
-        {{ gadget['info'] }}
+        GDPID: [{{ gadget['GDPID'] }}]<br>
+        Params: {{ gadget['info'] }}
       </div>
     </div>
   </div>

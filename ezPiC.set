@@ -1,6 +1,6 @@
 {
   "Device": {
-    "name": "ezPiC-Device",
+    "NAME": "ezPiC-Device",
     "version": 1
   },
   "machines": [],
@@ -9,8 +9,8 @@
       "GDPID": "TestA",
       "version": "1.0",
       "params": {
-        "name": "A11111111111",
-        "enable": true,
+        "NAME": "A11111111111",
+        "ENABLE": true,
         "timer": 3,
         "name_t": "T",
         "name_h": "H",
@@ -32,8 +32,8 @@
       "GDPID": "TestB",
       "version": "1.0",
       "params": {
-        "name": "BbbbbbbB",
-        "enable": true,
+        "NAME": "BbbbbbbB",
+        "ENABLE": true,
         "timer": 5,
         "abc": "12345",
         "xyz": 67890
@@ -43,8 +43,8 @@
       "GDPID": "TestA",
       "version": "1.0",
       "params": {
-        "name": "A222",
-        "enable": false,
+        "NAME": "A222",
+        "ENABLE": false,
         "timer": 10,
         "name_t": "T",
         "name_h": "H",
@@ -66,8 +66,8 @@
       "GDPID": "GPIOout",
       "version": "1.0",
       "params": {
-        "name": "A",
-        "enable": true,
+        "NAME": "A",
+        "ENABLE": true,
         "timer": 0,
         "out_key": "a",
         "out_val_0": "0 off OFF",
@@ -79,26 +79,50 @@
       "GDPID": "SerialGPIO",
       "version": "1.0",
       "params": {
-        "name": "SerialGPIO",
-        "enable": false,
+        "NAME": "SerialGPIO",
+        "ENABLE": false,
         "timer": 0,
         "out_key": "TimeSwitchOut",
         "out_val_0": "0 off OFF",
         "out_val_1": "1 on ON",
-        "gpio": ""
+        "gpio": "",
+        "TrigVarDTR": null,
+        "TrigVarRTS": null,
+        "TrigVarTXD": null,
+        "TrigVals1": null,
+        "RespVarDSR": null,
+        "RespVarCTS": null,
+        "RespVarRI": null,
+        "RespVarCD": null,
+        "RespVarRXD": null,
+        "RespVal0": null,
+        "RespVal1": null,
+        "Port": null
       }
     },
     {
       "GDPID": "SerialGPIO",
       "version": "1.0",
       "params": {
-        "name": "SerialGPIO",
-        "enable": false,
+        "NAME": "SerialGPIO LED",
+        "ENABLE": false,
         "timer": 0,
         "out_key": "TimeSwitchOut",
         "out_val_0": "0 off OFF",
         "out_val_1": "1 on ON",
-        "gpio": ""
+        "gpio": "",
+        "TrigVarDTR": "LED",
+        "TrigVarRTS": "",
+        "TrigVarTXD": "",
+        "TrigVals1": "1 on ON",
+        "RespVarDSR": "",
+        "RespVarCTS": "",
+        "RespVarRI": "",
+        "RespVarCD": "",
+        "RespVarRXD": "",
+        "RespVal0": "0",
+        "RespVal1": "1",
+        "Port": "COM9 - Intel(R) Active Management Technology - SOL (COM9)"
       }
     }
   ],
@@ -107,8 +131,8 @@
       "GWPID": "TestGatewayG",
       "version": "1.0",
       "params": {
-        "name": "G",
-        "enable": false,
+        "NAME": "G",
+        "ENABLE": false,
         "timer": 3,
         "filter": null,
         "name_t": "T",
@@ -131,8 +155,8 @@
       "GWPID": "FileLogger",
       "version": "1.0",
       "params": {
-        "name": "Logger",
-        "enable": true,
+        "NAME": "Logger",
+        "ENABLE": true,
         "timer": 0,
         "filter": "abc\r\nLorem.A*\r\nxyz\r\n*bbbB",
         "file_name": "Logger.log",
@@ -145,8 +169,8 @@
       "RUPID": "TimeSw",
       "version": "1.0",
       "params": {
-        "name": "TimeSwitch",
-        "enable": true,
+        "NAME": "TimeSwitch",
+        "ENABLE": true,
         "trigger_key": "Bbbb.Voltage",
         "trigger_val": "",
         "trigger_re": true,
@@ -157,6 +181,30 @@
         "if_key": "",
         "if_val": "0",
         "if_com": "="
+      }
+    },
+    {
+      "RUPID": "TestRuleR",
+      "version": "1.0",
+      "params": {
+        "NAME": "G",
+        "ENABLE": true,
+        "timer": 3000,
+        "filter": "",
+        "name_t": "T",
+        "name_h": "H",
+        "name_p": "P",
+        "abc": 123,
+        "xyz": 456,
+        "sel": 2,
+        "qwe": "Lorem ipsum",
+        "asd": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ]
       }
     }
   ]

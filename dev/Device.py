@@ -13,7 +13,7 @@ PARAMS = {}
 def set_default():
     global PARAMS
 
-    PARAMS['name'] = 'ezPiC-Device'
+    PARAMS['NAME'] = 'ezPiC-Device'
     PARAMS['version'] = 1
 
 #######

@@ -10,7 +10,7 @@ import dev.Variable as Variable
 # Globals:
 
 RUPID = 'TestRuleR'
-PNAME = 'Readable Name R'
+PNAME = 'Test Rule R'
 PINFO = 'Lorem ipsum dolor sit amet.'
 
 #######
@@ -22,8 +22,8 @@ class PluginRule(Rule.PluginRuleBase):
         super().__init__(module)
         self.param = {
             # must be params
-            'name':'G',
-            'enable':True,
+            'NAME':'G',
+            'ENABLE':True,
             'timer':3000,
             'filter':'',
             # instance specific params

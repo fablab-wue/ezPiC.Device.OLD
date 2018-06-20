@@ -19,13 +19,13 @@
           aria-controls="collapse{{ index }}">
           <i class="fas fa-chevron-down"></i>
         </a>
-        {{ if gateway['enable'] == True }}
+        {{ if gateway['ENABLE'] == True }}
         <i class="fas fa-check-circle text-success"></i>
         {{ else }}
         <i class="fas fa-times-circle text-danger"></i>
         {{ end }} &nbsp;
         <a class="mr-auto" data-toggle="collapse" href="#collapse{{ index }}" aria-expanded="false" aria-controls="collapse{{ index }}">
-          #{{ index }} [{{ gateway['GWPID'] }}] {{ gateway['PNAME'] }} - {{ gateway['name'] }}
+          #{{ index }} {{ gateway['PNAME'] }} - '{{ gateway['NAME'] }}'
         </a>
         <a href="/gateways/edit/{{ index }}/" class="btn btn-warning btn-sm mx-1">
           <i class="fas fa-pencil-alt"></i>
@@ -37,7 +37,8 @@
     </div>
     <div id="collapse{{ index }}" class="collapse" role="tabpanel" aria-labelledby="heading{{ index }}">
       <div class="card-body">
-        {{ gateway['info'] }}
+        GWPID: [{{ gateway['GWPID'] }}]<br>
+        Params: {{ gateway['info'] }}
       </div>
     </div>
   </div>

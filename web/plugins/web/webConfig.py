@@ -20,7 +20,7 @@ def web_config(httpClient, httpResponse):
     vars['xyz'] = 'XYZ'
     vars['abc'] = '12345'
 
-    vars['name'] = 'Test-Name'
+    vars['NAME'] = 'Test-Name'
     vars['info'] = 'BlaBla'
 
     if httpClient.GetRequestMethod() == 'POST':

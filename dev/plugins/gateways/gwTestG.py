@@ -10,7 +10,7 @@ import dev.Variable as Variable
 # Globals:
 
 GWPID = 'TestGatewayG'
-PNAME = 'Readable Name G'
+PNAME = 'Test Gateway G'
 PINFO = 'Lorem ipsum dolor sit amet.'
 
 #######
@@ -22,8 +22,8 @@ class PluginGateway(Gateway.PluginGatewayBase):
         super().__init__(module)
         self.param = {
             # must be params
-            'name':'G',
-            'enable':True,
+            'NAME':'G',
+            'ENABLE':True,
             'timer':3000,
             'filter':'',
             # instance specific params

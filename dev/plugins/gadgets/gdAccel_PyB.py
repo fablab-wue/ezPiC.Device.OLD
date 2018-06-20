@@ -19,8 +19,8 @@ class PluginGadget(Gadget.PluginGadgetBase):
     def __init__(self, module):
         super().__init__(module)
         self.param = {
-            'name':'PyB-Accel', # must be params
-            'enable':True,
+            'NAME':'PyB-Accel', # must be params
+            'ENABLE':True,
             'timer':1000,
             'name_x':'X', # instance specific params
             'name_y':'Y',
@@ -38,6 +38,6 @@ class PluginGadget(Gadget.PluginGadgetBase):
     def timer(self, prepare:bool):
         x, y, z = self._accel.x(), self._accel.y(), self._accel.z()
 
-        Variable.set2(self.param['name'], self.param['name_x'], x)
-        Variable.set2(self.param['name'], self.param['name_y'], y)
-        Variable.set2(self.param['name'], self.param['name_z'], z)
+        Variable.set2(self.param['NAME'], self.param['name_x'], x)
+        Variable.set2(self.param['NAME'], self.param['name_y'], y)
+        Variable.set2(self.param['NAME'], self.param['name_z'], z)

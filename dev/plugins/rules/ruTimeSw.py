@@ -12,7 +12,7 @@ import dev.Timer as Timer
 
 RUPID = 'TimeSw'
 PNAME = 'Time Switch'
-PINFO = 'Lorem ipsum dolor sit amet.'
+PINFO = 'Generate (non)retriggerable Pulses triggered by Variable and output to Variable'
 
 #######
 
@@ -23,8 +23,8 @@ class PluginRule(Rule.PluginRuleBase):
         super().__init__(module)
         self.param = {
             # must be params
-            'name':'TimeSwitch',
-            'enable':True,
+            'NAME':'TimeSwitch',
+            'ENABLE':True,
             # instance specific params
             'trigger_key':'Bbbb.Voltage',
             'trigger_val':'',

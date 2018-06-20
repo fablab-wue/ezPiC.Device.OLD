@@ -1,19 +1,19 @@
 {{ include ../t_std_head.html }}
 
-<h4>Rule TestR Configuration #{{index}} '{{ name }}'</h4>
+<h4>Rule TestR Configuration #{{index}} '{{NAME}}'</h4>
 
 <form method="post">
 
   <button type="submit" class="btn btn-warning btn-lg float-right">Submit</button>
 
-  <h3>
+  <h4>
     <span class="badge badge-dark col-sm-12">Rule</span>
-  </h3>
+  </h4>
 
   <div class="form-group row">
     <label for="name" class="col-sm-2">Rule Name</label>
-    <div class="col-sm-2">
-      <input type="text" class="form-control" name="name" id="name" value="{{name}}">
+    <div class="col-sm-3">
+      <input type="text" class="form-control" name="name" id="name" value="{{NAME}}">
     </div>
   </div>
 
@@ -22,76 +22,65 @@
     <div class="col-sm-10">
       <div class="form-check">
         <label class="form-check-label form-text">
-          <input class="form-check-input" type="checkbox" name="enable" id="enable" value="ACTIVE" {{if enable}}checked{{end}}>
+          <input class="form-check-input" type="checkbox" name="ENABLE" id="ENABLE" value="ACTIVE" {{if ENABLE}}checked{{end}}>
         </label>
       </div>
     </div>
   </div>
 
 
-  <h3>
-    <span class="badge badge-dark col-sm-12">Variable Trigger</span>
-  </h3>
+  <h4>
+    <span class="badge badge-dark col-sm-12">Trigger</span>
+  </h4>
 
   <div class="form-group row">
-    <label for="trigger_key" class="col-sm-2">Trigger Key</label>
-    <div class="col-sm-10">
+    <label for="trigger_key" class="col-sm-2">Trigger Variable</label>
+    <div class="col-sm-7">
       <input type="text" class="form-control" name="trigger_key" id="trigger_key" value="{{trigger_key}}">
     </div>
   </div>
 
   <div class="form-group row">
-    <label for="trigger_val" class="col-sm-2">Trigger Value</label>
-    <div class="col-sm-2">
+    <label for="trigger_val" class="col-sm-2">Values for Trigger</label>
+    <div class="col-sm-3">
       <input type="text" class="form-control" name="trigger_val" id="trigger_val" value="{{trigger_val}}">
     </div>
-  </div>
-
-  'trigger_re':
-
-  <div class="form-group row align-items-center">
-    <label for="trigger_re" class="col-sm-2">Example select</label>
-    <div class="col-sm-2">
-      <select class="form-control" name="trigger_re" id="trigger_re" value="{{trigger_re}}">
-        <option value="0">No Retrigger - Konstant Pulse Length</option>
-        <option value="1">Retrigger - Variable Pulse Length</option>
-      </select>
-    </div>
+    <div class="col-sm-7 form-text text-muted">(Space separated List. Leave empty to trigger on all)</div>
   </div>
 
 
-  <h3>
-    <span class="badge badge-dark col-sm-12">Variable Condition</span>
-  </h3>
+  <h4>
+    <span class="badge badge-dark col-sm-12">Condition (not implemented yet)</span>
+  </h4>
 
   <div class="form-group row">
-    <label for="if_key" class="col-sm-2">If Key</label>
-    <div class="col-sm-10">
+    <label for="if_key" class="col-sm-2">Condition Varable</label>
+    <div class="col-sm-7">
       <input type="text" class="form-control" name="if_key" id="if_key" value="{{if_key}}">
     </div>
   </div>
 
   <div class="form-group row">
-    <label for="if_val" class="col-sm-2">If Value</label>
-    <div class="col-sm-2">
+    <label for="if_val" class="col-sm-2">Value</label>
+    <div class="col-sm-1">
       <input type="text" class="form-control" name="if_val" id="if_val" value="{{if_val}}">
     </div>
   </div>
 
   <div class="form-group row">
-    <label for="if_com" class="col-sm-2">If Compare</label>
-    <div class="col-sm-2">
+    <label for="if_com" class="col-sm-2">Compare</label>
+    <div class="col-sm-1">
       <input type="text" class="form-control" name="if_com" id="if_com" value="{{if_com}}">
     </div>
   </div>
 
 
-  <h3>
-    <span class="badge badge-dark col-sm-12">Variable Out</span>
-  </h3>
+  <h4>
+    <span class="badge badge-dark col-sm-12">Response</span>
+  </h4>
 
   <div class="form-group row">
-    <label for="out_time" class="col-sm-2 form-text">Out Time Span</label>
+    <label for="out_time" class="col-sm-2 form-text">Time Span</label>
     <div class="input-group col-sm-2">
       <input type="number" min="1" max="9999" class="form-control" name="out_time" id="out_time" value="{{out_time}}">
       <div class="input-group-append">
@@ -100,24 +89,34 @@
     </div>
   </div>
 
+  <div class="form-group row align-items-center">
+    <label for="trigger_re" class="col-sm-2">Mode</label>
+    <div class="col-sm-5">
+      <select class="form-control" name="trigger_re" id="trigger_re" value="{{trigger_re}}">
+        <option value="0">No Retrigger - Konstant Pulse Length</option>
+        <option value="1">Retrigger - Variable Pulse Length</option>
+      </select>
+    </div>
+  </div>
+
   <div class="form-group row">
-    <label for="out_key" class="col-sm-2">Out Key</label>
-    <div class="col-sm-10">
+    <label for="out_key" class="col-sm-2">Response Variable</label>
+    <div class="col-sm-7">
       <input type="text" class="form-control" name="out_key" id="out_key" value="{{out_key}}">
     </div>
   </div>
 
   <div class="form-group row">
-    <label for="out_val_1" class="col-sm-2">Out Value ON</label>
-    <div class="col-sm-2">
-      <input type="text" class="form-control" name="out_val_1" id="out_val_1" value="{{out_val_1}}">
+    <label for="out_val_0" class="col-sm-2">Value Inactive</label>
+    <div class="col-sm-1">
+      <input type="text" class="form-control" name="out_val_0" id="out_val_0" value="{{out_val_0}}">
     </div>
   </div>
 
   <div class="form-group row">
-    <label for="out_val_0" class="col-sm-2">Out Value OFF</label>
-    <div class="col-sm-2">
-      <input type="text" class="form-control" name="out_val_0" id="out_val_0" value="{{out_val_0}}">
+    <label for="out_val_1" class="col-sm-2">Value Active</label>
+    <div class="col-sm-1">
+      <input type="text" class="form-control" name="out_val_1" id="out_val_1" value="{{out_val_1}}">
     </div>
   </div>
 

@@ -11,7 +11,7 @@ import dev.Variable as Variable
 #######
 
 GDPID = 'TestA'
-PNAME = 'Readable Name A'
+PNAME = 'Test Gadget A'
 PINFO = 'Lorem ipsum dolor sit amet'
 
 class PluginGadget(Gadget.PluginGadgetBase):
@@ -20,8 +20,8 @@ class PluginGadget(Gadget.PluginGadgetBase):
         super().__init__(module)
         self.param = {
             # must be params
-            'name':'A',
-            'enable':True,
+            'NAME':'A',
+            'ENABLE':True,
             'timer':10000,
             # instance specific params
             'name_t':'T',
@@ -38,7 +38,7 @@ class PluginGadget(Gadget.PluginGadgetBase):
 
     def init(self):
         super().init()
-        Variable.set_meta2(self.param['name'], self.param['name_t'], '°C', '{:.3f}')
+        Variable.set_meta2(self.param['NAME'], self.param['name_t'], '°C', '{:.3f}')
 
 # -----
 
@@ -49,4 +49,4 @@ class PluginGadget(Gadget.PluginGadgetBase):
 
     def timer(self, prepare:bool):
         log(5, 'ggTestA Timer')
-        Variable.set2(self.param['name'], self.param['name_t'], random.random())
+        Variable.set2(self.param['NAME'], self.param['name_t'], random.random())

@@ -12,7 +12,7 @@ import dev.Variable as Variable
 
 GWPID = 'FileLogger'
 PNAME = 'Data Logger to File'
-PINFO = 'Lorem ipsum dolor sit amet.'
+PINFO = 'Log all/filtered Variables to Text File (CSV)'
 
 #######
 
@@ -23,8 +23,8 @@ class PluginGateway(Gateway.PluginGatewayBase):
         super().__init__(module)
         self.param = {
             # must be params
-            'name':'Logger',
-            'enable':True,
+            'NAME':'Logger',
+            'ENABLE':True,
             'timer':0,
             'filter':'',
             # instance specific params

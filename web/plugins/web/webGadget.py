@@ -79,7 +79,7 @@ def web_gadget_edit(httpClient, httpResponse, args):
     if httpClient.GetRequestMethod() == 'POST':
         formParams = httpClient.ReadRequestPostedFormData()        
         if formParams:
-            formParams['enable'] = 'enable' in formParams   # checkbox -> bool
+            formParams['ENABLE'] = 'ENABLE' in formParams   # checkbox -> bool
             formParams['timer'] = int(formParams.get('timer', 0))
             for key, value in params.items():
                 if key in formParams:

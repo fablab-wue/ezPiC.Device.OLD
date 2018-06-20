@@ -33,7 +33,7 @@ class PluginGadget(Gadget.PluginGadgetBase):
     def __init__(self, module): # FIXME in base class, everywhere: shadowing of "module"
         super().__init__(module)
         self.param = {
-            'name': 'NeoPixel Decimal Display', 
+            'NAME': 'NeoPixel Decimal Display', 
             'machine_pin': 3, 
             'int_digits': 2, 
             'fract_digits': 1,

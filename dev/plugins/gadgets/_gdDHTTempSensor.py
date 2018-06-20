@@ -28,7 +28,7 @@ class PluginGadget(Gadget.PluginGadgetBase):
     def __init__(self, module): # FIXME in base class, everywhere: shadowing of "module"
         super().__init__(module)
         self.param = {
-            'name': 'DHT / AM Temperature and Humidity Sensor Gadget', 
+            'NAME': 'DHT / AM Temperature and Humidity Sensor Gadget', 
             'machine_pin': 4, 
             'type': 'DHT11'
             } # TODO Allowed values / Lists / ...?

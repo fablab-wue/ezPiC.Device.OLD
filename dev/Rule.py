@@ -25,7 +25,7 @@ def rule_timer_handler(news, args):
 
         for idx, rule in enumerate(_RULES):
             if rule.timer_next and (t >= rule.timer_next):
-                if rule.get_params('enable'):
+                if rule.get_params('ENABLE'):
                     if rule.timer_period:   # cyclic timer
                         rule.timer_next += rule.timer_period
                         if rule.timer_next < t:   # missed some events
@@ -37,7 +37,7 @@ def rule_timer_handler(news, args):
                     rule.timer_next = None
 
             if news:
-                if rule.get_params('enable'):
+                if rule.get_params('ENABLE'):
                     rule.variables(news)
 
 #######
@@ -178,8 +178,8 @@ def get_list() -> tuple:
             g['idx'] = idx
             g['RUPID'] = rule.module.RUPID
             g['PNAME'] = rule.module.PNAME
-            g['name'] = rule.get_name()
-            g['enable'] = rule.get_params('enable')
+            g['NAME'] = rule.get_name()
+            g['ENABLE'] = rule.get_params('ENABLE')
             g['info'] = rule.get_info()
             gl.append(g)
 
@@ -233,7 +233,7 @@ class PluginRuleBase():
 
     def init(self):
         """ init a new instance after adding to task list or reinit an existing instance after loading/changing params """
-        if not self.timer_next and self.timer_period and self.get_params('enable'):
+        if not self.timer_next and self.timer_period and self.get_params('ENABLE'):
             self.timer_next = Timer.clock() + self.timer_period
 
     def exit(self):
@@ -242,7 +242,7 @@ class PluginRuleBase():
 
     def get_name(self) -> str:
         """ get the name from the module """
-        return self.param.get('name', 'Unknown')
+        return self.param.get('NAME', 'Unknown')
 
     def get_info(self) -> str:
         """ get the description from the module """

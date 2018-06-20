@@ -26,11 +26,11 @@ def gadget_timer_handler(news, args):
         for idx, gadget in enumerate(_GADGETS):
             if gadget.prepare_next and (t >= gadget.prepare_next):
                 gadget.prepare_next = None
-                if gadget.get_params('enable'):
+                if gadget.get_params('ENABLE'):
                     gadget.timer(True)
 
             if gadget.timer_next and (t >= gadget.timer_next):
-                if gadget.get_params('enable'):
+                if gadget.get_params('ENABLE'):
                     if gadget.timer_period: # cyclic timer
                         gadget.timer_next += gadget.timer_period
                         if gadget.timer_next < t: # missed some events
@@ -44,7 +44,7 @@ def gadget_timer_handler(news, args):
                     gadget.timer_next = None
 
             if news:
-                if gadget.get_params('enable'):
+                if gadget.get_params('ENABLE'):
                     gadget.variables(news)
 
 #######
@@ -185,8 +185,8 @@ def get_list() -> tuple:
             d['idx'] = idx
             d['GDPID'] = gadget.module.GDPID
             d['PNAME'] = gadget.module.PNAME
-            d['name'] = gadget.get_name()
-            d['enable'] = gadget.get_params('enable')
+            d['NAME'] = gadget.get_name()
+            d['ENABLE'] = gadget.get_params('ENABLE')
             d['info'] = gadget.get_info()
             dl.append(d)
 
@@ -261,7 +261,7 @@ class PluginGadgetBase():
             t = int(float(t) * 1000)
             if t > 0:
                 self.timer_period = t
-        if self.timer_period and self.get_params('enable'):
+        if self.timer_period and self.get_params('ENABLE'):
             self.timer_next = Timer.clock() + self.timer_period
             if self.prepare_time:
                 self.prepare_next = self.timer_next - self.prepare_time
@@ -272,7 +272,7 @@ class PluginGadgetBase():
 
     def get_name(self) -> str:
         """ get the name from the module """
-        return self.param.get('name', 'Unknown')
+        return self.param.get('NAME', 'Unknown')
 
     def get_info(self) -> str:
         """ get the description from the module """

@@ -11,8 +11,8 @@ import dev.Machine as Machine
 # Globals:
 
 GDPID = 'GPIOout'
-PNAME = 'GPIO output'
-PINFO = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'
+PNAME = 'GPIO Output'
+PINFO = 'Use GPIOs as Output triggered by Variables'
 
 #######
 
@@ -23,8 +23,8 @@ class PluginGadget(Gadget.PluginGadgetBase):
         super().__init__(module)
         self.param = {
             # must be params
-            'name':'A',
-            'enable':False,
+            'NAME':'A',
+            'ENABLE':False,
             'timer':0,
             # instance specific params
             'out_key':'TimeSwitchOut',

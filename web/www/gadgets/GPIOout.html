@@ -1,19 +1,19 @@
 {{ include ../t_std_head.html }}
 
-<h4>GPIO output Configuration #{{index}} '{{ name }}'</h4>
+<h4>GPIO output Configuration #{{index}} '{{NAME}}'</h4>
 
 <form method="post">
 
   <button type="submit" class="btn btn-warning btn-lg float-right">Submit</button>
 
-  <h3>
-    <span class="badge badge-dark col-sm-12">Rule</span>
-  </h3>
+  <h4>
+    <span class="badge badge-dark col-sm-12">Gadget</span>
+  </h4>
 
   <div class="form-group row">
-    <label for="name" class="col-sm-2">Gadget Name</label>
-    <div class="col-sm-2">
-      <input type="text" class="form-control" name="name" id="name" value="{{name}}">
+    <label for="NAME" class="col-sm-2">Gadget Name</label>
+    <div class="col-sm-3">
+      <input type="text" class="form-control" name="NAME" id="NAME" value="{{NAME}}">
     </div>
   </div>
 
@@ -22,42 +22,36 @@
     <div class="col-sm-10">
       <div class="form-check">
         <label class="form-check-label form-text">
-          <input class="form-check-input" type="checkbox" name="enable" id="enable" value="ACTIVE" {{if enable}}checked{{end}}>
+          <input class="form-check-input" type="checkbox" name="ENABLE" id="ENABLE" value="ACTIVE" {{if ENABLE}}checked{{end}}>
         </label>
       </div>
     </div>
   </div>
 
 
-  <h3>
-    <span class="badge badge-dark col-sm-12">Variable Trigger</span>
-  </h3>
+  <h4>
+    <span class="badge badge-dark col-sm-12">Trigger</span>
+  </h4>
 
   <div class="form-group row">
-    <label for="out_key" class="col-sm-2">Out Key</label>
-    <div class="col-sm-10">
+    <label for="out_key" class="col-sm-2">Trigger Variable</label>
+    <div class="col-sm-7">
       <input type="text" class="form-control" name="out_key" id="out_key" value="{{out_key}}">
     </div>
   </div>
 
   <div class="form-group row">
-    <label for="out_val_1" class="col-sm-2">Out Value 1</label>
-    <div class="col-sm-2">
+    <label for="out_val_1" class="col-sm-2">Values for Active</label>
+    <div class="col-sm-3">
       <input type="text" class="form-control" name="out_val_1" id="out_val_1" value="{{out_val_1}}">
     </div>
-  </div>
-
-  <div class="form-group row">
-    <label for="out_val_0" class="col-sm-2">Out Value 0</label>
-    <div class="col-sm-2">
-      <input type="text" class="form-control" name="out_val_0" id="out_val_0" value="{{out_val_0}}">
-    </div>
+    <div class="col-sm-7 form-text text-muted">(Space separated List)</div>
   </div>
 
 
-  <h3>
+  <h4>
     <span class="badge badge-dark col-sm-12">GPIO</span>
-  </h3>
+  </h4>
 
   <div class="form-group row align-items-center">
     <label for="gpio" class="col-sm-2">GPIO Pin</label>
@@ -66,6 +60,16 @@
         {{ for item in PIN_O }}
           <option value="{{item}}">{{item}}</option>
         {{ end }}
+      </select>
+    </div>
+  </div>
+
+  <div class="form-group row align-items-center">
+    <label for="active" class="col-sm-2">Mode</label>
+    <div class="col-sm-3">
+      <select class="form-control" name="active" id="active" value="1">
+        <option value="0">Low Active</option>
+        <option value="1">High Active</option>
       </select>
     </div>
   </div>

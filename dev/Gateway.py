@@ -25,7 +25,7 @@ def gateway_timer_handler(news, args):
 
         for idx, gateway in enumerate(_GATEWAYS):
             if gateway.timer_next and (t >= gateway.timer_next):
-                if gateway.get_params('enable'):
+                if gateway.get_params('ENABLE'):
                     if gateway.timer_period:   # cyclic timer
                         gateway.timer_next += gateway.timer_period
                         if gateway.timer_next < t:   # missed some events
@@ -37,7 +37,7 @@ def gateway_timer_handler(news, args):
                     gateway.timer_next = None
 
             if news:
-                if gateway.get_params('enable'):
+                if gateway.get_params('ENABLE'):
                     gateway.variables(news)
 
 #######
@@ -178,8 +178,8 @@ def get_list() -> tuple:
             g['idx'] = idx
             g['GWPID'] = gateway.module.GWPID
             g['PNAME'] = gateway.module.PNAME
-            g['name'] = gateway.get_name()
-            g['enable'] = gateway.get_params('enable')
+            g['NAME'] = gateway.get_name()
+            g['ENABLE'] = gateway.get_params('ENABLE')
             g['info'] = gateway.get_info()
             gl.append(g)
 
@@ -232,7 +232,7 @@ class PluginGatewayBase():
 
     def init(self):
         """ init a new instance after adding to task list or reinit an existing instance after loading/changing params """
-        if not self.timer_next and self.timer_period and self.get_params('enable'):
+        if not self.timer_next and self.timer_period and self.get_params('ENABLE'):
             self.timer_next = Timer.clock() + self.timer_period
 
     def exit(self):
@@ -241,7 +241,7 @@ class PluginGatewayBase():
 
     def get_name(self) -> str:
         """ get the name from the module """
-        return self.param.get('name', 'Unknown')
+        return self.param.get('NAME', 'Unknown')
 
     def get_info(self) -> str:
         """ get the description from the module """
