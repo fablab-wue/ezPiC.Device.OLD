@@ -37,7 +37,7 @@
     <label for="Port" class="col-sm-2">Serial Port</label>
     <div class="col-sm-5">
       <select class="form-control" name="Port" id="Port" value="{{Port}}">
-        {{ for item in ports }}
+        {{ for item in Ports }}
           <option value="{{item}}">{{item}}</option>
         {{ end }}
       </select>

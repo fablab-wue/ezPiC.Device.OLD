@@ -38,7 +38,7 @@ def cmd_rule_add(cmd:dict) -> tuple:
 #######
 
 @Cmd.route('rule.clear')
-@Cmd.route('rule.del.all')
+@Cmd.route('rule.delete.all')
 def cmd_rule_del_all(cmd:dict) -> tuple:
     """ remove all RULE instances """
     err, ret = Rule.clear()
@@ -47,7 +47,7 @@ def cmd_rule_del_all(cmd:dict) -> tuple:
 
 #######
 
-@Cmd.route('rule.del.#')
+@Cmd.route('rule.delete.#')
 def cmd_rule_del(cmd:dict) -> tuple:
     """ remove one RULE instance """
     index = cmd['IDX']

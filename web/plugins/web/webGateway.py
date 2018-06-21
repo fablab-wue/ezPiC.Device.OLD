@@ -80,15 +80,14 @@ def web_gateway_edit(httpClient, httpResponse, args):
         formParams = httpClient.ReadRequestPostedFormData()        
         if formParams:
             formParams['ENABLE'] = 'ENABLE' in formParams   # checkbox -> bool
-            formParams['timer'] = int(formParams.get('timer', 0))
-            for key, value in params.items():
-                if key in formParams:
-                    params[key] = formParams.get(key)
-        err, ret = Web.command(httpResponse, 'gateway.setparams', index=idx, params=params)
+            params.update(formParams)
+        err, ret = Web.command(httpResponse, 'gateway.setparams', index=idx, params=formParams)
+        if not err:
+            err, ret = Web.command(httpResponse, 'save')
         if err:
             Web.flash_error(httpResponse, err, ret, idx)
-        err, ret = Web.command(httpResponse, 'save')
-        httpResponse.FlashMessage('Settings saved', 'info')
+        else:
+            httpResponse.FlashMessage('Settings saved', 'info')
     else: # GET
         pass
 

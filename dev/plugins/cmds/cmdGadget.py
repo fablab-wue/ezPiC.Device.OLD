@@ -38,7 +38,7 @@ def cmd_gadget_add(cmd:dict) -> tuple:
 #######
 
 @Cmd.route('gadget.clear')
-@Cmd.route('gadget.del.all')
+@Cmd.route('gadget.delete.all')
 def cmd_gadget_del_all(cmd:dict) -> tuple:
     """ remove all GADGET instances """
     err, ret = Gadget.clear()
@@ -47,7 +47,7 @@ def cmd_gadget_del_all(cmd:dict) -> tuple:
 
 #######
 
-@Cmd.route('gadget.del.#')
+@Cmd.route('gadget.delete.#')
 def cmd_gadget_del(cmd:dict) -> tuple:
     """ remove one GADGET instance """
     index = cmd['IDX']

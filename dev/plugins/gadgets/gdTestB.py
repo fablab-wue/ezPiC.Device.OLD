@@ -22,7 +22,7 @@ class PluginGadget(Gadget.PluginGadgetBase):
             # must be params
             'NAME':'B', 
             'ENABLE':True,
-            'timer':5000,
+            'TIMER':5,
             # instance specific params
             'abc':12345, 
             'xyz':67890

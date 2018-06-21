@@ -25,7 +25,7 @@ class PluginGateway(Gateway.PluginGatewayBase):
             # must be params
             'NAME':'Logger',
             'ENABLE':True,
-            'timer':0,
+            'TIMER':0,
             'filter':'',
             # instance specific params
             'file_name':'Logger.log',
@@ -38,7 +38,7 @@ class PluginGateway(Gateway.PluginGatewayBase):
 # -----
 
     def init(self):
-        t = float(self.param['timer'])
+        t = float(self.param['TIMER'])
         if t>0:
             self.timer_period = t
         else:

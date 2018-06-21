@@ -24,7 +24,7 @@ class PluginGateway(Gateway.PluginGatewayBase):
             # must be params
             'NAME':'G',
             'ENABLE':True,
-            'timer':3000,
+            'TIMER':3000,
             'filter':'',
             # instance specific params
             'name_t':'T',
@@ -42,7 +42,7 @@ class PluginGateway(Gateway.PluginGatewayBase):
 # -----
 
     def init(self):
-        t = float(self.param['timer'])
+        t = float(self.param['TIMER'])
         if t>0:
             self.timer_period = t
         else:

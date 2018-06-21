@@ -38,7 +38,7 @@ def cmd_gateway_add(cmd:dict) -> tuple:
 #######
 
 @Cmd.route('gateway.clear')
-@Cmd.route('gateway.del.all')
+@Cmd.route('gateway.delete.all')
 def cmd_gateway_del_all(cmd:dict) -> tuple:
     """ remove all GATEWAY instances """
     err, ret = Gateway.clear()
@@ -47,7 +47,7 @@ def cmd_gateway_del_all(cmd:dict) -> tuple:
 
 #######
 
-@Cmd.route('gateway.del.#')
+@Cmd.route('gateway.delete.#')
 def cmd_gateway_del(cmd:dict) -> tuple:
     """ remove one GATEWAY instance """
     index = cmd['IDX']

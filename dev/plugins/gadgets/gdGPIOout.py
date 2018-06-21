@@ -25,7 +25,7 @@ class PluginGadget(Gadget.PluginGadgetBase):
             # must be params
             'NAME':'A',
             'ENABLE':False,
-            'timer':0,
+            'TIMER':0,
             # instance specific params
             'out_key':'TimeSwitchOut',
             'out_val_0':'0 off OFF',

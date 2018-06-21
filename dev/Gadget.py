@@ -256,7 +256,7 @@ class PluginGadgetBase():
         self.prepare_next = None
         self.timer_period = None
         
-        t = self.param.get('timer', None)
+        t = self.param.get('TIMER', None)
         if t:
             t = int(float(t) * 1000)
             if t > 0:
@@ -287,18 +287,15 @@ class PluginGadgetBase():
 
     def set_params(self, param_new:dict):
         """ updates the param key-value pairs with given dict """
-        #self.param.update(param_new)
-        changed = False
         for key in self.param:
-            if self.param[key] != param_new.get(key, None):
-                changed = True
+            if key in param_new and self.param[key] != param_new[key]:   # found any change?
+                self.exit()
+                for key in self.param:
+                    if key in param_new:
+                        self.param[key] = param_new[key]
+                if self.param.get('ENABLE', False):
+                    self.init()
                 break
-
-        if changed:
-            self.exit()
-            for key in self.param:
-                self.param[key] = param_new.get(key, None)
-            self.init()
 
     def get_features(self):
         """ get the features as dict """
