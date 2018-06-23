@@ -91,84 +91,23 @@
         "NAME": "SerialGPIO LED",
         "ENABLE": true,
         "TIMER": 0.1,
-        "Port": "COM185 - Silicon Labs CP210x USB to UART Bridge (COM185)",
+        "Port": "COM17 - USB Serial Port (COM17)",
         "TrigVarDTR": "LED",
-        "TrigVarRTS": "",
+        "TrigVarRTS": "X",
         "TrigVarTXD": "BUTTON",
         "TrigVals1": "1 on ON",
-        "RespVarDSR": "",
-        "RespVarCTS": "",
-        "RespVarRI": "",
-        "RespVarCD": "",
+        "RespVarDSR": "BUTTON",
+        "RespVarCTS": "BUTTON",
+        "RespVarRI": "BUTTON",
+        "RespVarCD": "BUTTON",
         "RespVarRXD": "BUTTON",
         "RespVal0": "0",
         "RespVal1": "1"
       }
     }
   ],
-  "gateways": [
-    {
-      "GWPID": "FileLogger",
-      "version": "1.0",
-      "params": {
-        "NAME": "Logger",
-        "ENABLE": true,
-        "TIMER": 0,
-        "filter": "",
-        "file_name": "Logger.log",
-        "separator": ","
-      }
-    },
-    {
-      "GWPID": "TestGatewayG",
-      "version": "1.0",
-      "params": {
-        "NAME": "G",
-        "ENABLE": true,
-        "TIMER": 3000,
-        "filter": "",
-        "name_t": "T",
-        "name_h": "H",
-        "name_p": "P",
-        "abc": 123,
-        "xyz": 456,
-        "sel": 2,
-        "qwe": "Lorem ipsum",
-        "asd": [
-          1,
-          2,
-          3,
-          4,
-          5
-        ]
-      }
-    }
-  ],
+  "gateways": [],
   "rules": [
-    {
-      "RUPID": "TestRuleR",
-      "version": "1.0",
-      "params": {
-        "NAME": "G",
-        "ENABLE": false,
-        "TIMER": 3000,
-        "filter": "",
-        "name_t": "T",
-        "name_h": "H",
-        "name_p": "P",
-        "abc": 123,
-        "xyz": 456,
-        "sel": 2,
-        "qwe": "Lorem ipsum",
-        "asd": [
-          1,
-          2,
-          3,
-          4,
-          5
-        ]
-      }
-    },
     {
       "RUPID": "TimeSw",
       "version": "1.0",
@@ -177,11 +116,11 @@
         "ENABLE": true,
         "trigger_key": "BUTTON",
         "trigger_val": "1",
-        "trigger_re": "0",
+        "trigger_re": "1",
         "out_key": "LED",
         "out_val_0": "0",
         "out_val_1": "1",
-        "out_time": "3",
+        "out_time": "5",
         "if_key": "",
         "if_val": "0",
         "if_com": "="

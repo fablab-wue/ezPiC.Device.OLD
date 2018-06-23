@@ -20,12 +20,13 @@ def process_cli():
     print(Tool.LOGO)
     while RUN:
         cmd_str = input(_PROMPT)
+        cmd_str = cmd_str.strip()
         if not cmd_str:
             continue
         err, ret = Cmd.excecute(cmd_str, 'CLI')
-        #print (err)  #JK DEBUG
-        #print (ret)  #JK DEBUG
-        if err is not None and err != 0:
+        if cmd_str.startswith('{'):   # cmd as JSON -> answer in JSON
+            print(Tool.json_str([err, ret]))
+        elif err is not None and err != 0:
             print( 'ERROR {}: {}'.format(err, ret) )
         elif ret:
             print(Tool.json_str(ret))
