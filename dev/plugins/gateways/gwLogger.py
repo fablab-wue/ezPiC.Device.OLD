@@ -10,7 +10,8 @@ import dev.Variable as Variable
 #######
 # Globals:
 
-GWPID = 'FileLogger'
+EZPID = 'gwFileLogger'
+PTYPE = PT_GATEWAY
 PNAME = 'Data Logger to File'
 PINFO = 'Log all/filtered Variables to Text File (CSV)'
 

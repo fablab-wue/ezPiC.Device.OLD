@@ -27,11 +27,11 @@ def web_rules(httpClient, httpResponse):
 
 #######
 
-@MicroWebSrv.route('/rules/list/')
+@MicroWebSrv.route('/rules/stage/')
 def web_rules_list(httpClient, httpResponse):
     """ TODO """
 
-    err, ret = Web.command(httpResponse, 'plugin.rule.list')
+    err, ret = Web.command(httpResponse, 'rule.stage.list')
     if err:
         Web.flash_error(httpResponse, err, ret)
         ret = []
@@ -44,18 +44,18 @@ def web_rules_list(httpClient, httpResponse):
 
 #######
 
-@MicroWebSrv.route('/rules/add/<rupid>/')
+@MicroWebSrv.route('/rules/add/<ezPID>/')
 def web_rule_add(httpClient, httpResponse, args):
     """ TODO """
-    rupid = args['rupid']
+    ezPID = args['ezPID']
 
-    params = {'rupid': rupid}
+    params = {'ezPID': ezPID}
     err, ret = Web.command(httpResponse, 'rule.add', items=params)
     if err:
-        Web.flash_error(httpResponse, err, ret, rupid)
+        Web.flash_error(httpResponse, err, ret, ezPID)
     else:
         Web.command(httpResponse, 'save')
-        msg = 'Rule "{}" added'.format(rupid)
+        msg = 'Rule "{}" added'.format(ezPID)
         httpResponse.FlashMessage(msg, 'info')
 
     return httpResponse.WriteResponseRedirect('/rules')
@@ -112,7 +112,7 @@ def web_rule_del(httpClient, httpResponse, args):
         Web.flash_error(httpResponse, err, ret, idx)
     else:
         err, ret = Web.command(httpResponse, 'save')
-        msg = 'Rule task deleted'
+        msg = 'Rule instance deleted'
         httpResponse.FlashMessage(msg, 'info')
 
     return httpResponse.WriteResponseRedirect('/rules')

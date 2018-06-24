@@ -24,7 +24,7 @@ def process_cli():
         if not cmd_str:
             continue
         err, ret = Cmd.excecute(cmd_str, 'CLI')
-        if cmd_str.startswith('{'):   # cmd as JSON -> answer in JSON
+        if cmd_str.startswith('{'):   # cmd in JSON -> answer in JSON
             print(Tool.json_str([err, ret]))
         elif err is not None and err != 0:
             print( 'ERROR {}: {}'.format(err, ret) )

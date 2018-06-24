@@ -8,7 +8,7 @@ import dev.Cmd as Cmd
 
 #######
 
-@Cmd.route('plugin.gadget.list')
+@Cmd.route('gadget.stage.list')
 @Cmd.route('pgdl')
 def cmd_gadget_list(cmd:dict) -> tuple:
     """ gets a list of all available GADGET plugins """
@@ -28,10 +28,10 @@ def cmd_gadget_task_list(cmd:dict) -> tuple:
 
 #######
 
-@Cmd.route('gadget.add', 'gdpid')
+@Cmd.route('gadget.add', 'ezPID')
 def cmd_gadget_add(cmd:dict) -> tuple:
     """ adds a new instance of a GADGET plugin """
-    err, ret = Gadget.add(cmd.get('gdpid', None))
+    err, ret = Gadget.add(cmd.get('ezPID', None))
 
     return (err, ret)
 

@@ -5,7 +5,7 @@
   },
   "machines": [
     {
-      "MAPID": "TestPC",
+      "MAPID": "maTestPC",
       "version": "1.0",
       "params": {
         "abc": 123,
@@ -15,112 +15,110 @@
   ],
   "gadgets": [
     {
-      "GDPID": "TestA",
+      "EZPID": "gdSerialGPIO",
       "version": "1.0",
       "params": {
-        "NAME": "A11111111111",
-        "ENABLE": false,
-        "TIMER": 3,
-        "name_t": "T",
-        "name_h": "H",
-        "name_p": "P",
-        "abc": 123,
-        "xyz": "456",
-        "sel": "1",
-        "qwe": "Lorem ipsum",
-        "asd": [
-          1,
-          2,
-          3,
-          4,
-          5
-        ]
-      }
-    },
-    {
-      "GDPID": "TestB",
-      "version": "1.0",
-      "params": {
-        "NAME": "BbbbbbbB",
+        "NAME": "SerialGPIO",
         "ENABLE": true,
-        "TIMER": 5,
-        "abc": "123",
-        "xyz": "456"
+        "TIMER": 0.1,
+        "Port": "COM17 - USB Serial Port (COM17)",
+        "TrigVarDTR": "L1",
+        "TrigVarRTS": "L2",
+        "TrigVarTXD": "L3",
+        "TrigVals1": "1 on ON",
+        "RespVarDSR": "DSR",
+        "RespVarCTS": "CTS",
+        "RespVarRI": "RI",
+        "RespVarCD": "CD",
+        "RespVarRXD": "RXD",
+        "RespVal0": "0",
+        "RespVal1": "1"
       }
     },
     {
-      "GDPID": "TestA",
-      "version": "1.0",
-      "params": {
-        "NAME": "A222",
-        "ENABLE": false,
-        "TIMER": 10000,
-        "name_t": "T",
-        "name_h": "H",
-        "name_p": "P",
-        "abc": 123,
-        "xyz": "456",
-        "sel": "1",
-        "qwe": "Lorem ipsum",
-        "asd": [
-          1,
-          2,
-          3,
-          4,
-          5
-        ]
-      }
-    },
-    {
-      "GDPID": "GPIOout",
+      "EZPID": "gdTestA",
       "version": "1.0",
       "params": {
         "NAME": "A",
         "ENABLE": true,
-        "TIMER": 0,
-        "out_key": "a",
-        "out_val_0": "0 off OFF",
-        "out_val_1": "1 on ON",
-        "gpio": "GPIO2 (Dolor)"
+        "TIMER": "10",
+        "name_t": "T",
+        "name_h": "H",
+        "name_p": "P",
+        "abc": 123,
+        "xyz": "456",
+        "sel": "1",
+        "qwe": "Lorem ipsum",
+        "asd": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ]
       }
     },
     {
-      "GDPID": "SerialGPIO",
+      "EZPID": "gdTestB",
       "version": "1.0",
       "params": {
-        "NAME": "SerialGPIO LED",
+        "NAME": "B",
+        "ENABLE": true,
+        "TIMER": "4",
+        "abc": "12345",
+        "xyz": 67890
+      }
+    },
+    {
+      "EZPID": "gdSerialGPIO",
+      "version": "1.0",
+      "params": {
+        "NAME": "SerialGPIO",
         "ENABLE": true,
         "TIMER": 0.1,
-        "Port": "COM17 - USB Serial Port (COM17)",
-        "TrigVarDTR": "LED",
-        "TrigVarRTS": "X",
-        "TrigVarTXD": "BUTTON",
+        "Port": "COM14 - USB-SERIAL CH340 (COM14)",
+        "TrigVarDTR": "",
+        "TrigVarRTS": "",
+        "TrigVarTXD": "TXD340",
         "TrigVals1": "1 on ON",
-        "RespVarDSR": "BUTTON",
-        "RespVarCTS": "BUTTON",
-        "RespVarRI": "BUTTON",
-        "RespVarCD": "BUTTON",
-        "RespVarRXD": "BUTTON",
+        "RespVarDSR": "",
+        "RespVarCTS": "",
+        "RespVarRI": "",
+        "RespVarCD": "",
+        "RespVarRXD": "RXD340",
         "RespVal0": "0",
         "RespVal1": "1"
       }
     }
   ],
-  "gateways": [],
+  "gateways": [
+    {
+      "EZPID": "gwFileLogger",
+      "version": "1.0",
+      "params": {
+        "NAME": "Logger",
+        "ENABLE": false,
+        "TIMER": 0,
+        "filter": "",
+        "file_name": "Logger.log",
+        "separator": ","
+      }
+    }
+  ],
   "rules": [
     {
-      "RUPID": "TimeSw",
+      "EZPID": "ruTimeSw",
       "version": "1.0",
       "params": {
         "NAME": "TimeSwitch",
-        "ENABLE": true,
-        "trigger_key": "BUTTON",
-        "trigger_val": "1",
-        "trigger_re": "1",
-        "out_key": "LED",
+        "ENABLE": false,
+        "trigger_key": "Bbbb.Voltage",
+        "trigger_val": "",
+        "trigger_re": "0",
+        "out_key": "TimeSwitchOut",
         "out_val_0": "0",
         "out_val_1": "1",
-        "out_time": "5",
+        "out_time": "10",
         "if_key": "",
         "if_val": "0",
         "if_com": "="

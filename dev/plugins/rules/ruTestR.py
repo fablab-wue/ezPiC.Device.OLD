@@ -9,7 +9,8 @@ import dev.Variable as Variable
 #######
 # Globals:
 
-RUPID = 'TestRuleR'
+EZPID = 'ruTestRuleR'
+PTYPE = PT_RULE
 PNAME = 'Test Rule R'
 PINFO = 'Lorem ipsum dolor sit amet.'
 

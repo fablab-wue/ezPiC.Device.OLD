@@ -21,7 +21,8 @@ import dev.Machine as Machine
 #######
 # Globals:
 
-MAPID = 'RPi'
+MAPID = 'maRPi'
+PTYPE = PT_MACHINE
 PNAME = 'Raspberry Pi'
 PINFO = '???'
 

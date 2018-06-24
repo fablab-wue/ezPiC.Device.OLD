@@ -8,7 +8,7 @@ import dev.Cmd as Cmd
 
 #######
 
-@Cmd.route('plugin.rule.list')
+@Cmd.route('rule.stage.list')
 @Cmd.route('prul')
 def cmd_rule_list(cmd:dict) -> tuple:
     """ gets a list of all available RULE plugins """
@@ -28,10 +28,10 @@ def cmd_rule_task_list(cmd:dict) -> tuple:
 
 #######
 
-@Cmd.route('rule.add', 'rupid')
+@Cmd.route('rule.add', 'ezPID')
 def cmd_rule_add(cmd:dict) -> tuple:
     """ adds a new instance of a RULE plugin """
-    err, ret = Rule.add(cmd.get('rupid', None))
+    err, ret = Rule.add(cmd.get('ezPID', None))
 
     return (err, ret)
 

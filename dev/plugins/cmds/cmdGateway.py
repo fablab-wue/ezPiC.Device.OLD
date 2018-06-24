@@ -8,7 +8,7 @@ import dev.Cmd as Cmd
 
 #######
 
-@Cmd.route('plugin.gateway.list')
+@Cmd.route('gateway.stage.list')
 @Cmd.route('pgwl')
 def cmd_gateway_list(cmd:dict) -> tuple:
     """ gets a list of all available GATEWAY plugins """
@@ -28,10 +28,10 @@ def cmd_gateway_task_list(cmd:dict) -> tuple:
 
 #######
 
-@Cmd.route('gateway.add', 'gwpid')
+@Cmd.route('gateway.add', 'ezPID')
 def cmd_gateway_add(cmd:dict) -> tuple:
     """ adds a new instance of a GATEWAY plugin """
-    err, ret = Gateway.add(cmd.get('gwpid', None))
+    err, ret = Gateway.add(cmd.get('ezPID', None))
 
     return (err, ret)
 

@@ -23,7 +23,8 @@ import dev.Machine as Machine
 #######
 # Globals:
 
-MAPID = 'TestPC'
+MAPID = 'maTestPC'
+PTYPE = PT_MACHINE
 PNAME = 'Testing on PC'
 PINFO = '???'
 

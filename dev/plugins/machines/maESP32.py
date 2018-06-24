@@ -24,7 +24,8 @@ import dev.Machine as Machine
 #######
 # Globals:
 
-MAPID = 'ESP32'
+MAPID = 'maESP32'
+PTYPE = PT_MACHINE
 PNAME = 'ESP32'
 PINFO = '???'
 

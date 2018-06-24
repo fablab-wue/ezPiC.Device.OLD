@@ -10,7 +10,8 @@ import dev.Variable as Variable
 
 #######
 
-GDPID = 'PyBAccel'
+EZPID = 'gdPyBAccel'
+PTYPE = PT_SENSOR
 PNAME = 'PyBoard-Accelerometer'
 PINFO = 'Onboard MMA766x at I2C-1'
 

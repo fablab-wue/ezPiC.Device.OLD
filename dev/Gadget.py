@@ -56,7 +56,7 @@ def init():
     plugins = Tool.load_plugins(_PLUGINDIR, 'gd')
     for plugin in plugins:
         try:
-            _GADGETPLUGINS[plugin.GDPID] = plugin
+            _GADGETPLUGINS[plugin.EZPID] = plugin
         except:
             pass
 
@@ -74,14 +74,14 @@ def load(config_all:dict):
     if not "gadgets" in config_all:
         return
     for config in config_all["gadgets"]:
-        gdpid = config["GDPID"]
+        ezPID = config["EZPID"]
         loaded_version = config["version"]
         params = config["params"]
-        err, idx = add(gdpid, params)
+        err, idx = add(ezPID, params)
         running_version = _GADGETS[idx].version
 
         if not err and loaded_version != running_version:
-            log(LOG_WARN, "task " +  gdpid + " has change version form " + loaded_version + " to " + running_version)
+            log(LOG_WARN, "task " +  ezPID + " has change version form " + loaded_version + " to " + running_version)
 
 # =====
 
@@ -91,7 +91,7 @@ def save(append:dict = None):
         for gadget in _GADGETS:
             try:
                 config = {}
-                config["GDPID"] = gadget.module.GDPID
+                config["EZPID"] = gadget.module.EZPID
                 config["version"] = gadget.version
                 config["params"] = gadget.get_params()
                 ret.append(config)
@@ -121,7 +121,7 @@ def add(plugin_id:str, params:dict = None) -> tuple:
                     gadget.init()
                 return (0, ret)
             else:
-                return (-1, 'Unknown GDPID')
+                return (-1, 'Unknown EZPID')
         except Exception as e:
             return (-1, str(e))
 
@@ -163,9 +163,9 @@ def get_plugin_list() -> tuple:
     pl = []
 
     with _GADGETLOCK:
-        for gdpid, module in _GADGETPLUGINS.items():
+        for ezPID, module in _GADGETPLUGINS.items():
             p = {}
-            p['GDPID'] = module.GDPID
+            p['EZPID'] = module.EZPID
             p['PNAME'] = module.PNAME
             p['PINFO'] = module.PINFO
             p['PFILE'] = module.__name__
@@ -183,7 +183,7 @@ def get_list() -> tuple:
         for idx, gadget in enumerate(_GADGETS):
             d = {}
             d['idx'] = idx
-            d['GDPID'] = gadget.module.GDPID
+            d['EZPID'] = gadget.module.EZPID
             d['PNAME'] = gadget.module.PNAME
             d['NAME'] = gadget.get_name()
             d['ENABLE'] = gadget.get_params('ENABLE')
@@ -303,7 +303,7 @@ class PluginGadgetBase():
 
     def get_html(self) -> str:
         """ get the html template name from the module """
-        return 'web/www/gadgets/{}.html'.format(self.module.GDPID)
+        return 'web/www/gadgets/{}.html'.format(self.module.EZPID)
 
     def timer(self, prepare:bool):
         return None

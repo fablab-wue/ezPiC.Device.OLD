@@ -27,11 +27,11 @@ def web_gadgets(httpClient, httpResponse):
 
 #######
 
-@MicroWebSrv.route('/gadgets/list/')
+@MicroWebSrv.route('/gadgets/stage/')
 def web_gadgets_list(httpClient, httpResponse):
     """ TODO """
 
-    err, ret = Web.command(httpResponse, 'plugin.gadget.list')
+    err, ret = Web.command(httpResponse, 'gadget.stage.list')
     if err:
         Web.flash_error(httpResponse, err, ret)
         ret = []
@@ -44,18 +44,18 @@ def web_gadgets_list(httpClient, httpResponse):
 
 #######
 
-@MicroWebSrv.route('/gadgets/add/<gdpid>/')
+@MicroWebSrv.route('/gadgets/add/<ezPID>/')
 def web_gadget_add(httpClient, httpResponse, args):
     """ TODO """
-    gdpid = args['gdpid']
+    ezPID = args['ezPID']
 
-    params = {'gdpid': gdpid}
+    params = {'ezPID': ezPID}
     err, ret = Web.command(httpResponse, 'gadget.add', items=params)
     if err:
-        Web.flash_error(httpResponse, err, ret, gdpid)
+        Web.flash_error(httpResponse, err, ret, ezPID)
     else:
         Web.command(httpResponse, 'save')
-        msg = 'Gadget "{}" added'.format(gdpid)
+        msg = 'Gadget "{}" added'.format(ezPID)
         httpResponse.FlashMessage(msg, 'info')
 
     return httpResponse.WriteResponseRedirect('/gadgets')
@@ -120,7 +120,7 @@ def web_gadget_del(httpClient, httpResponse, args):
         Web.flash_error(httpResponse, err, ret, idx)
     else:
         err, ret = Web.command(httpResponse, 'save')
-        msg = 'Gadget task deleted'
+        msg = 'Gadget instance deleted'
         httpResponse.FlashMessage(msg, 'info')
 
     return httpResponse.WriteResponseRedirect('/gadgets')

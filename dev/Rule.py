@@ -49,7 +49,7 @@ def init():
     plugins = Tool.load_plugins(_PLUGINDIR, 'ru')
     for plugin in plugins:
         try:
-            _RULEPLUGINS[plugin.RUPID] = plugin
+            _RULEPLUGINS[plugin.EZPID] = plugin
         except:
             pass
 
@@ -67,14 +67,14 @@ def load(config_all: dict):
     if not "rules" in config_all:
         return
     for config in config_all["rules"]:
-        rupid = config["RUPID"]
+        ezPID = config["EZPID"]
         loaded_version = config["version"]
         params = config["params"]
-        err, idx = add(rupid, params)
+        err, idx = add(ezPID, params)
         running_version = _RULES[idx].version
 
         if not err and loaded_version != running_version:
-            log(LOG_WARN, "task " +  rupid + " has change version form " + loaded_version + " to " + running_version)
+            log(LOG_WARN, "task " +  ezPID + " has change version form " + loaded_version + " to " + running_version)
 
 # =====
 
@@ -84,7 +84,7 @@ def save(append: dict = None):
         for rule in _RULES:
             try:
                 config = {}
-                config["RUPID"] = rule.module.RUPID
+                config["EZPID"] = rule.module.EZPID
                 config["version"] = rule.version
                 config["params"] = rule.get_params()
                 ret.append(config)
@@ -114,7 +114,7 @@ def add(plugin_id: str, params: dict = None) -> tuple:
                     rule.init()
                 return (0, ret)
             else:
-                return (-1, 'Unknown RUPID')
+                return (-1, 'Unknown EZPID')
         except Exception as e:
             return (-1, str(e))
 
@@ -156,9 +156,9 @@ def get_plugin_list() -> tuple:
     pl = []
 
     with _RULELOCK:
-        for rupid, module in _RULEPLUGINS.items():
+        for ezPID, module in _RULEPLUGINS.items():
             p = {}
-            p['RUPID'] = module.RUPID
+            p['EZPID'] = module.EZPID
             p['PNAME'] = module.PNAME
             p['PINFO'] = module.PINFO
             p['PFILE'] = module.__name__
@@ -176,7 +176,7 @@ def get_list() -> tuple:
         for idx, rule in enumerate(_RULES):
             g = {}
             g['idx'] = idx
-            g['RUPID'] = rule.module.RUPID
+            g['EZPID'] = rule.module.EZPID
             g['PNAME'] = rule.module.PNAME
             g['NAME'] = rule.get_name()
             g['ENABLE'] = rule.get_params('ENABLE')
@@ -269,7 +269,7 @@ class PluginRuleBase():
 
     def get_html(self) -> str:
         """ get the html template name from the module """
-        return 'web/www/rules/{}.html'.format(self.module.RUPID)
+        return 'web/www/rules/{}.html'.format(self.module.EZPID)
 
     def cmd(self, cmd: str) -> str:
         return None

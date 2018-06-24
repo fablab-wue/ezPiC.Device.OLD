@@ -49,7 +49,7 @@ def init():
     plugins = Tool.load_plugins(_PLUGINDIR, 'gw')
     for plugin in plugins:
         try:
-            _GATEWAYPLUGINS[plugin.GWPID] = plugin
+            _GATEWAYPLUGINS[plugin.EZPID] = plugin
         except:
             pass
 
@@ -67,14 +67,14 @@ def load(config_all: dict):
     if not "gateways" in config_all:
         return
     for config in config_all["gateways"]:
-        gwpid = config["GWPID"]
+        ezPID = config["EZPID"]
         loaded_version = config["version"]
         params = config["params"]
-        err, idx = add(gwpid, params)
+        err, idx = add(ezPID, params)
         running_version = _GATEWAYS[idx].version
 
         if not err and loaded_version != running_version:
-            log(LOG_WARN, "task " +  gwpid + " has change version form " + loaded_version + " to " + running_version)
+            log(LOG_WARN, "task " +  ezPID + " has change version form " + loaded_version + " to " + running_version)
 
 # =====
 
@@ -84,7 +84,7 @@ def save(append: dict = None):
         for gateway in _GATEWAYS:
             try:
                 config = {}
-                config["GWPID"] = gateway.module.GWPID
+                config["EZPID"] = gateway.module.EZPID
                 config["version"] = gateway.version
                 config["params"] = gateway.get_params()
                 ret.append(config)
@@ -114,7 +114,7 @@ def add(plugin_id: str, params: dict = None) -> tuple:
                     gateway.init()
                 return (0, ret)
             else:
-                return (-1, 'Unknown GWPID')
+                return (-1, 'Unknown EZPID')
         except Exception as e:
             return (-1, str(e))
 
@@ -156,9 +156,9 @@ def get_plugin_list() -> tuple:
     pl = []
 
     with _GATEWAYLOCK:
-        for gwpid, module in _GATEWAYPLUGINS.items():
+        for ezPID, module in _GATEWAYPLUGINS.items():
             p = {}
-            p['GWPID'] = module.GWPID
+            p['EZPID'] = module.EZPID
             p['PNAME'] = module.PNAME
             p['PINFO'] = module.PINFO
             p['PFILE'] = module.__name__
@@ -176,7 +176,7 @@ def get_list() -> tuple:
         for idx, gateway in enumerate(_GATEWAYS):
             g = {}
             g['idx'] = idx
-            g['GWPID'] = gateway.module.GWPID
+            g['EZPID'] = gateway.module.EZPID
             g['PNAME'] = gateway.module.PNAME
             g['NAME'] = gateway.get_name()
             g['ENABLE'] = gateway.get_params('ENABLE')
@@ -268,7 +268,7 @@ class PluginGatewayBase():
 
     def get_html(self) -> str:
         """ get the html template name from the module """
-        return 'web/www/gateways/{}.html'.format(self.module.GWPID)
+        return 'web/www/gateways/{}.html'.format(self.module.EZPID)
 
     def cmd(self, cmd: str) -> str:
         return None

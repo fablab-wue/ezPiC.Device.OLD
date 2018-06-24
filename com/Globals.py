@@ -29,6 +29,14 @@ CNF = {}
 
 ######## 
 
+PT_SENSOR       = const(1)
+PT_ACTUATOR     = const(2)
+PT_GATEWAY      = const(4)
+PT_RULE         = const(8)
+PT_MACHINE      = const(16)
+
+# =====
+
 LOG_ERROR       = const(1)
 LOG_WARN        = const(2)
 LOG_INFO        = const(3)

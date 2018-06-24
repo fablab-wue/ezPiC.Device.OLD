@@ -10,7 +10,8 @@ import dev.Variable as Variable
 
 #######
 
-GDPID = 'TestA'
+EZPID = 'gdTestA'
+PTYPE = PT_SENSOR
 PNAME = 'Test Gadget A'
 PINFO = 'Lorem ipsum dolor sit amet'
 

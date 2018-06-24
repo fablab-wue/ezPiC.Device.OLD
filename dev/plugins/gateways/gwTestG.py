@@ -9,7 +9,8 @@ import dev.Variable as Variable
 #######
 # Globals:
 
-GWPID = 'TestGatewayG'
+EZPID = 'gwTestGatewayG'
+PTYPE = PT_GATEWAY
 PNAME = 'Test Gateway G'
 PINFO = 'Lorem ipsum dolor sit amet.'
 

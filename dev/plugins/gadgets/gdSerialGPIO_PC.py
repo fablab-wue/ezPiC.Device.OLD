@@ -12,7 +12,8 @@ import dev.Variable as Variable
 #######
 # Globals:
 
-GDPID = 'SerialGPIO'
+EZPID = 'gdSerialGPIO'
+PTYPE = PT_SENSOR | PT_ACTUATOR
 PNAME = 'PC Serial Adapter GPIO'
 PINFO = 'GPIO with USB-Serial-Adapter at Windows/Linux'
 

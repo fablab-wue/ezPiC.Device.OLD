@@ -27,11 +27,11 @@ def web_gateways(httpClient, httpResponse):
 
 #######
 
-@MicroWebSrv.route('/gateways/list/')
+@MicroWebSrv.route('/gateways/stage/')
 def web_gateways_list(httpClient, httpResponse):
     """ TODO """
 
-    err, ret = Web.command(httpResponse, 'plugin.gateway.list')
+    err, ret = Web.command(httpResponse, 'gateway.stage.list')
     if err:
         Web.flash_error(httpResponse, err, ret)
         ret = []
@@ -44,18 +44,18 @@ def web_gateways_list(httpClient, httpResponse):
 
 #######
 
-@MicroWebSrv.route('/gateways/add/<gwpid>/')
+@MicroWebSrv.route('/gateways/add/<ezPID>/')
 def web_gateway_add(httpClient, httpResponse, args):
     """ TODO """
-    gwpid = args['gwpid']
+    ezPID = args['ezPID']
 
-    params = {'gwpid': gwpid}
+    params = {'ezPID': ezPID}
     err, ret = Web.command(httpResponse, 'gateway.add', items=params)
     if err:
-        Web.flash_error(httpResponse, err, ret, gwpid)
+        Web.flash_error(httpResponse, err, ret, ezPID)
     else:
         Web.command(httpResponse, 'save')
-        msg = 'Gateway "{}" added'.format(gwpid)
+        msg = 'Gateway "{}" added'.format(ezPID)
         httpResponse.FlashMessage(msg, 'info')
 
     return httpResponse.WriteResponseRedirect('/gateways')
@@ -112,7 +112,7 @@ def web_gateway_del(httpClient, httpResponse, args):
         Web.flash_error(httpResponse, err, ret, idx)
     else:
         err, ret = Web.command(httpResponse, 'save')
-        msg = 'Gateway task deleted'
+        msg = 'Gateway instance deleted'
         httpResponse.FlashMessage(msg, 'info')
 
     return httpResponse.WriteResponseRedirect('/gateways')

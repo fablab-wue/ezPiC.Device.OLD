@@ -11,7 +11,8 @@ import dev.Machine as Machine
 #######
 # Globals:
 
-MAPID = 'TestM'
+MAPID = 'maTestM'
+PTYPE = PT_MACHINE
 PNAME = 'Readable Name M'
 PINFO = '???'
 

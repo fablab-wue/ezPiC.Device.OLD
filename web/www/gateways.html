@@ -3,7 +3,7 @@
 <h4>
   <i class="fas fa-cloud-upload-alt"></i> Active Gateways</h4>
 
-<a class="btn btn-success float-right" href="/gateways/list/" role="button">
+<a class="btn btn-success float-right" href="/gateways/stage/" role="button">
   <i class="fas fa-plus"></i> Add Gateway</a>
 <p>
   Choose a gateway and click the [
@@ -37,7 +37,7 @@
     </div>
     <div id="collapse{{ index }}" class="collapse" role="tabpanel" aria-labelledby="heading{{ index }}">
       <div class="card-body">
-        GWPID: [{{ gateway['GWPID'] }}]<br>
+        EZPID: [{{ gateway['EZPID'] }}]<br>
         Params: {{ gateway['info'] }}
       </div>
     </div>

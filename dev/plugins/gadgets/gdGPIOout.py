@@ -10,7 +10,7 @@ import dev.Machine as Machine
 #######
 # Globals:
 
-GDPID = 'GPIOout'
+EZPID = 'gdGPIOout'
 PNAME = 'GPIO Output'
 PINFO = 'Use GPIOs as Output triggered by Variables'
 

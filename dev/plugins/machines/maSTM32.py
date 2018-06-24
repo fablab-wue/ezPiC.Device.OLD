@@ -24,7 +24,8 @@ import dev.Machine as Machine
 #######
 # Globals:
 
-MAPID = 'PYB'
+MAPID = 'maPYB'
+PTYPE = PT_MACHINE
 PNAME = 'PyBoard'
 PINFO = '???'
 
