@@ -67,7 +67,7 @@ class PluginGadget(Gadget.PluginGadgetBase):
             self._ser.dtr = False
             self._ser.rts = False
 
-        except Exception() as e:
+        except Exception as e:
             self._last_error = str(e)
             pass
 
@@ -171,7 +171,7 @@ class PluginGadget(Gadget.PluginGadgetBase):
                 if val != self._last_rxd:
                     self._last_rxd = val
                     Variable.set(name, self._get_val_obj(val))
-        except Exception() as e:
+        except Exception as e:
             self._last_error = str(e)
             pass
 
@@ -202,7 +202,7 @@ class PluginGadget(Gadget.PluginGadgetBase):
                 if val != self._last_txd:
                     self._last_txd = val
                     self._ser.break_condition = val
-        except Exception() as e:
+        except Exception as e:
             self._last_error = str(e)
             pass
 

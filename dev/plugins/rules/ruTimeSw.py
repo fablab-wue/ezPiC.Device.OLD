@@ -29,7 +29,7 @@ class PluginRule(Rule.PluginRuleBase):
             # instance specific params
             'trigger_key':'Bbbb.Voltage',
             'trigger_val':'',
-            'trigger_re':True,
+            'trigger_re':False,
             'out_key':'TimeSwitchOut',
             'out_val_0':'0',
             'out_val_1':'1',

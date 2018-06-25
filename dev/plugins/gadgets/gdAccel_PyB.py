@@ -21,7 +21,7 @@ class PluginGadget(Gadget.PluginGadgetBase):
         super().__init__(module)
         self.param = {
             'NAME':'PyB-Accel', # must be params
-            'ENABLE':True,
+            'ENABLE':False,
             'TIMER':1000,
             'name_x':'X', # instance specific params
             'name_y':'Y',

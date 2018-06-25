@@ -11,6 +11,7 @@ import dev.Machine as Machine
 # Globals:
 
 EZPID = 'gdGPIOout'
+PTYPE = PT_ACTUATOR
 PNAME = 'GPIO Output'
 PINFO = 'Use GPIOs as Output triggered by Variables'
 

@@ -58,13 +58,13 @@ LIST_PIN_IO = (
 )
 
 LIST_SPI = (
-"SPI 0 (GPIO11,GPIO10,GPIO09,GPIO08/07)",
-"SPI 1 (GPIO21,GPIO20,GPIO19)",
+"SPI0 (GPIO11,GPIO10,GPIO09,GPIO08/07)",
+"SPI1 (GPIO21,GPIO20,GPIO19)",
 )
 
 LIST_I2C = (
-"I2C 1 (GPIO03,GPIO02)",
-"I2C 0 (GPIO01,GPIO00) DNC",
+"I2C1 (GPIO03,GPIO02)",
+"I2C0 (GPIO01,GPIO00) DNC",
 )
 
 #######
@@ -168,3 +168,4 @@ p.ChangeFrequency(100)  # change the frequency to 100 Hz (floats also work)
   
 p.stop()                # stop the PWM output  
 '''
+

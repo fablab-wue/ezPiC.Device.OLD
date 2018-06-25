@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN" "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">
 <!-- Creator: CorelDRAW Home & Student X8 -->
-<svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" width="50mm" height="15mm" version="1.1" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
-viewBox="0 0 4348 1304"
+<svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" width="0.0283465%" height="100%" version="1.0" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+viewBox="0 0 28 30000"
  xmlns:xlink="http://www.w3.org/1999/xlink">
  <defs>
   <style type="text/css">
@@ -15,55 +15,55 @@ viewBox="0 0 4348 1304"
  </defs>
  <g id="Ebene_x0020_1">
   <metadata id="CorelCorpID_0Corel-Layer"/>
-  <polygon class="fil0" points="2255,190 2255,0 2283,27 2283,217 2092,217 2065,190 "/>
-  <polygon class="fil0" points="2255,408 2255,217 2283,245 2283,435 2092,435 2065,408 "/>
-  <polygon class="fil0" points="2255,625 2255,435 2283,462 2283,652 2092,652 2065,625 "/>
-  <polygon class="fil0" points="2255,842 2255,652 2283,679 2283,870 2092,870 2065,842 "/>
-  <polygon class="fil0" points="2255,1060 2255,870 2283,897 2283,1087 2092,1087 2065,1060 "/>
-  <polygon class="fil0" points="2255,1277 2255,1087 2283,1114 2283,1304 2092,1304 2065,1277 "/>
-  <polygon class="fil0" points="2473,190 2473,0 2500,27 2500,217 2310,217 2283,190 "/>
-  <polygon class="fil0" points="2690,190 2690,0 2717,27 2717,217 2527,217 2500,190 "/>
-  <polygon class="fil0" points="2908,408 2908,217 2935,245 2935,435 2745,435 2717,408 "/>
-  <polygon class="fil0" points="2908,625 2908,435 2935,462 2935,652 2745,652 2717,625 "/>
-  <polygon class="fil0" points="2690,842 2690,652 2717,679 2717,870 2527,870 2500,842 "/>
-  <polygon class="fil0" points="2473,842 2473,652 2500,679 2500,870 2310,870 2283,842 "/>
-  <polygon class="fil0" points="3234,190 3234,0 3261,27 3261,217 3071,217 3043,190 "/>
-  <polygon class="fil0" points="3234,625 3234,435 3261,462 3261,652 3071,652 3043,625 "/>
-  <polygon class="fil0" points="3234,842 3234,652 3261,679 3261,870 3071,870 3043,842 "/>
-  <polygon class="fil0" points="3234,1060 3234,870 3261,897 3261,1087 3071,1087 3043,1060 "/>
-  <polygon class="fil0" points="3234,1277 3234,1087 3261,1114 3261,1304 3071,1304 3043,1277 "/>
-  <polygon class="fil1" points="3668,408 3668,217 3696,245 3696,435 3505,435 3478,408 "/>
-  <polygon class="fil1" points="3668,625 3668,435 3696,462 3696,652 3505,652 3478,625 "/>
-  <polygon class="fil1" points="3668,842 3668,652 3696,679 3696,870 3505,870 3478,842 "/>
-  <polygon class="fil1" points="3668,1060 3668,870 3696,897 3696,1087 3505,1087 3478,1060 "/>
-  <polygon class="fil1" points="3886,190 3886,0 3913,27 3913,217 3723,217 3696,190 "/>
-  <polygon class="fil1" points="4103,190 4103,0 4130,27 4130,217 3940,217 3913,190 "/>
-  <polygon class="fil1" points="3886,1277 3886,1087 3913,1114 3913,1304 3723,1304 3696,1277 "/>
-  <polygon class="fil1" points="4103,1277 4103,1087 4130,1114 4130,1304 3940,1304 3913,1277 "/>
-  <polygon class="fil1" points="4321,190 4321,0 4348,27 4348,217 4158,217 4130,190 "/>
-  <polygon class="fil1" points="4321,1277 4321,1087 4348,1114 4348,1304 4158,1304 4130,1277 "/>
-  <polygon class="fil2" points="1386,1277 1386,1087 1413,1114 1413,1304 1223,1304 1196,1277 "/>
-  <polygon class="fil2" points="1603,1277 1603,1087 1630,1114 1630,1304 1440,1304 1413,1277 "/>
-  <polygon class="fil2" points="1821,1277 1821,1087 1848,1114 1848,1304 1658,1304 1630,1277 "/>
-  <polygon class="fil2" points="408,1277 408,1087 435,1114 435,1304 245,1304 217,1277 "/>
-  <polygon class="fil2" points="625,1277 625,1087 652,1114 652,1304 462,1304 435,1277 "/>
-  <polygon class="fil2" points="842,1277 842,1087 870,1114 870,1304 679,1304 652,1277 "/>
-  <polygon class="fil2" points="1168,1277 1168,1087 1196,1114 1196,1304 1005,1304 978,1277 "/>
-  <polygon class="fil2" points="1386,408 1386,217 1413,245 1413,435 1223,435 1196,408 "/>
-  <polygon class="fil2" points="1603,408 1603,217 1630,245 1630,435 1440,435 1413,408 "/>
-  <polygon class="fil2" points="1821,408 1821,217 1848,245 1848,435 1658,435 1630,408 "/>
-  <polygon class="fil2" points="1168,408 1168,217 1196,245 1196,435 1005,435 978,408 "/>
-  <polygon class="fil2" points="408,842 408,652 435,679 435,870 245,870 217,842 "/>
-  <polygon class="fil2" points="625,842 625,652 652,679 652,870 462,870 435,842 "/>
-  <polygon class="fil2" points="842,842 842,652 870,679 870,870 679,870 652,842 "/>
-  <polygon class="fil2" points="190,842 190,652 217,679 217,870 27,870 0,842 "/>
-  <polygon class="fil2" points="1386,1060 1386,870 1413,897 1413,1087 1223,1087 1196,1060 "/>
-  <polygon class="fil2" points="1603,842 1603,652 1630,679 1630,870 1440,870 1413,842 "/>
-  <polygon class="fil2" points="1821,625 1821,435 1848,462 1848,652 1658,652 1630,625 "/>
-  <polygon class="fil2" points="408,408 408,217 435,245 435,435 245,435 217,408 "/>
-  <polygon class="fil2" points="625,408 625,217 652,245 652,435 462,435 435,408 "/>
-  <polygon class="fil2" points="842,625 842,435 870,462 870,652 679,652 652,625 "/>
-  <polygon class="fil2" points="190,625 190,435 217,462 217,652 27,652 0,625 "/>
-  <polygon class="fil2" points="190,1060 190,870 217,897 217,1087 27,1087 0,1060 "/>
+  <polygon class="fil0" points="15,4375 15,0 15,625 15,5000 14,5000 13,4375 "/>
+  <polygon class="fil0" points="15,9375 15,5000 15,5625 15,10000 14,10000 13,9375 "/>
+  <polygon class="fil0" points="15,14375 15,10000 15,10625 15,15000 14,15000 13,14375 "/>
+  <polygon class="fil0" points="15,19375 15,15000 15,15625 15,20000 14,20000 13,19375 "/>
+  <polygon class="fil0" points="15,24375 15,20000 15,20625 15,25000 14,25000 13,24375 "/>
+  <polygon class="fil0" points="15,29375 15,25000 15,25625 15,30000 14,30000 13,29375 "/>
+  <polygon class="fil0" points="16,4375 16,0 16,625 16,5000 15,5000 15,4375 "/>
+  <polygon class="fil0" points="18,4375 18,0 18,625 18,5000 16,5000 16,4375 "/>
+  <polygon class="fil0" points="19,9375 19,5000 19,5625 19,10000 18,10000 18,9375 "/>
+  <polygon class="fil0" points="19,14375 19,10000 19,10625 19,15000 18,15000 18,14375 "/>
+  <polygon class="fil0" points="18,19375 18,15000 18,15625 18,20000 16,20000 16,19375 "/>
+  <polygon class="fil0" points="16,19375 16,15000 16,15625 16,20000 15,20000 15,19375 "/>
+  <polygon class="fil0" points="21,4375 21,0 21,625 21,5000 20,5000 20,4375 "/>
+  <polygon class="fil0" points="21,14375 21,10000 21,10625 21,15000 20,15000 20,14375 "/>
+  <polygon class="fil0" points="21,19375 21,15000 21,15625 21,20000 20,20000 20,19375 "/>
+  <polygon class="fil0" points="21,24375 21,20000 21,20625 21,25000 20,25000 20,24375 "/>
+  <polygon class="fil0" points="21,29375 21,25000 21,25625 21,30000 20,30000 20,29375 "/>
+  <polygon class="fil1" points="24,9375 24,5000 24,5625 24,10000 23,10000 23,9375 "/>
+  <polygon class="fil1" points="24,14375 24,10000 24,10625 24,15000 23,15000 23,14375 "/>
+  <polygon class="fil1" points="24,19375 24,15000 24,15625 24,20000 23,20000 23,19375 "/>
+  <polygon class="fil1" points="24,24375 24,20000 24,20625 24,25000 23,25000 23,24375 "/>
+  <polygon class="fil1" points="25,4375 25,0 26,625 26,5000 24,5000 24,4375 "/>
+  <polygon class="fil1" points="27,4375 27,0 27,625 27,5000 26,5000 26,4375 "/>
+  <polygon class="fil1" points="25,29375 25,25000 26,25625 26,30000 24,30000 24,29375 "/>
+  <polygon class="fil1" points="27,29375 27,25000 27,25625 27,30000 26,30000 26,29375 "/>
+  <polygon class="fil1" points="28,4375 28,0 28,625 28,5000 27,5000 27,4375 "/>
+  <polygon class="fil1" points="28,29375 28,25000 28,25625 28,30000 27,30000 27,29375 "/>
+  <polygon class="fil2" points="9,29375 9,25000 9,25625 9,30000 8,30000 8,29375 "/>
+  <polygon class="fil2" points="10,29375 10,25000 11,25625 11,30000 9,30000 9,29375 "/>
+  <polygon class="fil2" points="12,29375 12,25000 12,25625 12,30000 11,30000 11,29375 "/>
+  <polygon class="fil2" points="3,29375 3,25000 3,25625 3,30000 2,30000 1,29375 "/>
+  <polygon class="fil2" points="4,29375 4,25000 4,25625 4,30000 3,30000 3,29375 "/>
+  <polygon class="fil2" points="5,29375 5,25000 6,25625 6,30000 4,30000 4,29375 "/>
+  <polygon class="fil2" points="8,29375 8,25000 8,25625 8,30000 7,30000 6,29375 "/>
+  <polygon class="fil2" points="9,9375 9,5000 9,5625 9,10000 8,10000 8,9375 "/>
+  <polygon class="fil2" points="10,9375 10,5000 11,5625 11,10000 9,10000 9,9375 "/>
+  <polygon class="fil2" points="12,9375 12,5000 12,5625 12,10000 11,10000 11,9375 "/>
+  <polygon class="fil2" points="8,9375 8,5000 8,5625 8,10000 7,10000 6,9375 "/>
+  <polygon class="fil2" points="3,19375 3,15000 3,15625 3,20000 2,20000 1,19375 "/>
+  <polygon class="fil2" points="4,19375 4,15000 4,15625 4,20000 3,20000 3,19375 "/>
+  <polygon class="fil2" points="5,19375 5,15000 6,15625 6,20000 4,20000 4,19375 "/>
+  <polygon class="fil2" points="1,19375 1,15000 1,15625 1,20000 0,20000 0,19375 "/>
+  <polygon class="fil2" points="9,24375 9,20000 9,20625 9,25000 8,25000 8,24375 "/>
+  <polygon class="fil2" points="10,19375 10,15000 11,15625 11,20000 9,20000 9,19375 "/>
+  <polygon class="fil2" points="12,14375 12,10000 12,10625 12,15000 11,15000 11,14375 "/>
+  <polygon class="fil2" points="3,9375 3,5000 3,5625 3,10000 2,10000 1,9375 "/>
+  <polygon class="fil2" points="4,9375 4,5000 4,5625 4,10000 3,10000 3,9375 "/>
+  <polygon class="fil2" points="5,14375 5,10000 6,10625 6,15000 4,15000 4,14375 "/>
+  <polygon class="fil2" points="1,14375 1,10000 1,10625 1,15000 0,15000 0,14375 "/>
+  <polygon class="fil2" points="1,24375 1,20000 1,20625 1,25000 0,25000 0,24375 "/>
  </g>
 </svg>

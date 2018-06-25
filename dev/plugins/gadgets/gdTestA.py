@@ -22,7 +22,7 @@ class PluginGadget(Gadget.PluginGadgetBase):
         self.param = {
             # must be params
             'NAME':'A',
-            'ENABLE':True,
+            'ENABLE':False,
             'TIMER':10,
             # instance specific params
             'name_t':'T',

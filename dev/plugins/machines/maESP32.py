@@ -71,14 +71,14 @@ LIST_I2C = (
 )
 
 LIST_SPI = (
-"SPI (14,13,12,15)",
-"SPI v (18,23,19,5)",
+"SPI1 (14,13,12,15)",
+"SPI2 v (18,23,19,5)",
 )
 
 LIST_UART = (
-"UART 0 (1,3)",
-"UART 1 (10,9)",
-"UART 2 (17,16)",
+"UART0 (1,3)",
+"UART1 (10,9)",
+"UART2 (17,16)",
 )
 
 LIST_ADC = (
@@ -119,6 +119,7 @@ class PluginMachine(Machine.PluginMachineBase):
         Machine.set_handler_class('PIN_IO', Pin_ESP32)
         Machine.set_handler_class('I2C', I2C_ESP32)
         Machine.set_handler_class('ADC', ADC_ESP32)
+        Machine.set_handler_class('UART', UART_ESP32)
 
 # -----
 
@@ -174,4 +175,20 @@ class ADC_ESP32():
 
     def read(self):
         return self._ch()
+
+# =====
+
+class UART_ESP32(machine.UART):
+    def __init__(self, id='1'):
+        if type(id) is str:
+            if id.startswith('UART'):
+                id = id[4:]
+            id = id.strip().split(' ', 1)[0]
+            id = int(id)
+        super().__init__(id)
+
+    def set_xxx(self, xxx):
+        pass
+
+# =====
 

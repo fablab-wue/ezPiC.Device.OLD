@@ -99,21 +99,21 @@ LIST_I2C = (
 )
 
 LIST_SPI = (
-"SPI 1 (A5,A6,A7,A4)",
-"SPI 2 (B13,B14,B15,B12)",
+"SPI1 (A5,A6,A7,A4)",
+"SPI2 (B13,B14,B15,B12)",
 )
 
 LIST_UART = (
-"UART 1 (B6,B7)",
-"UART 2 (A2,A3)",
-"UART 3 (B10,B11)",
-"UART 4 (A0,A1)",
-"UART 6 (C6,C7)",
+"UART1 (B6,B7)",
+"UART2 (A2,A3)",
+"UART3 (B10,B11)",
+"UART4 (A0,A1)",
+"UART6 (C6,C7)",
 )
 
 LIST_CAN = (
-"CAN 1 (B9,B8)",
-"CAN 2 (B13,B12)",
+"CAN1 (B9,B8)",
+"CAN2 (B13,B12)",
 )
 
 
@@ -145,6 +145,7 @@ class PluginMachine(Machine.PluginMachineBase):
         Machine.set_feature('CAN', LIST_CAN)
 
         Machine.set_handler_class('PIN_IO', Pin_PyB)
+        Machine.set_handler_class('UART', UART_PyB)
 
 # -----
 
@@ -165,5 +166,21 @@ class Pin_PyB(machine.Pin):
         return self.value()
 
     val = property(get, set)
+
+# =====
+
+class UART_PyB(machine.UART):
+    def __init__(self, id='1'):
+        if type(id) is str:
+            if id.startswith('UART'):
+                id = id[4:]
+            id = id.strip().split(' ', 1)[0]
+            id = int(id)
+        super().__init__(id)
+
+    def set_xxx(self, xxx):
+        pass
+
+# =====
 
 
