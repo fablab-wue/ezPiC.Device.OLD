@@ -6,13 +6,14 @@ from com.Globals import *
 import dev.Gadget as Gadget
 import dev.Variable as Variable
 import dev.Machine as Machine
+import dev.SerialPacket as SerialPacket
 
 #######
 # Globals:
 
 EZPID = 'gdDmmMS8050'
 PTYPE = PT_SENSOR
-PNAME = 'DMM Mastech/ELV MS8050'
+PNAME = 'DMM UNI-T UT61E ...Mastech/ELV MS8050'
 PINFO = '???'
 
 #######
@@ -28,10 +29,11 @@ class PluginGadget(Gadget.PluginGadgetBase):
             'ENABLE':False,
             'TIMER':0.1,
             # instance specific params
-            'Port':'',
+            'Port':'COM22',
             'RespVar':'DMM',
             }
         self._ser = None
+        self._xxx = SerialPacket.SerialPacketBase(14)
 
 # -----
 
@@ -45,11 +47,13 @@ class PluginGadget(Gadget.PluginGadgetBase):
             err, ret = Machine.get_handler_instance('UART', id)
             if not err:
                 self._ser = ret
-                self._ser.init(2400, 8, 0, 1)
+                self._ser.init(19200, 7, 1, 1) #19200-7-Odd-1
+                self._ser.set_dtr(True)    # DTR-Pin to +
+                self._ser.set_rts(False)   # RTS-Pin to -
             else:
-                self._pin = None
+                self._ser = None
         except Exception as e:
-            self._pin = None
+            self._ser = None
 
 # -----
 
@@ -68,7 +72,22 @@ class PluginGadget(Gadget.PluginGadgetBase):
 # -----
 
     def timer(self, prepare:bool):
+        if not self._ser:
+            return
+        
+        nbytes = self._ser.any()
+        if not nbytes:
+            return
+
         try:
+            data = self._ser.read(nbytes)
+            self._xxx.add_data(data)
+            while True:
+                x = self._xxx.process()
+                if not x:
+                    break
+                #print(x)
+                
             name = self.param['RespVar']
         except:
             pass

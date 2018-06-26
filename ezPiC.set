@@ -89,6 +89,17 @@
         "RespVal0": "0",
         "RespVal1": "1"
       }
+    },
+    {
+      "EZPID": "gdDmmMS8050",
+      "version": "1.0",
+      "params": {
+        "NAME": "DMM UNI-T UT61E ...Mastech/ELV MS8050",
+        "ENABLE": true,
+        "TIMER": 0.1,
+        "Port": "COM22",
+        "RespVar": "DMM"
+      }
     }
   ],
   "gateways": [
@@ -103,44 +114,7 @@
         "file_name": "Logger.log",
         "separator": ","
       }
-    },
-    {
-      "EZPID": "gwMQTT",
-      "version": "1.0",
-      "params": {
-        "NAME": "Logger",
-        "ENABLE": true,
-        "TIMER": 0,
-        "filter": "",
-        "mqtt_broker": "",
-        "mqtt_port": 1883,
-        "mqtt_user": "",
-        "mqtt_pw": "",
-        "mqtt_qos": 0,
-        "mqtt_sub": "",
-        "file_name": "Logger.log",
-        "separator": ","
-      }
     }
   ],
-  "rules": [
-    {
-      "EZPID": "ruTimeSw",
-      "version": "1.0",
-      "params": {
-        "NAME": "TimeSwitch",
-        "ENABLE": false,
-        "trigger_key": "Bbbb.Voltage",
-        "trigger_val": "",
-        "trigger_re": "0",
-        "out_key": "TimeSwitchOut",
-        "out_val_0": "0",
-        "out_val_1": "1",
-        "out_time": "10",
-        "if_key": "",
-        "if_val": "0",
-        "if_com": "="
-      }
-    }
-  ]
+  "rules": []
 }

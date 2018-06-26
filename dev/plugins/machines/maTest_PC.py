@@ -128,16 +128,21 @@ class UART_PC():
             if id.startswith('UART'):
                 id = id[4:]
             id = id.strip().split(' ', 1)[0]
-        self._ser = serial.Serial(id)
+        self._ser = serial.Serial()
+        self._ser.port = id
 
     def __del__(self):
-        self.deinit()
+        self._ser.close()
 
     def init(self, baudrate, bits=8, parity=None, stop=1):
         if not self._ser:
             return
+        if self._ser.is_open:
+            self._ser.close()
+
         self._ser.baudrate = baudrate
         self._ser.bits = bits
+        self._ser.bytesize = bits
         self._ser.stopbits = stop
         if parity == 0:
             self._ser.parity = 'E'
@@ -145,6 +150,8 @@ class UART_PC():
             self._ser.parity = 'O'
         else:
             self._ser.parity = 'N'
+
+        self._ser.open()
 
     def deinit(self):
         if self._ser:
