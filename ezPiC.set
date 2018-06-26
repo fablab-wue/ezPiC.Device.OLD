@@ -103,6 +103,24 @@
         "file_name": "Logger.log",
         "separator": ","
       }
+    },
+    {
+      "EZPID": "gwMQTT",
+      "version": "1.0",
+      "params": {
+        "NAME": "Logger",
+        "ENABLE": true,
+        "TIMER": 0,
+        "filter": "",
+        "mqtt_broker": "",
+        "mqtt_port": 1883,
+        "mqtt_user": "",
+        "mqtt_pw": "",
+        "mqtt_qos": 0,
+        "mqtt_sub": "",
+        "file_name": "Logger.log",
+        "separator": ","
+      }
     }
   ],
   "rules": [
