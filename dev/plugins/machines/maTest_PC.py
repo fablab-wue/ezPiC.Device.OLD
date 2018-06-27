@@ -179,9 +179,13 @@ class UART_PC():
         self._ser.send_break(0.0001)
 
     def set_dtr(self, dtr):
+        if not self._ser:
+            return
         self._ser.dtr = dtr
 
     def set_rts(self, rts):
+        if not self._ser:
+            return
         self._ser.rts = rts
 
 # =====

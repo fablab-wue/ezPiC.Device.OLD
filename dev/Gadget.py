@@ -117,14 +117,13 @@ def add(plugin_id:str, params:dict = None) -> tuple:
                 ret = len(_GADGETS) - 1
                 if params:
                     gadget.set_params(params)
-                else:
-                    gadget.init()
+                #else:
+                #    gadget.init()
                 return (0, ret)
             else:
                 return (-1, 'Unknown EZPID')
         except Exception as e:
             return (-1, str(e))
-
 
 # =====
 
@@ -303,7 +302,8 @@ class PluginGadgetBase():
 
     def get_html(self) -> str:
         """ get the html template name from the module """
-        return 'web/www/gadgets/{}.html'.format(self.module.EZPID)
+        name = self.module.EZPID.split('_', 1)[0]
+        return 'web/www/gadgets/{}.html'.format(name)
 
     def timer(self, prepare:bool):
         return None

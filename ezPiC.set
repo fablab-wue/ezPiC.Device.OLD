@@ -91,30 +91,17 @@
       }
     },
     {
-      "EZPID": "gdDmmMS8050",
+      "EZPID": "gdDMM_UT61E",
       "version": "1.0",
       "params": {
-        "NAME": "DMM UNI-T UT61E ...Mastech/ELV MS8050",
-        "ENABLE": true,
-        "TIMER": 0.1,
-        "Port": "COM22",
-        "RespVar": "DMM"
-      }
-    }
-  ],
-  "gateways": [
-    {
-      "EZPID": "gwFileLogger",
-      "version": "1.0",
-      "params": {
-        "NAME": "Logger",
+        "NAME": "DMM1",
         "ENABLE": false,
-        "TIMER": 0,
-        "filter": "",
-        "file_name": "Logger.log",
-        "separator": ","
+        "TIMER": 0.1,
+        "PORT": "COM1 - Communications Port (COM1)",
+        "RespVar": "DMM1"
       }
     }
   ],
+  "gateways": [],
   "rules": []
 }

@@ -96,8 +96,8 @@ def str_to_params(paramstr:str) -> dict:
 def start_thread(func, *args):
     gc.collect()
 
-    #if MICROPYTHON:
-    if True:
+    #if True:
+    if MICROPYTHON:
         from _thread import start_new_thread
 
         t = start_new_thread(func, ())
