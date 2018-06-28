@@ -29,8 +29,8 @@ class PluginGateway(Gateway.PluginGatewayBase):
             'TIMER':0,
             'FILTER':'',
             # instance specific params
-            'file_name':'Logger.log',
-            'separator':',',
+            'FileName':'Logger.log',
+            'Separator':',',
             }
         self.timer_period = 0
         self._variable_tick = 0
@@ -61,11 +61,11 @@ class PluginGateway(Gateway.PluginGatewayBase):
 # -----
 
     def variables(self, news:dict):
-        separator = self.param['separator']
+        separator = self.param['Separator']
         try:
             if Variable.is_new(self._variable_tick):
                 self._variable_tick, _news = Variable.get_news_full(self._variable_tick)
-                with open(self.param['file_name'], 'a') as f:
+                with open(self.param['FileName'], 'a') as f:
                     for key, data in _news.items():
                         if not self._variable_filter.fits(key):
                             continue

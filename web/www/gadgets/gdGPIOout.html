@@ -11,7 +11,7 @@
   </h4>
 
   <div class="form-group row">
-    <label for="NAME" class="col-sm-2">Gadget Name</label>
+    <label for="NAME" class="col-sm-2 form-text">Gadget Name</label>
     <div class="col-sm-3">
       <input type="text" class="form-control" name="NAME" id="NAME" value="{{NAME}}">
     </div>
@@ -34,14 +34,14 @@
   </h4>
 
   <div class="form-group row">
-    <label for="out_key" class="col-sm-2">Trigger Variable</label>
+    <label for="out_key" class="col-sm-2 form-text">Trigger Variable</label>
     <div class="col-sm-7">
       <input type="text" class="form-control" name="out_key" id="out_key" value="{{out_key}}">
     </div>
   </div>
 
   <div class="form-group row">
-    <label for="out_val_1" class="col-sm-2">Values for Active</label>
+    <label for="out_val_1" class="col-sm-2 form-text">Values for Active</label>
     <div class="col-sm-3">
       <input type="text" class="form-control" name="out_val_1" id="out_val_1" value="{{out_val_1}}">
     </div>
@@ -54,7 +54,7 @@
   </h4>
 
   <div class="form-group row align-items-center">
-    <label for="gpio" class="col-sm-2">GPIO Pin</label>
+    <label for="gpio" class="col-sm-2 form-text">GPIO Pin</label>
     <div class="col-sm-3">
       <select class="form-control" name="gpio" id="gpio" value="{{gpio}}">
         {{ for item in PIN_O }}
@@ -65,7 +65,7 @@
   </div>
 
   <div class="form-group row align-items-center">
-    <label for="active" class="col-sm-2">Mode</label>
+    <label for="active" class="col-sm-2 form-text">Mode</label>
     <div class="col-sm-3">
       <select class="form-control" name="active" id="active" value="1">
         <option value="0">Low Active</option>

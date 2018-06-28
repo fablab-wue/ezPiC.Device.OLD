@@ -11,7 +11,7 @@
   </h4>
 
   <div class="form-group row">
-    <label for="NAME" class="col-sm-2">Gateway Name</label>
+    <label for="NAME" class="col-sm-2 form-text">Gateway Name</label>
     <div class="col-sm-3">
       <input type="text" class="form-control" name="NAME" id="NAME" value="{{NAME}}">
     </div>
@@ -34,7 +34,7 @@
   </h4>
 
   <div class="form-group row">
-    <label for="BrokerAddr" class="col-sm-2">IP address or URL</label>
+    <label for="BrokerAddr" class="col-sm-2 form-text">IP address or URL</label>
     <div class="col-sm-7">
       <input type="text" class="form-control" name="BrokerAddr" id="BrokerAddr" value="{{BrokerAddr}}">
     </div>
@@ -45,14 +45,13 @@
     <div class="input-group col-sm-2">
       <input type="number" min="1" max="65535" class="form-control" name="BrokerPort" id="BrokerPort" value="{{BrokerPort}}">
       <div class="input-group-append">
-        <span class="input-group-text">sec</span>
       </div>
     </div>
     <div class="col-sm-7 form-text text-muted">Default: 1883</div>
   </div>
 
   <div class="form-group row">
-    <label for="BrokerUser" class="col-sm-2">Login User</label>
+    <label for="BrokerUser" class="col-sm-2 form-text">Login User</label>
     <div class="col-sm-5">
       <input type="text" class="form-control" name="BrokerUser" id="BrokerUser" value="{{BrokerUser}}">
     </div>
@@ -60,7 +59,7 @@
   </div>
 
   <div class="form-group row">
-    <label for="BrokerPW" class="col-sm-2">Login Password</label>
+    <label for="BrokerPW" class="col-sm-2 form-text">Login Password</label>
     <div class="col-sm-5">
       <input type="text" class="form-control" name="BrokerPW" id="BrokerPW" value="{{BrokerPW}}">
     </div>
@@ -72,7 +71,7 @@
   </h4>
 
   <div class="form-group row">
-    <label for="info" class="col-sm-2">Filter Patterns</label>
+    <label for="info" class="col-sm-2 form-text">Filter Patterns</label>
     <div class="col-sm-7">
       <textarea class="form-control" name="FILTER" id="FILTER" rows="5">{{FILTER}}</textarea>
       <div class="text-muted">Note: Use wildcard '*' at beginning and/or end.</div>
@@ -80,14 +79,14 @@
   </div>
 
   <div class="form-group row">
-    <label for="PubTopicPrefix" class="col-sm-2">Topic Prefix</label>
+    <label for="PubTopicPrefix" class="col-sm-2 form-text">Topic Prefix</label>
     <div class="col-sm-5">
       <input type="text" class="form-control" name="PubTopicPrefix" id="PubTopicPrefix" value="{{PubTopicPrefix}}">
     </div>
   </div>
 
   <div class="form-group row align-items-center">
-    <label for="PubQOS" class="col-sm-2">Publish QOS</label>
+    <label for="PubQOS" class="col-sm-2 form-text">Publish QOS</label>
     <div class="col-sm-3">
       <select class="form-control" id="PubQOS" value="{{PubQOS}}">
         <option value="0">0 - At most once delivery</option>
@@ -103,21 +102,21 @@
   </h4>
 
   <div class="form-group row">
-    <label for="SubTopic" class="col-sm-2">Topic (#)</label>
+    <label for="SubTopic" class="col-sm-2 form-text">Topic (#)</label>
     <div class="col-sm-5">
       <input type="text" class="form-control" name="SubTopic" id="SubTopic" value="{{SubTopic}}">
     </div>
   </div>
 
   <div class="form-group row">
-    <label for="SubVarPrefix" class="col-sm-2">Variable Prefix</label>
+    <label for="SubVarPrefix" class="col-sm-2 form-text">Variable Prefix</label>
     <div class="col-sm-5">
       <input type="text" class="form-control" name="SubVarPrefix" id="SubVarPrefix" value="{{SubVarPrefix}}">
     </div>
   </div>
 
   <div class="form-group row align-items-center">
-    <label for="SubQOS" class="col-sm-2">Subscribe QOS</label>
+    <label for="SubQOS" class="col-sm-2 form-text">Subscribe QOS</label>
     <div class="col-sm-3">
       <select class="form-control" id="SubQOS" value="{{SubQOS}}">
         <option value="0">0 - At most once delivery</option>
