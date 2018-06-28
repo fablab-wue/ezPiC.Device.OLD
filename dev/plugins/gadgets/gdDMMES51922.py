@@ -2,6 +2,7 @@
 Gadget Plugin for DMM UNI-T UT61E
 Based on https://www-user.tu-chemnitz.de/~heha/hs/UNI-T/UT61E.LOG
 https://sigrok.org/wiki/Multimeter_ICs/Cyrustek_ES519xx
+
 https://files.elv.com/Assets/Produkte/6/639/63997/Downloads/63997_Mastech_MS8050_Data_Format.pdf
 
 HoldPeak HP-90K USB
@@ -17,7 +18,7 @@ import dev.Machine as Machine
 #######
 # Globals:
 
-EZPID = 'gdDMM_UT61E'
+EZPID = 'gdDMM_ES51922'
 #EZPID = 'gdDMM_MS8050'
 PTYPE = PT_SENSOR
 PNAME = 'DMM UNI-T UT61E'
@@ -60,8 +61,10 @@ class PluginGadget(GS):
 
     def timer(self, prepare:bool):
         while self.process():
-            print(self.value)
-            name = self.param['RespVar']
+            print(self.value, self.unit, self.form)
+            key = self.param['RespVar']
+            source = self.param['NAME']
+            Variable.set(key, self.value, source, self.unit, self.form)
 
 # =====
 

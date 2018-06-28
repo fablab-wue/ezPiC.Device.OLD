@@ -27,7 +27,7 @@ class PluginGateway(Gateway.PluginGatewayBase):
             'NAME':'Logger',
             'ENABLE':False,
             'TIMER':0,
-            'filter':'',
+            'FILTER':'',
             # instance specific params
             'file_name':'Logger.log',
             'separator':',',
@@ -46,7 +46,7 @@ class PluginGateway(Gateway.PluginGatewayBase):
             self.timer_period = None
         super().init()
 
-        self._variable_filter.init(self.param['filter'])
+        self._variable_filter.init(self.param['FILTER'])
 
 # -----
 

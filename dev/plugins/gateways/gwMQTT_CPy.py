@@ -32,19 +32,17 @@ class PluginGateway(Gateway.PluginGatewayBase):
             'NAME':PNAME,
             'ENABLE':False,
             'TIMER':0,
-            'filter':'',
+            'FILTER':'',
             # instance specific params
-            'mqtt_broker':'iot.eclipse.org',
-            'mqtt_port':1883,
-            'mqtt_user':'',
-            'mqtt_pw':'',
-            'mqtt_qos':0,
-            'sub_topic':'/#',
-            'sub_var_prefix':'MQTT',
-            'pub_topic_prefix':'/',
-
-            'file_name':'Logger.log',
-            'separator':',',
+            'BrokerAddr':'iot.eclipse.org',
+            'BrokerPort':1883,
+            'BrokerUser':'',
+            'BrokerPW':'',
+            'SubTopic':'/12345/#',
+            'SubVarPrefix':'MQTT.',
+            'SubQOS':0,
+            'PubTopicPrefix':'/',
+            'PubQOS':0,
             }
         self._variable_tick = 0
         self._variable_filter = Variable.Filter()
@@ -61,21 +59,20 @@ class PluginGateway(Gateway.PluginGatewayBase):
         # Subscribing in on_connect() means that if we lose the connection and
         # reconnect then subscriptions will be renewed.
         #client.subscribe("$SYS/#")
-        client.subscribe("/12345/#")
+        if self.param['SubTopic']:
+            client.subscribe(self.param['SubTopic'], self.param['SubQOS'])
 
 # -----
 
     # The callback for when a PUBLISH message is received from the server.
     @staticmethod
     def on_message(client, self, msg):
-        topic = msg.topic.replace('/', '.')
+        topic = self.param['SubVarPrefix'] + msg.topic.replace('/', '.')
         payload = msg.payload.decode()
         print(topic+"     "+payload)
         Variable.set(topic, payload, 'MQTT')
 
 # =====
-
-
 
     def init(self):
         if not self._client:
@@ -83,13 +80,13 @@ class PluginGateway(Gateway.PluginGatewayBase):
             self._client.on_connect = PluginGateway.on_connect
             self._client.on_message = PluginGateway.on_message
 
-        self._client.username_pw_set(username='', password=None)
-        self._client.connect_async("iot.eclipse.org", 1883, 60)
+        self._client.username_pw_set(username=self.param['BrokerUser'], password=self.param['BrokerPW'])
+        self._client.connect_async(self.param['BrokerAddr'], self.param['BrokerPort'], 60)
         self._client.loop_start()
 
         super().init()
 
-        self._variable_filter.init(self.param['filter'])
+        self._variable_filter.init(self.param['FILTER'])
 
 # -----
 
@@ -105,26 +102,22 @@ class PluginGateway(Gateway.PluginGatewayBase):
 # -----
 
     def variables(self, news:dict):
-        separator = self.param['separator']
+        if not self._client:
+            return
         try:
-            if Variable.is_new(self._variable_tick):
-                self._variable_tick, _news = Variable.get_news_full(self._variable_tick)
-                with open(self.param['file_name'], 'a') as f:
-                    for key, data in _news.items():
-                        if not self._variable_filter.fits(key):
-                            continue
+            #if Variable.is_new(self._variable_tick):
+            #self._variable_tick, _news = Variable.get_news(self._variable_tick)
+            #for key, data in _news.items():
+            for key, data in news.items():
+                if not self._variable_filter.fits(key):
+                    continue
+                if self.param['SubVarPrefix'] and key.startswith(self.param['SubVarPrefix']):
+                    continue
 
-                        t = data['time']
-                        str_log = time_to_str(t)
-                        str_log += separator
-                        str_log += key
-                        str_log += separator
-                        str_log += str(data['value'])
-                        #log(LOG_DEBUG, 'Logger: {}', str_log)
-
-                        #str_log += '\n'
-                        #b = f.write(str_log)
-            pass
+                topic = self.param['PubTopicPrefix'] + key.replace('.', '/')
+                #data_str = str(data)
+                self._client.publish(topic, data, self.param['PubQOS'])
+                #log(LOG_DEBUG, 'Logger: {}', str_log)
         except:
             pass
 

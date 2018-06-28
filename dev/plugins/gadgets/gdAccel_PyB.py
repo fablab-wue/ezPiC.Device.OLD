@@ -39,6 +39,6 @@ class PluginGadget(Gadget.PluginGadgetBase):
     def timer(self, prepare:bool):
         x, y, z = self._accel.x(), self._accel.y(), self._accel.z()
 
-        Variable.set2(self.param['NAME'], self.param['name_x'], x)
-        Variable.set2(self.param['NAME'], self.param['name_y'], y)
-        Variable.set2(self.param['NAME'], self.param['name_z'], z)
+        Variable.set((self.param['NAME'], self.param['name_x']), x)
+        Variable.set((self.param['NAME'], self.param['name_y']), y)
+        Variable.set((self.param['NAME'], self.param['name_z']), z)

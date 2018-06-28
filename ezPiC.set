@@ -89,19 +89,28 @@
         "RespVal0": "0",
         "RespVal1": "1"
       }
-    },
+    }
+  ],
+  "gateways": [
     {
-      "EZPID": "gdDMM_UT61E",
+      "EZPID": "gwMQTT",
       "version": "1.0",
       "params": {
-        "NAME": "DMM1",
-        "ENABLE": false,
-        "TIMER": 0.1,
-        "PORT": "COM1 - Communications Port (COM1)",
-        "RespVar": "DMM1"
+        "NAME": "To MQTT Broker",
+        "ENABLE": true,
+        "TIMER": 0,
+        "FILTER": "",
+        "BrokerAddr": "iot.eclipse.org",
+        "BrokerPort": 1883,
+        "BrokerUser": "",
+        "BrokerPW": "",
+        "SubTopic": "/12345/#",
+        "SubVarPrefix": "MQTT",
+        "SubQOS": 0,
+        "PubTopicPrefix": "/JK/",
+        "PubQOS": 0
       }
     }
   ],
-  "gateways": [],
   "rules": []
 }

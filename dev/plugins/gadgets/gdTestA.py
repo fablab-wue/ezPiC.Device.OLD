@@ -39,7 +39,7 @@ class PluginGadget(Gadget.PluginGadgetBase):
 
     def init(self):
         super().init()
-        Variable.set_meta2(self.param['NAME'], self.param['name_t'], '°C', '{:.3f}')
+        Variable.set_meta((self.param['NAME'], self.param['name_t']), '°C', '{:.3f}')
 
 # -----
 
@@ -50,4 +50,4 @@ class PluginGadget(Gadget.PluginGadgetBase):
 
     def timer(self, prepare:bool):
         log(5, 'ggTestA Timer')
-        Variable.set2(self.param['NAME'], self.param['name_t'], random.random())
+        Variable.set((self.param['NAME'], self.param['name_t']), random.random())

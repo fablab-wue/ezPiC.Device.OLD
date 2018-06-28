@@ -23,8 +23,11 @@ def run():
 
 #######
 
-def set(key:str, value, source:str=None) -> int:
+def set(key:str, value, source:str=None, unitstr:str=None, formatstr:str=None) -> int:
     global VARIABLES, VARIABLEACTTICK
+
+    if type(key) is tuple or type(key) is list:
+        key = '.'.join(key)
 
     with VARIABLELOCK:
         VARIABLEACTTICK += 1
@@ -42,19 +45,22 @@ def set(key:str, value, source:str=None) -> int:
         r['value'] = value
         r['source'] = source
         r['time'] = time.time()
+        if unitstr:
+            r['unit'] = unitstr
+        if formatstr:
+            r['format'] = formatstr
+
         VARIABLES[key] = r
 
         return VARIABLEACTTICK
 
 # =====
 
-def set2(key1:str, key2:str, value, source:str=None) -> int:
-    return set(key1 + '.' + key2, value, source)
-
-# =====
-
 def set_meta(key:str, unitstr:str=None, formatstr:str=None) -> int:
     global VARIABLES, VARIABLEACTTICK
+
+    if type(key) is tuple or type(key) is list:
+        key = '.'.join(key)
 
     with VARIABLELOCK:
         if key in VARIABLES:   #update
@@ -73,14 +79,10 @@ def set_meta(key:str, unitstr:str=None, formatstr:str=None) -> int:
             r['unit'] = unitstr
         if formatstr:
             r['format'] = formatstr
+            
         VARIABLES[key] = r
 
         return VARIABLEACTTICK
-
-# =====
-
-def set_meta2(key1:str, key2:str, unitstr:str=None, formatstr:str=None) -> int:
-    return set_meta(key1 + '.' + key2, unitstr, formatstr)
 
 # =====
 

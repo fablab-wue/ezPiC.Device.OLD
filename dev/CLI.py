@@ -13,7 +13,7 @@ _PROMPT = ':-> '
 
 #######
 
-def process_cli():
+def thread_cli_loop(*argv):
     global _PROMPT
 
     time.sleep(0.75)
@@ -42,8 +42,8 @@ def init():
 
 def run(threaded=True):
     if threaded:
-        Tool.start_thread(process_cli, ())
+        Tool.start_thread(thread_cli_loop, ())
     else:
-        process_cli()   # this call never comes back .. normally
+        thread_cli_loop()   # this call never comes back .. normally
  
 #######
