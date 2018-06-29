@@ -1,5 +1,5 @@
 """
-Gadget Plugin for GPIO output
+Gadget Plugin for Port output
 """
 from com.Globals import *
 
@@ -12,8 +12,8 @@ import dev.Machine as Machine
 
 EZPID = 'gdGPIOout'
 PTYPE = PT_ACTUATOR
-PNAME = 'GPIO Output'
-PINFO = 'Use GPIOs as Output triggered by Variables'
+PNAME = 'GPIO Port Output'
+PINFO = 'Use Ports as Output triggered by Variables'
 
 #######
 
@@ -24,14 +24,13 @@ class PluginGadget(Gadget.PluginGadgetBase):
         super().__init__(module)
         self.param = {
             # must be params
-            'NAME':'A',
+            'NAME':PNAME,
             'ENABLE':False,
             'TIMER':0,
             # instance specific params
-            'out_key':'TimeSwitchOut',
-            'out_val_0':'0 off OFF',
-            'out_val_1':'1 on ON',
-            'gpio':'',
+            'TrigVar':'TimeSwitchOut',
+            'TrigVals1':'1 on ON',
+            'Port':'',
             }
         self._pin = None
 
@@ -40,9 +39,9 @@ class PluginGadget(Gadget.PluginGadgetBase):
     def init(self):
         super().init()
 
-        key = self.param['out_key']
+        key = self.param['TrigVar']
         out = self._get_variable(key)
-        id = self.param['gpio']
+        id = self.param['Port']
 
         err, ret = Machine.get_handler_instance('PIN_IO', id)
         if not err:
@@ -70,7 +69,7 @@ class PluginGadget(Gadget.PluginGadgetBase):
 
     def variables(self, news:dict):
         try:
-            key = self.param['out_key']
+            key = self.param['TrigVar']
             if key in news:
                 out = self._get_variable(key)
 
@@ -82,14 +81,11 @@ class PluginGadget(Gadget.PluginGadgetBase):
 # =====
 
     def _get_variable(self, key):
-        out = 0
         val = str(Variable.get(key))
 
-        if self.param['out_val_0'] and self.param['out_val_0'].find(val) >= 0:
-            out = 0
-        if self.param['out_val_1'] and self.param['out_val_1'].find(val) >= 0:
-            out = 1
+        if self.param['TrigVals1'] and self.param['TrigVals1'].find(val) >= 0:
+            return True
 
-        return out
+        return False
 
 #######
