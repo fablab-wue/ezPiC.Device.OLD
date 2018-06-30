@@ -2,11 +2,6 @@
 Gadget Plugin for DMM UNI-T UT61E
 Based on https://www-user.tu-chemnitz.de/~heha/hs/UNI-T/UT61E.LOG
 https://sigrok.org/wiki/Multimeter_ICs/Cyrustek_ES519xx
-
-https://files.elv.com/Assets/Produkte/6/639/63997/Downloads/63997_Mastech_MS8050_Data_Format.pdf
-
-HoldPeak HP-90K USB
-FS9721 - 14-byte LCD
 """
 from com.Globals import *
 
@@ -18,12 +13,10 @@ import dev.Machine as Machine
 #######
 # Globals:
 
-EZPID = 'gdDMM_ES51922'
-#EZPID = 'gdDMM_MS8050'
+EZPID = 'gdDMM_UT61E'
 PTYPE = PT_SENSOR
-PNAME = 'DMM UNI-T UT61E'
-#PNAME = 'DMM Mastech/ELV MS8050'
-PINFO = 'Chip: ES51922'
+PNAME = 'DMM UT61E'
+PINFO = 'Chip: ES51922<br>UNI-T UT61E<br>Note: Press REL button for 3 sec to start tranmition'
 
 #######
 

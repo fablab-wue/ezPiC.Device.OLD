@@ -107,9 +107,20 @@
       "version": "1.0",
       "params": {
         "NAME": "DMM Mastech MS8050",
-        "ENABLE": true,
+        "ENABLE": false,
         "TIMER": 0.1,
         "PORT": "COM22 - Prolific USB-to-Serial Comm Port (COM22)",
+        "RespVar": "DMM"
+      }
+    },
+    {
+      "EZPID": "gdDMM_FS9721",
+      "version": "1.0",
+      "params": {
+        "NAME": "DMM FS9721",
+        "ENABLE": true,
+        "TIMER": 0.1,
+        "PORT": "COM5 - Prolific USB-to-Serial Comm Port (COM5)",
         "RespVar": "DMM"
       }
     }
