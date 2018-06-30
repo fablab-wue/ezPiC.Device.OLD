@@ -101,8 +101,39 @@
         "TrigVals1": "1 on ON",
         "Port": ""
       }
+    },
+    {
+      "EZPID": "gdDMM_MS8050",
+      "version": "1.0",
+      "params": {
+        "NAME": "DMM Mastech MS8050",
+        "ENABLE": true,
+        "TIMER": 0.1,
+        "PORT": "COM22 - Prolific USB-to-Serial Comm Port (COM22)",
+        "RespVar": "DMM"
+      }
     }
   ],
-  "gateways": [],
+  "gateways": [
+    {
+      "EZPID": "gwMQTT",
+      "version": "1.0",
+      "params": {
+        "NAME": "To MQTT Broker",
+        "ENABLE": false,
+        "TIMER": 0,
+        "FILTER": "",
+        "BrokerAddr": "iot.eclipse.org",
+        "BrokerPort": 1883,
+        "BrokerUser": "",
+        "BrokerPW": "",
+        "SubTopic": "/12345/#",
+        "SubVarPrefix": "MQTT.",
+        "SubQOS": 0,
+        "PubTopicPrefix": "/",
+        "PubQOS": 0
+      }
+    }
+  ],
   "rules": []
 }
