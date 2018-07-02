@@ -18,10 +18,10 @@ import dev.Machine as Machine
 #######
 # Globals:
 
-EZPID = 'gdDMM_FS9721'
+EZPID = 'gdDMM_LCD14'
 PTYPE = PT_SENSOR
 PNAME = 'DMM FS9721 (14 Byte LCD)'
-PINFO = 'Chip: FS9721<br>HoldPeak HP-90K USB; Voltcraft VC 820<br>Note: Press PC-Link button to start tranmition'
+PINFO = 'Chip: FS9721<br>HoldPeak HP-90K USB; Voltcraft VC 820; Vichy VC99<br>Note: Press PC-Link button to start tranmition'
 
 #######
 
