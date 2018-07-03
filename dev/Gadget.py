@@ -47,6 +47,9 @@ def gadget_timer_handler(news, args):
                 if gadget.get_params('ENABLE'):
                     gadget.variables(news)
 
+        for gadget in _GADGETS:
+            gadget.idle()
+
 #######
 
 def init():
@@ -304,6 +307,9 @@ class PluginGadgetBase():
         """ get the html template name from the module """
         name = self.module.EZPID.split('_', 1)[0]
         return 'web/www/gadgets/{}.html'.format(name)
+
+    def idle(self):
+        return None
 
     def timer(self, prepare:bool):
         return None
