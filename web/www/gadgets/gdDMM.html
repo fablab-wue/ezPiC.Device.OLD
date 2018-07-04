@@ -44,7 +44,22 @@
     </div>
   </div>
 
+  {{ if Baud }}
+    <div class="form-group row align-items-center">
+      <label for="Baud" class="col-sm-2 form-text">Baud Rate</label>
+      <div class="col-sm-5">
+        <select class="form-control" name="Baud" id="Baud" value="{{Baud}}">
+            <option value="600">600</option>
+            <option value="1200">1200</option>
+            <option value="2400">2400</option>
+            <option value="4800">4800</option>
+            <option value="9600">9600</option>
+        </select>
+      </div>
+    </div>
+  {{ end }}
 
+  
   <h4>
     <span class="badge badge-dark col-sm-12">DMM Input Response</span>
   </h4>

@@ -14,7 +14,7 @@ import dev.Machine as Machine
 
 EZPID = 'gdDMM_M14C'
 PTYPE = PT_SENSOR
-PNAME = 'DMM ASCII 14 Byte C'
+PNAME = 'DMM ASCII 14 Byte Cont.'
 PINFO = 'Chip: ???<br>Metex; Voltcraft; Peaktech'
 
 #######
@@ -22,8 +22,8 @@ PINFO = 'Chip: ???<br>Metex; Voltcraft; Peaktech'
 class PluginGadget(GS):
     """ TODO """
 
-    def __init__(self, module):
-        super().__init__(module, 14)   # 14 byte data packet
+    def __init__(self, module, size=14):
+        super().__init__(module, size)   # 14 byte data packet
         self.param = {
             # must be params
             'NAME':PNAME,
@@ -73,100 +73,28 @@ class PluginGadget(GS):
 
     def interpret(self):
 
-        mode_str = data[0:2]
-        val_str = data[2:9]
-        unit_str = data[9:13]
+        mode_str = self.data[0:2]
+        val_str = self.data[2:9]
+        unit_str = self.data[9:13]
 
         try:
-            mode = mode_str.decode()
-            val = float(val_str.decode())
-            unit = unit_str.decode()
+            mode = mode_str.decode().strip()
+            val = val_str.decode().strip()
+            unit = unit_str.decode().strip()
         except:
-            s
-        unit = ''
-        dec = 3
-        if self.data[7] & 0x08:   # % TODO
-            dec = 1
-            val *= GS.Pow10[-dec]
-            unit = '%_'
-        elif self.data[9] & 0x01:   # Hz TODO
-            dec = 1
-            val *= GS.Pow10[-dec]
-            unit = 'Hz_'
-        elif mode == 0x0:   # A
-            dec = 3
-            val *= GS.Pow10[-dec]
-            unit = 'A'
-        elif mode == 0x1:   # Diode
-            dec = 2-nrange
-            val *= GS.Pow10[-dec]
-            unit = 'Vdiode'
-        elif mode == 0x2:   # Hz
-            if nrange<2:
-                dec = 2-nrange
-            else:
-                dec = 3-nrange
-            val *= GS.Pow10[-dec]
-            unit = 'Hz'
-        elif mode == 0x3:   # Ohm
-            dec = 2-nrange
-            val *= GS.Pow10[-dec]
-            unit = 'Ohm'
-        elif mode == 0x4:   # °C
-            dec = 2-nrange
-            val *= GS.Pow10[-dec]
-            unit = '°C'
-        elif mode == 0x5:   # Beep
-            dec = 2-nrange
-            val *= GS.Pow10[-dec]
-            unit = 'Vbeep'
-        elif mode == 0x6:   # F
-            dec = 6-nrange
-            val *= GS.Pow10[-dec]
-            unit = 'uF'
-        elif mode == 0x9:   # A
-            dec = 3
-            val *= GS.Pow10[-dec]
-            unit = 'A'
-        elif mode == 0xB:   # V
-            if nrange == 4:   # mV
-                dec = 5
-            else:
-                dec = 4-nrange
-            val *= GS.Pow10[-dec]
-            unit = 'V'
-        elif mode == 0xD:   # uA
-            dec = 2-nrange
-            val *= GS.Pow10[-dec]  
-            unit = 'uA'
-        elif mode == 0xE:   # ADP
-            dec = 2-nrange
-            val *= GS.Pow10[-dec]
-            unit = 'ADP'
-        elif mode == 0xF:   # mA
-            dec = 3-nrange
-            val *= GS.Pow10[nrange-3]  
-            unit = 'mA'
-        else:
-            pass
+            mode = ''
+            val = 0
+            unit = 'OL'
 
-        if self.data[10] & 0x08:   # DC
+        if mode.startswith('DC'):   # DC
             unit += '='
-        if self.data[10] & 0x04:   # AC
+        if mode.startswith('AC'):   # AC
             unit += '~'
-        if self.data[9] & 0x04:   # max
-            unit += 'max'
-        if self.data[9] & 0x02:   # min
-            unit += 'min'
-        if self.data[7] & 0x01:   # OVL
-            unit += 'OL'
-        if self.data[9] & 0x08:   # UL
-            unit += 'UL'
 
         self.value = val
         self.unit = unit
-        if dec < 0: dec = 0
-        self.form = '{{:.{}f}}'.format(dec)
+        #self.form = '{{:.{}f}}'.format(dec)
+        self.form = None
 
         self._remove_data(self.packet_size)
         return val

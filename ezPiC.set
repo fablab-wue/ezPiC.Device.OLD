@@ -112,6 +112,18 @@
         "PORT": "COM22 - Prolific USB-to-Serial Comm Port (COM22)",
         "RespVar": "DMM"
       }
+    },
+    {
+      "EZPID": "gdDMM_M14C",
+      "version": "1.0",
+      "params": {
+        "NAME": "DMM ASCII 14 Byte Cont.",
+        "ENABLE": false,
+        "TIMER": 0.1,
+        "PORT": "COM22",
+        "RespVar": "DMM",
+        "Baud": "2400"
+      }
     }
   ],
   "gateways": [],
