@@ -1,5 +1,5 @@
 """
-Gadget Plugin for SDS011
+Gadget Plugin for SDS011 and SDS018
 Based on 
 """
 from com.Globals import *
@@ -12,10 +12,13 @@ import dev.Machine as Machine
 #######
 # Globals:
 
-EZPID = 'gdDust_SDS011'
+EZPID = 'gdDust_SDS01x'
 PTYPE = PT_SENSOR
-PNAME = 'Dust Sensor SDS011'
-PINFO = '???'
+PNAME = 'Dust Sensor SDS011/018'
+PINFO = 'Nova Fitness SDS011; SDS018'
+
+UNIT = 'µg/m³'   #ANSI
+#UNIT = 'ug/m3'   #ASCII
 
 #######
 
@@ -28,7 +31,7 @@ class PluginGadget(GS):
             # must be params
             'NAME':PNAME,
             'ENABLE':False,
-            'TIMER':3,
+            'TIMER':0,
             'PORT':'COM22',
             # instance specific params
             'RespVarPM2_5':'PM2_5',
@@ -44,8 +47,8 @@ class PluginGadget(GS):
             self._ser.init(9600, 8, None, 1) # baud=9600 databits=8 parity=none stopbits=1
             #self._ser.set_dtr(True)    # DTR-pin to +
             #self._ser.set_rts(False)   # RTS-pin to -
-        Variable.set_meta(self.param['RespVarPM2_5'], 'µg/m³', '{:.1f}')
-        Variable.set_meta(self.param['RespVarPM10'], 'µg/m³', '{:.1f}')
+        Variable.set_meta(self.param['RespVarPM2_5'], UNIT, '{:.1f}')
+        Variable.set_meta(self.param['RespVarPM10'], UNIT, '{:.1f}')
 
         self.sum_pm2_5 = 0
         self.sum_pm10 = 0
@@ -60,7 +63,8 @@ class PluginGadget(GS):
 
     def idle(self):
         while self.process():
-            pass
+            if self.param['TIMER'] <= 1:
+                self.timer(False)
 
 # -----
 
