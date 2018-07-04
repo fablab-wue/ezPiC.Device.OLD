@@ -92,17 +92,17 @@ class PluginGadget(GS):
 
         unit = ''
         dec = 3
-        if fc == 0:   # V
+        if fc == 0 and fsc == 0:   # DCV
             dec = 4-nrange
-            if fsc == 0:   # DCx
-                unit = 'V='
-            else:
-                unit = 'V~'
+            unit = 'V='
+        if fc == 0 and fsc == 1:   # ACV
+            dec = 3-nrange
+            unit = 'V~'
         elif fc == 1 and fsc == 0:   # mV
             dec = 2-nrange
             unit = 'mV='
         elif fc == 1 and fsc == 1:   # Celcius
-            dec = 2-nrange
+            dec = 1-nrange
             unit = '°C'
         elif fc == 2:   # Ohm
             dec = 2-nrange
@@ -114,40 +114,40 @@ class PluginGadget(GS):
             dec = nrange-6
             unit = 'uF'
         elif fc == 4:   # Diode
-            dec = nrange-3
+            dec = 4-nrange
             unit = 'Vdiode'
         elif fc == 5 and fsc == 0:   # Frequency
-            dec = 2-nrange
+            dec = 3-nrange
             unit = 'Hz'
         elif fc == 5 and fsc == 1:   # 4-20mA
+            dec = 3-nrange
+            unit = '%'
+        elif fc == 6 and fsc == 0:   # DCuA
             dec = 2-nrange
-            unit = '%'
-        elif fc == 6:   # uA
-            dec = nrange-2
-            if fsc == 0:   # DCx
-                unit = 'uA='
-            else:
-                unit = 'uA~'
-        elif fc == 7:   # mA
-            dec = nrange-3
-            if fsc == 0:   # DCx
-                unit = 'mA='
-            else:
-                unit = 'mA~'
-        elif fc == 8:   # A
-            dec = nrange-3
-            if fsc == 0:   # DCx
-                unit = 'A='
-            else:
-                unit = 'A~'
+            unit = 'uA='
+        elif fc == 6 and fsc == 1:   # ACuA
+            dec = 1-nrange
+            unit = 'uA~'
+        elif fc == 7 and fsc == 0:   # DCmA
+            dec = 3-nrange
+            unit = 'mA='
+        elif fc == 7 and fsc == 1:   # ACmA
+            dec = 2-nrange
+            unit = 'mA~'
+        elif fc == 8 and fsc == 0:   # DCA
+            dec = 3-nrange
+            unit = 'A='
+        elif fc == 8 and fsc == 1:   # ACA
+            dec = 2-nrange
+            unit = 'A~'
         elif fc == 9 and fsc == 0:   # Active Power
-            dec = nrange-3
+            dec = 1-nrange
             unit = 'W'
-        elif fc == 9 and fsc == 1:   # Power Factor
-            dec = nrange-3
-            unit = '%'
+        elif fc == 9 and fsc == 1:   # Power Factor / Cos Phi
+            dec = 3-nrange
+            unit = '°'
         elif fc == 9 and fsc == 2:   # Voltage eff.
-            dec = nrange-3
+            dec = 1-nrange
             unit = 'Veff'
         else:
             pass
