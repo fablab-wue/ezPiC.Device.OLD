@@ -32,7 +32,7 @@ class PluginGadget(GS):
             'NAME':PNAME,
             'ENABLE':False,
             'TIMER':0,
-            'PORT':'COM22',
+            'PORT':'',
             # instance specific params
             'RespVarPM2_5':'PM2_5',
             'RespVarPM10':'PM10',
@@ -63,7 +63,7 @@ class PluginGadget(GS):
 
     def idle(self):
         while self.process():
-            if self.param['TIMER'] <= 1:
+            if not self.timer_period or self.timer_period <= 1000:
                 self.timer(False)
 
 # -----
@@ -73,7 +73,7 @@ class PluginGadget(GS):
             source = self.param['NAME']
             pm2_5 = self.sum_pm2_5 / self.sum_count * 0.1
             pm10 = self.sum_pm10 / self.sum_count * 0.1
-            print(pm2_5, pm10)
+            #print(pm2_5, pm10)
 
             key = self.param['RespVarPM2_5']
             Variable.set(key, pm2_5, source)

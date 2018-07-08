@@ -60,7 +60,7 @@ class PluginGadget(GS):
 
     def idle(self):
         while self.process():
-            if self.param['TIMER'] <= 1:
+            if not self.timer_period or self.timer_period <= 1000:
                 self.timer(False)
 
 # -----
@@ -68,7 +68,7 @@ class PluginGadget(GS):
     def timer(self, prepare:bool):
         if self.sum_count:
             source = self.param['NAME']
-            pm100 = self.sum_pm100 / self.sum_count * 0.1
+            pm100 = self.sum_pm100 / self.sum_count
             print(pm100)
 
             key = self.param['RespVarPM100']
@@ -96,7 +96,7 @@ class PluginGadget(GS):
 # -----
 
     def interpret(self):
-        pm100 = (self.data[3] << 8) | self.data[2]
+        pm100 = (self.data[5] << 8) | self.data[4]
 
         self.sum_pm100 += pm100
         self.sum_count += 1

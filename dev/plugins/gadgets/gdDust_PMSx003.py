@@ -32,7 +32,7 @@ class PluginGadget(GS):
             'NAME':PNAME,
             'ENABLE':False,
             'TIMER':0,
-            'PORT':'COM22',
+            'PORT':'',
             # instance specific params
             'RespVarPM1':'PM1',
             'RespVarPM2_5':'PM2_5',
@@ -66,7 +66,7 @@ class PluginGadget(GS):
 
     def idle(self):
         while self.process():
-            if self.param['TIMER'] <= 1:
+            if not self.timer_period or self.timer_period <= 1000:
                 self.timer(False)
 
 # -----
@@ -74,10 +74,10 @@ class PluginGadget(GS):
     def timer(self, prepare:bool):
         if self.sum_count:
             source = self.param['NAME']
-            pm1 = self.sum_pm1 / self.sum_count * 0.1
-            pm2_5 = self.sum_pm2_5 / self.sum_count * 0.1
-            pm10 = self.sum_pm10 / self.sum_count * 0.1
-            print(pm2_5, pm10)
+            pm1 = self.sum_pm1 / self.sum_count
+            pm2_5 = self.sum_pm2_5 / self.sum_count
+            pm10 = self.sum_pm10 / self.sum_count
+            #print(pm1, pm2_5, pm10)
 
             key = self.param['RespVarPM1']
             Variable.set(key, pm1, source)
@@ -98,9 +98,7 @@ class PluginGadget(GS):
             return False
         if self.data[1] != 0x4d:   # Strat Character 1
             return False
-        if ((self.data[3] << 8) | self.data[4]) != 28:   # Frame Length
-            return False
-        if self.data[1] != 0xC0:   # Command ID
+        if ((self.data[2] << 8) | self.data[3]) != 28:   # Frame Length
             return False
         sum = 0
         for i in range(0, 30):

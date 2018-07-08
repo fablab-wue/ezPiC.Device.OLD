@@ -19,9 +19,9 @@
       "version": "1.0",
       "params": {
         "NAME": "SerialGPIO",
-        "ENABLE": true,
+        "ENABLE": false,
         "TIMER": 0.1,
-        "Port": "COM17 - USB Serial Port (COM17)",
+        "Port": "COM3 - Intel(R) Active Management Technology - SOL (COM3)",
         "TrigVarDTR": "L1",
         "TrigVarRTS": "L2",
         "TrigVarTXD": "L3",
@@ -74,9 +74,9 @@
       "version": "1.0",
       "params": {
         "NAME": "SerialGPIO",
-        "ENABLE": true,
+        "ENABLE": false,
         "TIMER": 0.1,
-        "Port": "COM14 - USB-SERIAL CH340 (COM14)",
+        "Port": "COM3 - Intel(R) Active Management Technology - SOL (COM3)",
         "TrigVarDTR": "",
         "TrigVarRTS": "",
         "TrigVarTXD": "TXD340",
@@ -107,22 +107,46 @@
       "version": "1.0",
       "params": {
         "NAME": "DMM Voltcraft VC870 TODO",
-        "ENABLE": true,
+        "ENABLE": false,
         "TIMER": 0.1,
-        "PORT": "COM22 - Prolific USB-to-Serial Comm Port (COM22)",
+        "PORT": "COM3 - Intel(R) Active Management Technology - SOL (COM3)",
         "RespVar": "DMM"
       }
     },
     {
-      "EZPID": "gdDMM_M14C",
+      "EZPID": "gdDust_SDS01x",
       "version": "1.0",
       "params": {
-        "NAME": "DMM ASCII 14 Byte Cont.",
+        "NAME": "Dust Sensor SDS011/018",
         "ENABLE": false,
-        "TIMER": 0.1,
-        "PORT": "COM22",
-        "RespVar": "DMM",
-        "Baud": "2400"
+        "TIMER": "5",
+        "PORT": "COM9 - USB-SERIAL CH340 (COM9)",
+        "RespVarPM2_5": "PM2.5",
+        "RespVarPM10": "PM10"
+      }
+    },
+    {
+      "EZPID": "gdDust_SDS198",
+      "version": "1.0",
+      "params": {
+        "NAME": "Dust Sensor SDS198",
+        "ENABLE": false,
+        "TIMER": "0",
+        "PORT": "COM9 - USB-SERIAL CH340 (COM9)",
+        "RespVarPM100": "PM100"
+      }
+    },
+    {
+      "EZPID": "gdDust_PMSx003",
+      "version": "1.0",
+      "params": {
+        "NAME": "Dust Sensor PMS5003/7003",
+        "ENABLE": true,
+        "TIMER": "2",
+        "PORT": "COM9 - USB-SERIAL CH340 (COM9)",
+        "RespVarPM1": "PM1",
+        "RespVarPM2_5": "PM2.5",
+        "RespVarPM10": "PM10"
       }
     }
   ],
