@@ -1,0 +1,99 @@
+{{ include ../t_std_head.html }}
+
+<div class="gadgets">
+  <div class="card">
+    <div class="card-header p-2" role="tab" id="heading">
+      <h5 class="d-flex align-items-start m-0 ">
+        <a class="btn btn-secondary btn-sm mx-1 ml-0 mr-3" data-toggle="collapse" href="#collapse" aria-expanded="false"
+          aria-controls="collapse">
+          <i class="fas fa-chevron-down"></i>
+        </a>
+        <div class="mr-auto">
+          {{ PNAME }} - '{{NAME}}'
+        </div>
+        #{{index}}
+      </h5>
+    </div>
+    <div id="collapse" class="collapse" role="tabpanel" aria-labelledby="heading">
+      <div class="card-body">
+        { { PINFO } }
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<form method="post">
+
+  
+  <button type="submit" class="btn btn-warning btn-lg float-right">Submit</button>
+  
+  <h4>Configuration</h4>
+  <h4>
+    <span class="badge badge-dark col-sm-12">Gadget</span>
+  </h4>
+
+  <div class="form-group row">
+    <label for="NAME" class="col-sm-2 form-text">Gadget Name</label>
+    <div class="col-sm-3">
+      <input type="text" class="form-control" name="NAME" id="NAME" value="{{NAME}}">
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <div class="col-sm-2 form-text">Enabled</div>
+    <div class="col-sm-10">
+      <div class="form-check">
+        <label class="form-check-label form-text">
+          <input class="form-check-input" type="checkbox" name="ENABLE" id="ENABLE" value="ACTIVE" {{if ENABLE}}checked{{end}}>
+        </label>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <label for="TIMER" class="col-sm-2 form-text">Timer Interval</label>
+    <div class="input-group col-sm-2">
+      <input type="number" min="0" max="86400" class="form-control" name="TIMER" id="TIMER" value="{{TIMER}}">
+      <div class="input-group-append">
+        <span class="input-group-text">sec</span>
+      </div>
+    </div>
+    <div class="col-sm-7 form-text text-muted">Leave empty for update on each transmit</div>
+  </div>
+
+  
+  <h4>
+    <span class="badge badge-dark col-sm-12">Serial Adapter</span>
+  </h4>
+
+  <div class="form-group row align-items-center">
+    <label for="PORT" class="col-sm-2 form-text">Serial Port</label>
+    <div class="col-sm-5">
+      <select class="form-control" name="PORT" id="PORT" value="{{PORT}}">
+        {{ for item in UARTS }}
+          <option value="{{item}}">{{item}}</option>
+        {{ end }}
+      </select>
+    </div>
+  </div>
+
+
+  <h4>
+    <span class="badge badge-dark col-sm-12">Gas Sensor Input Response</span>
+  </h4>
+
+  <div class="form-group row">
+    <label for="RespVar" class="col-sm-2 form-text">Resp. Variable</label>
+    <div class="col-sm-7">
+      <input type="text" class="form-control" name="RespVar" id="RespVar" value="{{RespVar}}">
+    </div>
+  </div>
+
+  <hr>
+
+  <button type="submit" class="btn btn-warning btn-lg float-right">Submit</button>
+
+</form>
+
+{{ include ../t_std_foot.html }}

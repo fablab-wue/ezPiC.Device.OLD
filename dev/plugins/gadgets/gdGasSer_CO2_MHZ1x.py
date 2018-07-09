@@ -12,7 +12,7 @@ import dev.Machine as Machine
 #######
 # Globals:
 
-EZPID = 'gdCO2_MHZ1x'
+EZPID = 'gdGasSer_CO2_MHZ1x'
 PTYPE = PT_SENSOR
 PNAME = 'CO2 MH-Z14/19 (UART)'
 PINFO = 'Winsen MH-Z14A; MH-Z19'

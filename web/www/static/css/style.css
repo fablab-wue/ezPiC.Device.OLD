@@ -19,7 +19,7 @@ input[type=checkbox]
     background-color: #fcf7e4;
     border: 1px solid #d1d7dd !important;
     border-radius: 4px;
-    margin: 0.5rem;
+    margin-bottom: 0.5rem;
 }
 .gadgets .card-header {
     background-color: #d6fdd7;

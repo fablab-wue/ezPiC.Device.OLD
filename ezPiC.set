@@ -141,12 +141,23 @@
       "version": "1.0",
       "params": {
         "NAME": "Dust Sensor PMS5003/7003",
-        "ENABLE": true,
+        "ENABLE": false,
         "TIMER": "2",
         "PORT": "COM9 - USB-SERIAL CH340 (COM9)",
         "RespVarPM1": "PM1",
         "RespVarPM2_5": "PM2.5",
         "RespVarPM10": "PM10"
+      }
+    },
+    {
+      "EZPID": "gdGasSer_CO2_MHZ1x",
+      "version": "1.0",
+      "params": {
+        "NAME": "LoremCO2",
+        "ENABLE": true,
+        "TIMER": "1",
+        "PORT": "COM9 - USB-SERIAL CH340 (COM9)",
+        "RespVar": "CO2"
       }
     }
   ],
