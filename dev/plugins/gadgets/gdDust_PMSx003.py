@@ -66,7 +66,7 @@ class PluginGadget(GS):
 
     def idle(self):
         while self.process():
-            if not self.timer_period or self.timer_period <= 1000:
+            if self.timer_period <= 1000:
                 self.timer(False)
 
 # -----

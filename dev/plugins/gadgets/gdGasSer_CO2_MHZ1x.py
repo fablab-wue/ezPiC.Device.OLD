@@ -44,6 +44,9 @@ class PluginGadget(GS):
         if self._ser:
             self._ser.init(9600, 8, None, 1) # baud=9600 databits=8 parity=none stopbits=1
         Variable.set_meta(self.param['RespVar'], 'ppm', '{:.0f}')
+        if self.timer_period < 1000:
+            self.timer_period = 1000
+            self.timer_next = 1
 
 # -----
 

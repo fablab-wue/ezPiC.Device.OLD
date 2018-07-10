@@ -40,7 +40,6 @@ class PluginGadget(Gadget.PluginGadgetBase):
             'fract_digits': 1,
             'measurement': ['temp'],
             }
-        self.timer_period = 12
 
         self._num_leds = (self.param['int_digits' + self.param['fract_digits']]) * 10
         self._np = neopixel.NeoPixel(machine.Pin(self.param['machine_pin']), self._num_leds)

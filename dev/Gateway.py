@@ -227,8 +227,8 @@ class PluginGatewayBase():
     def __init__(self, module):
         self.module = module
         self.param = {}
-        self.timer_next = None
-        self.timer_period = None
+        self.timer_next = 0
+        self.timer_period = 0
 
     def init(self):
         """ init a new instance after adding to task list or reinit an existing instance after loading/changing params """

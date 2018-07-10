@@ -32,18 +32,12 @@ class PluginGateway(Gateway.PluginGatewayBase):
             'FileName':'Logger.log',
             'Separator':',',
             }
-        self.timer_period = 0
         self._variable_tick = 0
         self._variable_filter = Variable.Filter()
 
 # -----
 
     def init(self):
-        t = float(self.param['TIMER'])
-        if t>0:
-            self.timer_period = t
-        else:
-            self.timer_period = None
         super().init()
 
         self._variable_filter.init(self.param['FILTER'])

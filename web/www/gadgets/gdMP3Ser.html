@@ -51,17 +51,6 @@
     </div>
   </div>
 
-  <div class="form-group row">
-    <label for="TIMER" class="col-sm-2 form-text">Timer Interval</label>
-    <div class="input-group col-sm-2">
-      <input type="number" min="1" max="86400" class="form-control" name="TIMER" id="TIMER" value="{{TIMER}}">
-      <div class="input-group-append">
-        <span class="input-group-text">sec</span>
-      </div>
-    </div>
-    <div class="col-sm-7 form-text text-muted">Leave empty for update on each transmit</div>
-  </div>
-
   
   <h4>
     <span class="badge badge-dark col-sm-12">Serial Adapter</span>
@@ -80,20 +69,41 @@
 
 
   <h4>
-    <span class="badge badge-dark col-sm-12">Gas Sensor Input Response</span>
+    <span class="badge badge-dark col-sm-12">Output Triggers</span>
   </h4>
 
   <div class="form-group row">
-    <label for="RespVar" class="col-sm-2 form-text">Resp. Variable</label>
+    <label for="TrigVar" class="col-sm-2 form-text">Trigger Variable</label>
     <div class="col-sm-7">
-      <input type="text" class="form-control" name="RespVar" id="RespVar" value="{{RespVar}}">
+      <input type="text" class="form-control" name="TrigVar" id="TrigVar" value="{{TrigVar}}">
     </div>
   </div>
+
+
+  <h4>
+    <span class="badge badge-dark col-sm-12">Player</span>
+  </h4>
+
+  <div class="form-group row">
+    <label for="Volume" class="col-sm-2 form-text">Timer Interval</label>
+    <div class="input-group col-sm-2">
+      <input type="number" min="1" max="30" class="form-control" name="Volume" id="Volume" value="{{Volume}}">
+      <div class="input-group-append">
+        <span class="input-group-text">sec</span>
+      </div>
+    </div>
+    <div class="col-sm-7 form-text text-muted">Leave empty for update on each transmit</div>
+  </div>
+
 
   <hr>
 
   <button type="submit" class="btn btn-warning btn-lg float-right">Submit</button>
 
 </form>
+
+https://www.soundsnap.com/tags/notification
+
+https://notificationsounds.com/notification-sounds
 
 {{ include ../t_std_foot.html }}

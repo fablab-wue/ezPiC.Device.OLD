@@ -154,10 +154,22 @@
       "version": "1.0",
       "params": {
         "NAME": "LoremCO2",
-        "ENABLE": true,
+        "ENABLE": false,
         "TIMER": "1",
-        "PORT": "COM9 - USB-SERIAL CH340 (COM9)",
+        "PORT": "COM3 - Intel(R) Active Management Technology - SOL (COM3)",
         "RespVar": "CO2"
+      }
+    },
+    {
+      "EZPID": "gdMP3Ser",
+      "version": "1.0",
+      "params": {
+        "NAME": "MP3 DFPlayer Mini",
+        "ENABLE": true,
+        "TIMER": 0,
+        "PORT": "COM9 - USB-SERIAL CH340 (COM9)",
+        "TrigVar": "Notify",
+        "Volume": "30"
       }
     }
   ],

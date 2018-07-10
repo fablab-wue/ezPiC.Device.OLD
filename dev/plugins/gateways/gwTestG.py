@@ -37,17 +37,11 @@ class PluginGateway(Gateway.PluginGatewayBase):
             'qwe':'Lorem ipsum',
             'asd':[1,2,3,4,5],
             }
-        self.timer_period = 2.7
         #self._variable_tick = 0
 
 # -----
 
     def init(self):
-        t = float(self.param['TIMER'])
-        if t>0:
-            self.timer_period = t
-        else:
-            self.timer_period = None
         super().init()
 
 # -----

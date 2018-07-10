@@ -38,7 +38,6 @@ class PluginRule(Rule.PluginRuleBase):
             'if_val':'0',
             'if_com':'=',
             }
-        self.timer_period = None
         self.triggered = False
 
 # -----
