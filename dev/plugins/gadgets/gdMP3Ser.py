@@ -14,10 +14,8 @@ import dev.Machine as Machine
 
 EZPID = 'gdMP3Ser'
 PTYPE = PT_SENSOR
-PNAME = 'MP3 DFPlayer Mini / YX5300 (UART)'
+PNAME = 'MP3 Notification (serial)'
 PINFO = '?'
-
-COMMAND_READ = b'\xFF\x01\x86\x00\x00\x00\x00\x00\x79'
 
 #######
 
@@ -33,7 +31,7 @@ class PluginGadget(GS):
             'TIMER':0,
             'PORT':'',
             # instance specific params
-            'TrigVar':'Notify',
+            'TrigVar':'CMD.Notify',
             'Volume':30,
             }
 
@@ -88,20 +86,15 @@ class PluginGadget(GS):
             return False
         #sum = 0
         #for i in range(1, 8):
-        #    sum += self.data[i]
-        #sum = (0xFF - sum) + 1
-        #if self.data[8] != (sum & 0xFF):    # Checksum
+        #    sum -= self.data[i]
+        #if self.data[xxx] != (sum & 0xFF):    # Checksum
         #    return False
         return True
 
 # -----
 
     def interpret(self):
-        pass
-        #co2 = (self.data[2] << 8) | self.data[3]
-        #self.value = co2
-
-        #self._remove_data(self.packet_size)
+        self._remove_data(self.packet_size)
 
 # =====
 
