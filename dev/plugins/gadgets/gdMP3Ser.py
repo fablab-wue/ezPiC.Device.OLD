@@ -43,8 +43,9 @@ class PluginGadget(GS):
         if self._ser:
             self._ser.init(9600, 8, None, 1) # baud=9600 databits=8 parity=none stopbits=1
 
-            self.send_command(0x06, 30)   # Set volume
-            self.send_command(0x03, 5)   # Play
+            self.send_command(0x09, 2)   # Storage Device = SD
+            self.send_command(0x06, int(self.param['Volume']))   # Set volume
+            self.send_command(0x03, 1)   # Play
 
 # -----
 
@@ -58,8 +59,19 @@ class PluginGadget(GS):
             key = self.param['TrigVar']
             if key in news:
                 val = news.get(key, 1)
-                val = int(val)
-                self.send_command(0x03, val)   # Play
+
+                if type(val) is str:
+                    if val.find(':') > 0:
+                        val = val.split(':', 1)
+                        ndir = int(val[0]) & 0xFF
+                        file = int(val[1]) & 0xFF
+                        val = ndir << 8 | file
+                        self.send_command(0x0F, val)   # Play Folder
+                    else:
+                        val = int(val)
+                        self.send_command(0x03, val)   # Play Index
+                if type(val) is int:
+                    self.send_command(0x03, val)   # Play Index
         except:
             pass
 
