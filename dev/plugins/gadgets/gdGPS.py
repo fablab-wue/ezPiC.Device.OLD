@@ -12,9 +12,9 @@ import dev.Machine as Machine
 #######
 # Globals:
 
-EZPID = 'gdPulseCountUART'
+EZPID = 'gdGPSUART'
 PTYPE = PT_SENSOR
-PNAME = 'Pulse Counter (UART)'
+PNAME = 'GPS (UART)'
 PINFO = ''
 
 #######
@@ -31,12 +31,9 @@ class PluginGadget(GS):
             'TIMER':1,
             'PORT':'',
             # instance specific params
-            'RespVar':'Counts',
-            'Scale':'',
-            'Mode':'',
+            'RespVarLat':'GPS.Lat',
+            'RespVarLng':'GPS.Lng',
             }
-        self._readLUT = bytearray(256)
-        self._counter = 0
 
 # -----
 
@@ -44,9 +41,8 @@ class PluginGadget(GS):
         super().init()
 
         if self._ser:
-            self._ser.init(115200, 8, None, 1) # baud=115200 databits=8 parity=none stopbits=1
+            self._ser.init(9600, 8, None, 1) # baud=9600 databits=8 parity=none stopbits=1
         #Variable.set_meta(self.param['RespVar'], 'ppm', '{:.0f}')
-        self.init_LUT()
 
 # -----
 
@@ -61,33 +57,18 @@ class PluginGadget(GS):
 
         while self._ser.any():
             data = self._ser.read()
-            self._counter += self._readLUT[data]
+            #self._counter += self._readLUT[data]
 
 # -----
 
     def timer(self, prepare:bool):
         self.idle()
 
-        key = self.param['RespVar']
+        key = self.param['RespVarLat']
         source = self.param['NAME']
         Variable.set(key, self.value, source)
             
 # =====
 
-    @staticmethod
-    def get_hamming_weight(x:int):
-        count = 0
-        while x:
-            x &= x - 1
-            count += 1
-        
-        return count
-
-# -----
-
-    def init_LUT(self):
-        for i in range(256):
-            count = 1
-            self._readLUT[i] = count
 
 #######

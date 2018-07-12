@@ -12,9 +12,9 @@ import dev.Machine as Machine
 #######
 # Globals:
 
-EZPID = 'gdGasSer_CO2_MHZ1x'
+EZPID = 'gdGasSer_WinsenPull'
 PTYPE = PT_SENSOR
-PNAME = 'CO2 MH-Z14/19 (UART)'
+PNAME = 'Gas Winsen Pull (UART)'
 PINFO = 'Winsen MH-Z14A; MH-Z19'
 
 COMMAND_READ = b'\xFF\x01\x86\x00\x00\x00\x00\x00\x79'
@@ -33,7 +33,7 @@ class PluginGadget(GS):
             'TIMER':1,
             'PORT':'',
             # instance specific params
-            'RespVar':'CO2',
+            'RespVar':'Gas',
             }
 
 # -----
