@@ -12,9 +12,9 @@ import dev.Machine as Machine
 #######
 # Globals:
 
-EZPID = 'gdGasSer_WinsenPull'
+EZPID = 'gdGasSer_WinsenP'
 PTYPE = PT_SENSOR
-PNAME = 'Gas Winsen Pull (UART)'
+PNAME = 'Gas Winsen Poll (UART)'
 PINFO = 'Winsen MH-Z14A; MH-Z19'
 
 COMMAND_READ = b'\xFF\x01\x86\x00\x00\x00\x00\x00\x79'
