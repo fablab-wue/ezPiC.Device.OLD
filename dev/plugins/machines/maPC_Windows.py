@@ -12,17 +12,6 @@ from com.Globals import *
 
 import dev.Machine as Machine
 
-# PyBoard
-#p = Pin_RPi('A8', 1)
-#c = Pin_RPi
-#pp = c('A10', 1)
-
-#ESP32
-#p = Pin_RPi(2, 1)
-
-#LoPy
-#p = Pin_RPi('P9', 2)
-
 #######
 # Globals:
 
@@ -31,7 +20,7 @@ PTYPE = PT_MACHINE
 PNAME = 'Testing on PC'
 PINFO = '???'
 
-LIST_PIN_IO = (
+LIST_PIN_IO = (   # TEST ONLY
 "GPIO0 (Lorem)",
 "GPIO1 (Ipsum)",
 "GPIO2 (Dolor)",
@@ -123,10 +112,8 @@ class Pin_PC():
 # =====
 
 class UART_PC():
-    def __init__(self, id='1'):
+    def __init__(self, id='COM1'):
         if type(id) is str:
-            if id.startswith('UART'):
-                id = id[4:]
             id = id.strip().split(' ', 1)[0]
         self._ser = serial.Serial()
         self._ser.port = id

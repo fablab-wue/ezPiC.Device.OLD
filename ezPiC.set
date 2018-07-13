@@ -1,11 +1,161 @@
 {
+  "gadgets": [
+    {
+      "EZPID": "gdSerialGPIO",
+      "version": "1.0",
+      "params": {
+        "RespVal0": "0",
+        "ENABLE": false,
+        "Port": "COM3 - Intel(R) Active Management Technology - SOL (COM3)",
+        "RespVal1": "1",
+        "NAME": "SerialGPIO",
+        "RespVarRI": "RI",
+        "TrigVarDTR": "L1",
+        "RespVarDSR": "DSR",
+        "RespVarCD": "CD",
+        "RespVarCTS": "CTS",
+        "TIMER": 0.1,
+        "TrigVarRTS": "L2",
+        "TrigVarTXD": "L3",
+        "TrigVals1": "1 on ON",
+        "RespVarRXD": "RXD"
+      }
+    },
+    {
+      "EZPID": "gdTestA",
+      "version": "1.0",
+      "params": {
+        "asd": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "ENABLE": true,
+        "name_h": "H",
+        "abc": 123,
+        "sel": "1",
+        "qwe": "Lorem ipsum",
+        "xyz": "456",
+        "NAME": "A",
+        "name_t": "T",
+        "TIMER": "10",
+        "name_p": "P"
+      }
+    },
+    {
+      "EZPID": "gdTestB",
+      "version": "1.0",
+      "params": {
+        "xyz": 67890,
+        "NAME": "B",
+        "abc": "12345",
+        "TIMER": "4",
+        "ENABLE": true
+      }
+    },
+    {
+      "EZPID": "gdSerialGPIO",
+      "version": "1.0",
+      "params": {
+        "RespVal0": "0",
+        "ENABLE": false,
+        "Port": "COM3 - Intel(R) Active Management Technology - SOL (COM3)",
+        "RespVal1": "1",
+        "NAME": "SerialGPIO",
+        "RespVarRI": "",
+        "TrigVarDTR": "",
+        "RespVarDSR": "",
+        "RespVarCD": "",
+        "RespVarCTS": "",
+        "TIMER": 0.1,
+        "TrigVarRTS": "",
+        "TrigVarTXD": "TXD340",
+        "TrigVals1": "1 on ON",
+        "RespVarRXD": "RXD340"
+      }
+    },
+    {
+      "EZPID": "gdGPIOout",
+      "version": "1.0",
+      "params": {
+        "TrigVar": "TimeSwitchOut",
+        "ENABLE": false,
+        "Port": "",
+        "NAME": "GPIO Port Output",
+        "TIMER": 0,
+        "TrigVals1": "1 on ON"
+      }
+    },
+    {
+      "EZPID": "gdDMM_VC870",
+      "version": "1.0",
+      "params": {
+        "PORT": "/dev/ttyUSB0 - USB-Serial Controller D",
+        "NAME": "DMM Voltcraft VC870 TODO",
+        "RespVar": "DMM",
+        "TIMER": 0.1,
+        "ENABLE": true
+      }
+    },
+    {
+      "EZPID": "gdDust_SDS01x",
+      "version": "1.0",
+      "params": {
+        "RespVarPM2_5": "PM2.5",
+        "ENABLE": false,
+        "RespVarPM10": "PM10",
+        "PORT": "COM9 - USB-SERIAL CH340 (COM9)",
+        "NAME": "Dust Sensor SDS011/018",
+        "TIMER": "5"
+      }
+    },
+    {
+      "EZPID": "gdDust_SDS198",
+      "version": "1.0",
+      "params": {
+        "PORT": "COM9 - USB-SERIAL CH340 (COM9)",
+        "NAME": "Dust Sensor SDS198",
+        "RespVarPM100": "PM100",
+        "TIMER": "0",
+        "ENABLE": false
+      }
+    },
+    {
+      "EZPID": "gdDust_PMSx003",
+      "version": "1.0",
+      "params": {
+        "RespVarPM2_5": "PM2.5",
+        "NAME": "Dust Sensor PMS5003/7003",
+        "RespVarPM10": "PM10",
+        "PORT": "COM9 - USB-SERIAL CH340 (COM9)",
+        "RespVarPM1": "PM1",
+        "TIMER": "2",
+        "ENABLE": false
+      }
+    },
+    {
+      "EZPID": "gdMP3Ser",
+      "version": "1.0",
+      "params": {
+        "TrigVar": "CMD.Notify",
+        "Volume": 30,
+        "ENABLE": false,
+        "PORT": "",
+        "NAME": "MP3 Notification (serial)",
+        "TIMER": 0
+      }
+    }
+  ],
   "Device": {
     "NAME": "ezPiC-Device",
     "version": 1
   },
+  "rules": [],
   "machines": [
     {
-      "MAPID": "maTestPC",
+      "MAPID": "maRPi",
       "version": "1.0",
       "params": {
         "abc": 123,
@@ -13,166 +163,5 @@
       }
     }
   ],
-  "gadgets": [
-    {
-      "EZPID": "gdSerialGPIO",
-      "version": "1.0",
-      "params": {
-        "NAME": "SerialGPIO",
-        "ENABLE": false,
-        "TIMER": 0.1,
-        "Port": "COM3 - Intel(R) Active Management Technology - SOL (COM3)",
-        "TrigVarDTR": "L1",
-        "TrigVarRTS": "L2",
-        "TrigVarTXD": "L3",
-        "TrigVals1": "1 on ON",
-        "RespVarDSR": "DSR",
-        "RespVarCTS": "CTS",
-        "RespVarRI": "RI",
-        "RespVarCD": "CD",
-        "RespVarRXD": "RXD",
-        "RespVal0": "0",
-        "RespVal1": "1"
-      }
-    },
-    {
-      "EZPID": "gdTestA",
-      "version": "1.0",
-      "params": {
-        "NAME": "A",
-        "ENABLE": true,
-        "TIMER": "10",
-        "name_t": "T",
-        "name_h": "H",
-        "name_p": "P",
-        "abc": 123,
-        "xyz": "456",
-        "sel": "1",
-        "qwe": "Lorem ipsum",
-        "asd": [
-          1,
-          2,
-          3,
-          4,
-          5
-        ]
-      }
-    },
-    {
-      "EZPID": "gdTestB",
-      "version": "1.0",
-      "params": {
-        "NAME": "B",
-        "ENABLE": true,
-        "TIMER": "4",
-        "abc": "12345",
-        "xyz": 67890
-      }
-    },
-    {
-      "EZPID": "gdSerialGPIO",
-      "version": "1.0",
-      "params": {
-        "NAME": "SerialGPIO",
-        "ENABLE": false,
-        "TIMER": 0.1,
-        "Port": "COM3 - Intel(R) Active Management Technology - SOL (COM3)",
-        "TrigVarDTR": "",
-        "TrigVarRTS": "",
-        "TrigVarTXD": "TXD340",
-        "TrigVals1": "1 on ON",
-        "RespVarDSR": "",
-        "RespVarCTS": "",
-        "RespVarRI": "",
-        "RespVarCD": "",
-        "RespVarRXD": "RXD340",
-        "RespVal0": "0",
-        "RespVal1": "1"
-      }
-    },
-    {
-      "EZPID": "gdGPIOout",
-      "version": "1.0",
-      "params": {
-        "NAME": "GPIO Port Output",
-        "ENABLE": false,
-        "TIMER": 0,
-        "TrigVar": "TimeSwitchOut",
-        "TrigVals1": "1 on ON",
-        "Port": ""
-      }
-    },
-    {
-      "EZPID": "gdDMM_VC870",
-      "version": "1.0",
-      "params": {
-        "NAME": "DMM Voltcraft VC870 TODO",
-        "ENABLE": false,
-        "TIMER": 0.1,
-        "PORT": "COM3 - Intel(R) Active Management Technology - SOL (COM3)",
-        "RespVar": "DMM"
-      }
-    },
-    {
-      "EZPID": "gdDust_SDS01x",
-      "version": "1.0",
-      "params": {
-        "NAME": "Dust Sensor SDS011/018",
-        "ENABLE": false,
-        "TIMER": "5",
-        "PORT": "COM9 - USB-SERIAL CH340 (COM9)",
-        "RespVarPM2_5": "PM2.5",
-        "RespVarPM10": "PM10"
-      }
-    },
-    {
-      "EZPID": "gdDust_SDS198",
-      "version": "1.0",
-      "params": {
-        "NAME": "Dust Sensor SDS198",
-        "ENABLE": false,
-        "TIMER": "0",
-        "PORT": "COM9 - USB-SERIAL CH340 (COM9)",
-        "RespVarPM100": "PM100"
-      }
-    },
-    {
-      "EZPID": "gdDust_PMSx003",
-      "version": "1.0",
-      "params": {
-        "NAME": "Dust Sensor PMS5003/7003",
-        "ENABLE": false,
-        "TIMER": "2",
-        "PORT": "COM9 - USB-SERIAL CH340 (COM9)",
-        "RespVarPM1": "PM1",
-        "RespVarPM2_5": "PM2.5",
-        "RespVarPM10": "PM10"
-      }
-    },
-    {
-      "EZPID": "gdGasSer_CO2_MHZ1x",
-      "version": "1.0",
-      "params": {
-        "NAME": "LoremCO2",
-        "ENABLE": false,
-        "TIMER": "1",
-        "PORT": "COM3 - Intel(R) Active Management Technology - SOL (COM3)",
-        "RespVar": "CO2"
-      }
-    },
-    {
-      "EZPID": "gdMP3Ser",
-      "version": "1.0",
-      "params": {
-        "NAME": "MP3 DFPlayer Mini",
-        "ENABLE": true,
-        "TIMER": 0,
-        "PORT": "COM9 - USB-SERIAL CH340 (COM9)",
-        "TrigVar": "Notify",
-        "Volume": "30"
-      }
-    }
-  ],
-  "gateways": [],
-  "rules": []
+  "gateways": []
 }

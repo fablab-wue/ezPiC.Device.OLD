@@ -7,7 +7,7 @@ from com.Globals import *
 import dev.Gadget as Gadget
 from dev.GadgetSerial import PluginGadgetSerial as GS
 import dev.Variable as Variable
-import dev.Machine as Machine
+import dev.Timer as Timer
 
 #######
 # Globals:
@@ -33,7 +33,7 @@ class PluginGadget(GS):
             # instance specific params
             'RespVar':'Counts',
             'Scale':'',
-            'Mode':'',
+            #'Mode':'',
             }
         self._readLUT = bytearray(256)
         self._counter = 0
@@ -47,6 +47,8 @@ class PluginGadget(GS):
             self._ser.init(115200, 8, None, 1) # baud=115200 databits=8 parity=none stopbits=1
         #Variable.set_meta(self.param['RespVar'], 'ppm', '{:.0f}')
         self.init_LUT()
+        self._counter = 0
+        self._last_clock = Timer.clock()
 
 # -----
 
@@ -68,10 +70,20 @@ class PluginGadget(GS):
     def timer(self, prepare:bool):
         self.idle()
 
+        counter = self._counter
+        clock = Timer.clock()
+        clock_diff = clock - self._last_clock
+        self._counter = 0
+        self._last_clock = clock
+        counter *= 1000 / clock_diff
+        scale_str = self.param['Scale']
+        if scale_str:
+            counter *= float(scale_str)
+
         key = self.param['RespVar']
         source = self.param['NAME']
-        Variable.set(key, self.value, source)
-            
+        Variable.set(key, counter, source)
+
 # =====
 
     @staticmethod
@@ -87,7 +99,9 @@ class PluginGadget(GS):
 
     def init_LUT(self):
         for i in range(256):
-            count = 1
+            count = 0
+            if get_hamming_weight(i) <= 4:   # majority low
+                count = 1
             self._readLUT[i] = count
 
 #######
