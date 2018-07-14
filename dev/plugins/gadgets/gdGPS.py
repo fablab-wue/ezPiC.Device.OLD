@@ -34,7 +34,7 @@ class PluginGadget(GS):
             'PORT':'',
             # instance specific params
             'RespVarLat':'GPS.Latitude',
-            'RespVarLng':'GPS.Longitude',
+            'RespVarLon':'GPS.Longitude',
             'RespVarCrs':'GPS.Course',
             'RespVarAlt':'GPS.Altitude',
             'RespVarSpd':'GPS.Speed',
@@ -62,6 +62,7 @@ class PluginGadget(GS):
 
         while self._ser.any():
             data = self._ser.read()
+            data = data.decode()
             sentence = self._gps.update(data)
             if sentence:
                 print(sentence)
