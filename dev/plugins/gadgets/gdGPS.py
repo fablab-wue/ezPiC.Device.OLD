@@ -67,16 +67,18 @@ class PluginGadget(GS):
             data = data.decode()
             sentence = self._gps.update(data)
             if sentence:
-                print(sentence, self._gps.timestamp)
-                if sentence == 'GPRMC':
+                #print(sentence, self._gps.timestamp)
+                if sentence == 'GPRMC' and self._gps.valid:
                     source = self.param['NAME']
 
+                    #print(sentence, self._gps.timestamp, self._gps.local_offset)
+                    
                     key = self.param['RespVarPos']
                     if key:
                         lat = self._gps.latitude
                         lon = self._gps.longitude
-                        pos = '{:d}°{:02d}\'{:02.1f}"{} {:d}°{:02d}\'{:02.1f}"{}'.format(lat[0], int(lat[1]), math.trunc(lat[1])*60.0, lat[2], lon[0], int(lon[1]), math.trunc(lon[1])*60.0, lon[2])
-                        pos = self._gps.latitude_string() + ' ' + self._gps.longitude_string()
+                        pos = '{:d}°{:02d}\'{:02.1f}"{} {:d}°{:02d}\'{:02.1f}"{}'.format(lat[0], int(lat[1]), math.modf(lat[1])[0]*60.0, lat[2], lon[0], int(lon[1]), math.modf(lon[1])[0]*60.0, lon[2])
+                        #pos = self._gps.latitude_string() + ' ' + self._gps.longitude_string()
                         Variable.set(key, pos, source)
 
                     key = self.param['RespVarLat']
