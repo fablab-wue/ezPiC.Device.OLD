@@ -33,6 +33,7 @@ class PluginGadget(GS):
             # instance specific params
             'TrigVar':'CMD.Notify',
             'Volume':30,
+            'Mode':0,
             }
 
 # -----
@@ -43,9 +44,10 @@ class PluginGadget(GS):
         if self._ser:
             self._ser.init(9600, 8, None, 1) # baud=9600 databits=8 parity=none stopbits=1
 
-            self.send_command(0x09, 2)   # Storage Device = SD
-            self.send_command(0x06, int(self.param['Volume']))   # Set volume
-            self.send_command(0x03, 1)   # Play
+            self.param['Mode'] = int(self.param['Mode'])
+            #self.send_command(0x09, 2)   # Storage Device = SD
+            self.set_volume(int(self.param['Volume']))   # Set volume
+            self.play_index(1)   # Play
 
 # -----
 
@@ -65,13 +67,12 @@ class PluginGadget(GS):
                         val = val.split(':', 1)
                         ndir = int(val[0]) & 0xFF
                         file = int(val[1]) & 0xFF
-                        val = ndir << 8 | file
-                        self.send_command(0x0F, val)   # Play Folder
+                        self.play_folder(0x0F, ndir, file)   # Play Folder
                     else:
                         val = int(val)
-                        self.send_command(0x03, val)   # Play Index
+                        self.play_index(val)   # Play Index
                 if type(val) is int:
-                    self.send_command(0x03, val)   # Play Index
+                    self.play_index(val)   # Play Index
         except:
             pass
 
@@ -110,9 +111,9 @@ class PluginGadget(GS):
 
 # =====
 
-    def send_command(self, cmd:int, val:int):
-        len = 10   # 8 or 10
-        buf = bytearray(len)
+    def send_command_long(self, cmd:int, val:int, nlen=10):
+        #nlen = 10   # 8 or 10
+        buf = bytearray(nlen)
 
         buf[0] = 0x7E
         buf[1] = 0xFF
@@ -123,7 +124,7 @@ class PluginGadget(GS):
         buf[6] = val & 0xFF
         buf[7] = 0xEF
 
-        if len == 10:
+        if nlen == 10:
             sum = 0
             for i in range(1, 7):
                 sum -= buf[i]
@@ -133,5 +134,52 @@ class PluginGadget(GS):
 
         if self._ser:
             self._ser.write(buf)
+
+# -----
+
+    def send_command_short(self, cmd:int, val:int, nlen=6):
+        buf = bytearray(nlen)
+
+        buf[0] = 0x7E
+        buf[1] = nlen-2
+        buf[2] = cmd
+        if nlen == 6:
+            buf[3] = (val >> 8) & 0xFF
+            buf[4] = val & 0xFF
+            buf[5] = 0xEF
+        else:
+            buf[3] = val & 0xFF
+            buf[4] = 0xEF
+
+        if self._ser:
+            self._ser.write(buf)
+
+# -----
+
+    def play_index(self, val:int):
+        if self.param['Mode'] == 1:
+            self.send_command_short()(0x41, val)   # Play
+        else:
+            self.send_command_long(0x03, val)   # Play
+        pass
+
+# -----
+
+    def play_folder(self, ndir:int, file:int):
+        val = ndir << 8 | file
+        if self.param['Mode'] == 1:
+            self.send_command_short(0x42, val)   # Play Folder
+        else:
+            self.send_command_long(0x0F, val)   # Play Folder
+        pass
+
+# -----
+
+    def set_volume(self, val:int):
+        if self.param['Mode'] == 1:
+            self.send_command_short(0x31, val, 5)   # Set volume
+        else:
+            self.send_command_long(0x06, val)   # Set volume
+        pass
 
 #######
