@@ -10,6 +10,7 @@ import dev.Gadget as Gadget
 from dev.GadgetSerial import PluginGadgetSerial as GS
 import dev.Variable as Variable
 import dev.Machine as Machine
+import math
 
 #######
 # Globals:
@@ -33,13 +34,14 @@ class PluginGadget(GS):
             'TIMER':0,
             'PORT':'',
             # instance specific params
+            'RespVarPos':'GPS.Position',
             'RespVarLat':'GPS.Latitude',
             'RespVarLon':'GPS.Longitude',
             'RespVarCrs':'GPS.Course',
             'RespVarAlt':'GPS.Altitude',
             'RespVarSpd':'GPS.Speed',
             }
-        self._gps = MicropyGPS()
+        self._gps = MicropyGPS(local_offset=0, location_formatting='ddm')
 
 # -----
 
@@ -65,17 +67,21 @@ class PluginGadget(GS):
             data = data.decode()
             sentence = self._gps.update(data)
             if sentence:
-                print(sentence)
-                lat = self._gps.latitude
-                lon = self._gps.longitude
-                alt = self._gps.altitude
-                crs = self._gps.course
-                spd = self._gps.speed
+                print(sentence, self._gps.timestamp)
                 if sentence == 'GPRMC':
                     source = self.param['NAME']
 
+                    key = self.param['RespVarPos']
+                    if key:
+                        lat = self._gps.latitude
+                        lon = self._gps.longitude
+                        pos = '{:d}°{:02d}\'{:02.1f}"{} {:d}°{:02d}\'{:02.1f}"{}'.format(lat[0], int(lat[1]), math.trunc(lat[1])*60.0, lat[2], lon[0], int(lon[1]), math.trunc(lon[1])*60.0, lon[2])
+                        pos = self._gps.latitude_string() + ' ' + self._gps.longitude_string()
+                        Variable.set(key, pos, source)
+
                     key = self.param['RespVarLat']
                     if key:
+                        lat = self._gps.latitude
                         value = lat[0] + lat[1]/60
                         if lat[2] == 'S':
                             value = -value
@@ -83,6 +89,7 @@ class PluginGadget(GS):
 
                     key = self.param['RespVarLon']
                     if key:
+                        lon = self._gps.longitude
                         value = lon[0] + lon[1]/60
                         if lon[2] == 'W':
                             value = -value
@@ -90,18 +97,18 @@ class PluginGadget(GS):
                         
                     key = self.param['RespVarAlt']
                     if key:
+                        alt = self._gps.altitude
                         Variable.set(key, alt, source, 'm', '{:.1f}')
                         
                     key = self.param['RespVarCrs']
                     if key:
+                        crs = self._gps.course
                         Variable.set(key, crs, source, '°', '{:.1f}')
                         
                     key = self.param['RespVarSpd']
                     if key:
-                        Variable.set(key, spd, source)    # Tuple!!!
-                        
-                    pass
-                    
+                        spd = self._gps.speed[2]
+                        Variable.set(key, spd, source, 'km/h', '{:.3f}')
 
 # -----
 

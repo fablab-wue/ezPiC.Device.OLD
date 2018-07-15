@@ -46,44 +46,43 @@
 
 
   <h4>
-    <span class="badge badge-dark col-sm-12">Dust Sensor Input Response</span>
+    <span class="badge badge-dark col-sm-12">GPS Input Response</span>
   </h4>
 
-  {{ if RespVarPM1 }}
-    <div class="form-group row">
-      <label for="RespVarPM1" class="col-sm-2 form-text">Resp. Variable PM10</label>
-      <div class="col-sm-7">
-        <input type="text" class="form-control" name="RespVarPM1" id="RespVarPM1" value="{{RespVarPM1}}">
-      </div>
+  <div class="form-group row">
+    <label for="RespVarLat" class="col-sm-2 form-text">Resp. Variable Latitude</label>
+    <div class="col-sm-7">
+      <input type="text" class="form-control" name="RespVarLat" id="RespVarLat" value="{{RespVarLat}}">
     </div>
-  {{ end }}
+  </div>
 
-  {{ if RespVarPM2_5 }}
-    <div class="form-group row">
-      <label for="RespVarPM2_5" class="col-sm-2 form-text">Resp. Variable PM2.5</label>
-      <div class="col-sm-7">
-        <input type="text" class="form-control" name="RespVarPM2_5" id="RespVarPM2_5" value="{{RespVarPM2_5}}">
-      </div>
+  <div class="form-group row">
+    <label for="RespVarLon" class="col-sm-2 form-text">Resp. Variable Longitude</label>
+    <div class="col-sm-7">
+      <input type="text" class="form-control" name="RespVarLon" id="RespVarLon" value="{{RespVarLon}}">
     </div>
-  {{ end }}
+  </div>
 
-  {{ if RespVarPM10 }}
-    <div class="form-group row">
-      <label for="RespVarPM10" class="col-sm-2 form-text">Resp. Variable PM10</label>
-      <div class="col-sm-7">
-        <input type="text" class="form-control" name="RespVarPM10" id="RespVarPM10" value="{{RespVarPM10}}">
-      </div>
+  <div class="form-group row">
+    <label for="RespVarCrs" class="col-sm-2 form-text">Resp. Variable Course</label>
+    <div class="col-sm-7">
+      <input type="text" class="form-control" name="RespVarCrs" id="RespVarCrs" value="{{RespVarCrs}}">
     </div>
-  {{ end }}
+  </div>
 
-  {{ if RespVarPM100 }}
-    <div class="form-group row">
-      <label for="RespVarPM100" class="col-sm-2 form-text">Resp. Variable PM10</label>
-      <div class="col-sm-7">
-        <input type="text" class="form-control" name="RespVarPM100" id="RespVarPM100" value="{{RespVarPM100}}">
-      </div>
+  <div class="form-group row">
+    <label for="RespVarAlt" class="col-sm-2 form-text">Resp. Variable Altitude</label>
+    <div class="col-sm-7">
+      <input type="text" class="form-control" name="RespVarAlt" id="RespVarAlt" value="{{RespVarAlt}}">
     </div>
-  {{ end }}
+  </div>
+
+  <div class="form-group row">
+    <label for="RespVarSpd" class="col-sm-2 form-text">Resp. Variable Speed</label>
+    <div class="col-sm-7">
+      <input type="text" class="form-control" name="RespVarSpd" id="RespVarSpd" value="{{RespVarSpd}}">
+    </div>
+  </div>
 
   <hr>
 
