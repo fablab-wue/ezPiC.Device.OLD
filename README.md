@@ -5,7 +5,7 @@ ezPiC `[ˌiːzi ˈpiːzi]` is an all-in-one web configurable IoT device in Hybri
 * PyBoard (STM32 Cortex M4) and 
 * PC (for development and debugging)
 
-For more details see the [Wiki- pages](https://fablab-wue.github.io/ezPiC.Wiki/)
+For more details see the [Wiki- pages](http://wiki.ezpic.org/)
 
 Project status: 
 * All code for IoT-part is Hybrid-Python compatible
@@ -13,7 +13,7 @@ Project status:
 * Alpha version is running on ESP32 (Micropython 1.9.4) without Web-part
 * Alpha version is running on PyBoard (Micropython 1.9.4) without Web-part
 * Variables are published by Gadget-plugins, processed by Rules and consumed by Gateway-plugins
-* Base structure for wiki is uploaded
+* Wiki moded to http://wiki.ezpic.org
 
 ----------------
 
