@@ -5,130 +5,165 @@
   },
   "machines": [
     {
-      "MAPID": "maTestPC",
       "version": "1.0",
       "params": {
-        "abc": 123,
-        "xyz": 456
-      }
+        "xyz": 456,
+        "abc": 123
+      },
+      "MAPID": "maRPi"
     }
   ],
   "gadgets": [
     {
-      "EZPID": "gdSerialGPIO",
       "version": "1.0",
       "params": {
-        "NAME": "SerialGPIO",
-        "ENABLE": false,
         "TIMER": 0.1,
-        "Port": "COM3 - Intel(R) Active Management Technology - SOL (COM3)",
-        "TrigVarDTR": "L1",
-        "TrigVarRTS": "L2",
-        "TrigVarTXD": "L3",
-        "TrigVals1": "1 on ON",
-        "RespVarDSR": "DSR",
         "RespVarCTS": "CTS",
-        "RespVarRI": "RI",
-        "RespVarCD": "CD",
+        "RespVal1": "1",
         "RespVarRXD": "RXD",
+        "TrigVarTXD": "L3",
+        "TrigVarRTS": "L2",
+        "ENABLE": false,
+        "Port": "COM3 - Intel(R) Active Management Technology - SOL (COM3)",
+        "TrigVals1": "1 on ON",
+        "RespVarCD": "CD",
+        "RespVarDSR": "DSR",
+        "RespVarRI": "RI",
+        "TrigVarDTR": "L1",
         "RespVal0": "0",
-        "RespVal1": "1"
-      }
+        "NAME": "SerialGPIO"
+      },
+      "EZPID": "gdSerialGPIO"
     },
     {
-      "EZPID": "gdTestA",
       "version": "1.0",
       "params": {
-        "NAME": "A",
         "ENABLE": true,
         "TIMER": "10",
         "name_t": "T",
-        "name_h": "H",
-        "name_p": "P",
-        "abc": 123,
-        "xyz": "456",
         "sel": "1",
         "qwe": "Lorem ipsum",
+        "name_h": "H",
+        "xyz": "456",
+        "name_p": "P",
+        "abc": 123,
         "asd": [
           1,
           2,
           3,
           4,
           5
-        ]
-      }
+        ],
+        "NAME": "A"
+      },
+      "EZPID": "gdTestA"
     },
     {
-      "EZPID": "gdTestB",
       "version": "1.0",
       "params": {
-        "NAME": "B",
         "ENABLE": true,
         "TIMER": "4",
         "abc": "12345",
-        "xyz": 67890
-      }
+        "xyz": 67890,
+        "NAME": "B"
+      },
+      "EZPID": "gdTestB"
     },
     {
-      "EZPID": "gdSerialGPIO",
       "version": "1.0",
       "params": {
-        "NAME": "SerialGPIO",
-        "ENABLE": false,
         "TIMER": 0.1,
-        "Port": "COM3 - Intel(R) Active Management Technology - SOL (COM3)",
-        "TrigVarDTR": "",
-        "TrigVarRTS": "",
-        "TrigVarTXD": "TXD340",
-        "TrigVals1": "1 on ON",
-        "RespVarDSR": "",
         "RespVarCTS": "",
-        "RespVarRI": "",
-        "RespVarCD": "",
+        "RespVal1": "1",
         "RespVarRXD": "RXD340",
+        "TrigVarTXD": "TXD340",
+        "TrigVarRTS": "",
+        "ENABLE": false,
+        "Port": "COM3 - Intel(R) Active Management Technology - SOL (COM3)",
+        "TrigVals1": "1 on ON",
+        "RespVarCD": "",
+        "RespVarDSR": "",
+        "RespVarRI": "",
+        "TrigVarDTR": "",
         "RespVal0": "0",
-        "RespVal1": "1"
-      }
+        "NAME": "SerialGPIO"
+      },
+      "EZPID": "gdSerialGPIO"
     },
     {
-      "EZPID": "gdGPIOout",
       "version": "1.0",
       "params": {
-        "NAME": "GPIO Port Output",
         "ENABLE": false,
         "TIMER": 0,
-        "TrigVar": "TimeSwitchOut",
+        "Port": "",
         "TrigVals1": "1 on ON",
-        "Port": ""
-      }
+        "TrigVar": "TimeSwitchOut",
+        "NAME": "GPIO Port Output"
+      },
+      "EZPID": "gdGPIOout"
     },
     {
-      "EZPID": "gdDMM_VC870",
       "version": "1.0",
       "params": {
-        "NAME": "DMM Voltcraft VC870 TODO",
         "ENABLE": false,
         "TIMER": 0.1,
+        "RespVar": "DMM",
         "PORT": "COM3 - Intel(R) Active Management Technology - SOL (COM3)",
-        "RespVar": "DMM"
-      }
+        "NAME": "DMM Voltcraft VC870 TODO"
+      },
+      "EZPID": "gdDMM_VC870"
     },
     {
-      "EZPID": "gdGPSUART",
       "version": "1.0",
       "params": {
-        "NAME": "GPS NMEA (UART)",
         "ENABLE": true,
         "TIMER": 0,
-        "PORT": "COM9 - USB-SERIAL CH340 (COM9)",
-        "RespVarLat": "GPS.Latitude",
-        "RespVarLon": "GPS.Longitude",
-        "RespVarCrs": "GPS.Course",
-        "RespVarAlt": "GPS.Altitude",
-        "RespVarSpd": "GPS.Speed"
-      }
+        "PORT": "/dev/ttyAMA0 - ttyAMA0",
+        "Volume": "30",
+        "Mode": 1,
+        "TrigVar": "CMD.Notify",
+        "NAME": "MyNotification (serial)"
+      },
+      "EZPID": "gdMP3Ser"
     }
   ],
-  "gateways": [],
-  "rules": []
+  "rules": [],
+  "gateways": [
+    {
+      "version": "1.0",
+      "params": {
+        "TIMER": 3000,
+        "sel": 2,
+        "FILTER": "",
+        "asd": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "xyz": 456,
+        "abc": 123,
+        "ENABLE": false,
+        "name_h": "H",
+        "name_t": "T",
+        "name_p": "P",
+        "qwe": "Lorem ipsum",
+        "NAME": "G"
+      },
+      "EZPID": "gwTestGatewayG"
+    },
+    {
+      "version": "1.0",
+      "params": {
+        "ENABLE": false,
+        "TIMER": 0,
+        "FILTER": "",
+        "Separator": ",",
+        "FileName": "logger.log",
+        "NAME": "MeinDatenLogger"
+      },
+      "EZPID": "gwFileLogger"
+    }
+  ]
 }
