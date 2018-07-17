@@ -77,14 +77,17 @@ def load(config_all:dict):
     if not "gadgets" in config_all:
         return
     for config in config_all["gadgets"]:
-        ezPID = config["EZPID"]
-        loaded_version = config["version"]
-        params = config["params"]
-        err, idx = add(ezPID, params)
-        running_version = _GADGETS[idx].version
+        try:
+            ezPID = config["EZPID"]
+            loaded_version = config["version"]
+            params = config["params"]
+            err, idx = add(ezPID, params)
+            running_version = _GADGETS[idx].version
 
-        if not err and loaded_version != running_version:
-            log(LOG_WARN, "task " +  ezPID + " has change version form " + loaded_version + " to " + running_version)
+            if not err and loaded_version != running_version:
+                log(LOG_WARN, "task " +  ezPID + " has change version form " + loaded_version + " to " + running_version)
+        except Exception as e:
+            pass
 
 # =====
 
@@ -116,12 +119,12 @@ def add(plugin_id:str, params:dict = None) -> tuple:
             module = _GADGETPLUGINS.get(plugin_id, None)
             if module:
                 gadget = module.PluginGadget(module)
-                _GADGETS.append(gadget)
-                ret = len(_GADGETS) - 1
                 if params:
                     gadget.set_params(params)
                 #else:
                 #    gadget.init()
+                _GADGETS.append(gadget)
+                ret = len(_GADGETS) - 1
                 return (0, ret)
             else:
                 return (-1, 'Unknown EZPID')

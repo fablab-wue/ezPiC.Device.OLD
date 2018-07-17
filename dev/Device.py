@@ -32,13 +32,16 @@ def run():
 def load(config_all: dict):
     global PARAMS
 
-    if not "Device" in config_all:
-        return
-    config = config_all.get("Device", {})
-    if config:
-        PARAMS = config
-    else:
-        set_default()
+    try:
+        if not "Device" in config_all:
+            return
+        config = config_all.get("Device", {})
+        if config:
+            PARAMS = config
+        else:
+            set_default()
+    except Exception as e:
+        pass
 
 # =====
 

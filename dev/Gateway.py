@@ -67,14 +67,17 @@ def load(config_all: dict):
     if not "gateways" in config_all:
         return
     for config in config_all["gateways"]:
-        ezPID = config["EZPID"]
-        loaded_version = config["version"]
-        params = config["params"]
-        err, idx = add(ezPID, params)
-        running_version = _GATEWAYS[idx].version
+        try:
+            ezPID = config["EZPID"]
+            loaded_version = config["version"]
+            params = config["params"]
+            err, idx = add(ezPID, params)
+            running_version = _GATEWAYS[idx].version
 
-        if not err and loaded_version != running_version:
-            log(LOG_WARN, "task " +  ezPID + " has change version form " + loaded_version + " to " + running_version)
+            if not err and loaded_version != running_version:
+                log(LOG_WARN, "task " +  ezPID + " has change version form " + loaded_version + " to " + running_version)
+        except Exception as e:
+            pass
 
 # =====
 
@@ -106,12 +109,12 @@ def add(plugin_id: str, params: dict = None) -> tuple:
             module = _GATEWAYPLUGINS.get(plugin_id, None)
             if module:
                 gateway = module.PluginGateway(module)
-                _GATEWAYS.append(gateway)
-                ret = len(_GATEWAYS) - 1
                 if params:
                     gateway.set_params(params)
-                else:
-                    gateway.init()
+                #else:
+                #    gateway.init()
+                _GATEWAYS.append(gateway)
+                ret = len(_GATEWAYS) - 1
                 return (0, ret)
             else:
                 return (-1, 'Unknown EZPID')

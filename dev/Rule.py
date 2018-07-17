@@ -67,14 +67,17 @@ def load(config_all: dict):
     if not "rules" in config_all:
         return
     for config in config_all["rules"]:
-        ezPID = config["EZPID"]
-        loaded_version = config["version"]
-        params = config["params"]
-        err, idx = add(ezPID, params)
-        running_version = _RULES[idx].version
+        try:
+            ezPID = config["EZPID"]
+            loaded_version = config["version"]
+            params = config["params"]
+            err, idx = add(ezPID, params)
+            running_version = _RULES[idx].version
 
-        if not err and loaded_version != running_version:
-            log(LOG_WARN, "task " +  ezPID + " has change version form " + loaded_version + " to " + running_version)
+            if not err and loaded_version != running_version:
+                log(LOG_WARN, "task " +  ezPID + " has change version form " + loaded_version + " to " + running_version)
+        except Exception as e:
+            pass
 
 # =====
 
@@ -106,13 +109,13 @@ def add(plugin_id: str, params: dict = None) -> tuple:
             module = _RULEPLUGINS.get(plugin_id, None)
             if module:
                 rule = module.PluginRule(module)
-                _RULES.append(rule)
-                ret = len(_RULES) - 1
                 if params:
                     rule.set_params(params)
-                else:
-                    rule.init()
+                #else:
+                #    rule.init()
                 return (0, ret)
+                _RULES.append(rule)
+                ret = len(_RULES) - 1
             else:
                 return (-1, 'Unknown EZPID')
         except Exception as e:

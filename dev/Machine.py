@@ -55,10 +55,13 @@ def load(config_all: dict):
     if not "machines" in config_all:
         return
     for config in config_all["machines"]:
-        #mapid = config["MAPID"]
-        #loaded_version = config["version"]
-        params = config["params"]
-        set_params(params)
+        try:
+            #mapid = config["MAPID"]
+            #loaded_version = config["version"]
+            params = config["params"]
+            set_params(params)
+        except Exception as e:
+            pass
 
 # =====
 
