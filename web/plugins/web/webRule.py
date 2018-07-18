@@ -19,6 +19,8 @@ def web_rules(httpClient, httpResponse):
         Web.flash_error(httpResponse, err, ret)
         ret = []
 
+    ret.sort(key=lambda x: x['NAME'].upper())
+
     vars = {}
     vars['menu'] = 'rules'
     vars['rule_list'] = ret
@@ -35,6 +37,8 @@ def web_rules_list(httpClient, httpResponse):
     if err:
         Web.flash_error(httpResponse, err, ret)
         ret = []
+
+    ret.sort(key=lambda x: x['PNAME'].upper())
 
     vars = {}
     vars['menu'] = 'rules'
@@ -57,6 +61,7 @@ def web_rule_add(httpClient, httpResponse, args):
         Web.command(httpResponse, 'save')
         msg = 'Rule "{}" added'.format(ezPID)
         httpResponse.FlashMessage(msg, 'info')
+        return httpResponse.WriteResponseRedirect('/rules/edit/'+str(ret))
 
     return httpResponse.WriteResponseRedirect('/rules')
 

@@ -109,12 +109,10 @@ def add(plugin_id: str, params: dict = None) -> tuple:
             module = _GATEWAYPLUGINS.get(plugin_id, None)
             if module:
                 gateway = module.PluginGateway(module)
-                if params:
-                    gateway.set_params(params)
-                #else:
-                #    gateway.init()
                 _GATEWAYS.append(gateway)
                 ret = len(_GATEWAYS) - 1
+                if params:
+                    gateway.set_params(params)
                 return (0, ret)
             else:
                 return (-1, 'Unknown EZPID')

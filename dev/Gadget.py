@@ -119,12 +119,10 @@ def add(plugin_id:str, params:dict = None) -> tuple:
             module = _GADGETPLUGINS.get(plugin_id, None)
             if module:
                 gadget = module.PluginGadget(module)
-                if params:
-                    gadget.set_params(params)
-                #else:
-                #    gadget.init()
                 _GADGETS.append(gadget)
                 ret = len(_GADGETS) - 1
+                if params:
+                    gadget.set_params(params)
                 return (0, ret)
             else:
                 return (-1, 'Unknown EZPID')

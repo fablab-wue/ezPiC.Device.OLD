@@ -19,6 +19,8 @@ def web_gadgets(httpClient, httpResponse):
         Web.flash_error(httpResponse, err, ret)
         ret = []
 
+    ret.sort(key=lambda x: x['NAME'].upper())
+
     vars = {}
     vars['menu'] = 'gadgets'
     vars['gadget_list'] = ret
@@ -35,6 +37,8 @@ def web_gadgets_list(httpClient, httpResponse):
     if err:
         Web.flash_error(httpResponse, err, ret)
         ret = []
+
+    ret.sort(key=lambda x: x['PNAME'].upper())
 
     vars = {}
     vars['menu'] = 'gadgets'
@@ -57,6 +61,7 @@ def web_gadget_add(httpClient, httpResponse, args):
         Web.command(httpResponse, 'save')
         msg = 'Gadget "{}" added'.format(ezPID)
         httpResponse.FlashMessage(msg, 'info')
+        return httpResponse.WriteResponseRedirect('/gadgets/edit/'+str(ret))
 
     return httpResponse.WriteResponseRedirect('/gadgets')
 

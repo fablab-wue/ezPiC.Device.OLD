@@ -24,8 +24,8 @@
         {{ else }}
         <i class="fas fa-times-circle text-danger"></i>
         {{ end }} &nbsp;
-        <a class="mr-auto" data-toggle="collapse" href="#collapse{{ index }}" aria-expanded="false" aria-controls="collapse{{ index }}">
-          #{{ index }} {{ gadget['PNAME'] }} - '{{ gadget['NAME'] }}'
+        <a class="mr-auto" href="/gadgets/edit/{{ index }}/">
+          <b>{{ gadget['NAME'] }}</b> - {{ gadget['PNAME'] }}
         </a>
         <a href="/gadgets/edit/{{ index }}/" class="btn btn-warning btn-sm mx-1">
           <i class="fas fa-pencil-alt"></i>
@@ -37,7 +37,7 @@
     </div>
     <div id="collapse{{ index }}" class="collapse" role="tabpanel" aria-labelledby="heading{{ index }}">
       <div class="card-body">
-        EZPID: [{{ gadget['EZPID'] }}]<br>
+        EZPID: [{{ gadget['EZPID'] }}] #{{ index }}<br>
         Params: {{ gadget['info'] }}
       </div>
     </div>

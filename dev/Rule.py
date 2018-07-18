@@ -109,13 +109,11 @@ def add(plugin_id: str, params: dict = None) -> tuple:
             module = _RULEPLUGINS.get(plugin_id, None)
             if module:
                 rule = module.PluginRule(module)
-                if params:
-                    rule.set_params(params)
-                #else:
-                #    rule.init()
-                return (0, ret)
                 _RULES.append(rule)
                 ret = len(_RULES) - 1
+                if params:
+                    rule.set_params(params)
+                return (0, ret)
             else:
                 return (-1, 'Unknown EZPID')
         except Exception as e:

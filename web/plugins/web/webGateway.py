@@ -19,6 +19,8 @@ def web_gateways(httpClient, httpResponse):
         Web.flash_error(httpResponse, err, ret)
         ret = []
 
+    ret.sort(key=lambda x: x['NAME'].upper())
+
     vars = {}
     vars['menu'] = 'gateways'
     vars['gateway_list'] = ret
@@ -35,6 +37,8 @@ def web_gateways_list(httpClient, httpResponse):
     if err:
         Web.flash_error(httpResponse, err, ret)
         ret = []
+
+    ret.sort(key=lambda x: x['PNAME'].upper())
 
     vars = {}
     vars['menu'] = 'gateways'
@@ -57,6 +61,7 @@ def web_gateway_add(httpClient, httpResponse, args):
         Web.command(httpResponse, 'save')
         msg = 'Gateway "{}" added'.format(ezPID)
         httpResponse.FlashMessage(msg, 'info')
+        return httpResponse.WriteResponseRedirect('/gateways/edit/'+str(ret))
 
     return httpResponse.WriteResponseRedirect('/gateways')
 
