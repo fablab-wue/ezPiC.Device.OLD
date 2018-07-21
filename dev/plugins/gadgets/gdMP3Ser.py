@@ -34,6 +34,7 @@ class PluginGadget(GS):
             'TrigVar':'CMD.Notify',
             'Volume':30,
             'Mode':0,
+            'Media':-1,
             }
 
 # -----
@@ -46,6 +47,7 @@ class PluginGadget(GS):
 
             self.param['Mode'] = int(self.param['Mode'])
             self.set_volume(int(self.param['Volume']))   # Set volume
+            self.set_media(int(self.param['Media']))   # Set media SD/USB
             #self.play_index(1)   # Play
 
 # -----
@@ -70,7 +72,7 @@ class PluginGadget(GS):
                     else:
                         val = int(val)
                         self.play_index(val)   # Play Index
-                if type(val) is int:
+                elif type(val) is int:
                     self.play_index(val)   # Play Index
         except:
             pass
@@ -123,10 +125,12 @@ class PluginGadget(GS):
 # -----
 
     def play_index(self, val:int):
-        if not 1 <= val <= 2000:
+        if not 1 <= val <= 3000:
             return
-        if self.param['Mode'] == 1:
+        if self.param['Mode'] == 3:
             self.send_command_short(0x41, val)   # Play
+        if self.param['Mode'] == 2:
+            self.send_command_long(0x03, val, 8)   # Play
         else:
             self.send_command_long(0x03, val)   # Play
 
@@ -138,19 +142,35 @@ class PluginGadget(GS):
         if not 1 <= file <= 255:
             return
         val = ndir << 8 | file
-        if self.param['Mode'] == 1:
+        if self.param['Mode'] == 3:
             self.send_command_short(0x42, val)   # Play Folder
+        if self.param['Mode'] == 2:
+            self.send_command_long(0x0F, val, 8)   # Play Folder
         else:
             self.send_command_long(0x0F, val)   # Play Folder
 
 # -----
 
     def set_volume(self, val:int):
-        if not 1 <= val <= 30:
+        if not 0 <= val <= 30:
             return
-        if self.param['Mode'] == 1:
+        if self.param['Mode'] == 3:
             self.send_command_short(0x31, val, 5)   # Set volume
+        if self.param['Mode'] == 2:
+            self.send_command_long(0x06, val, 8)   # Set volume
         else:
             self.send_command_long(0x06, val)   # Set volume
+
+# -----
+
+    def set_media(self, val:int):
+        if not 0 <= val <= 4:
+            return
+        if self.param['Mode'] == 3:
+            self.send_command_short(0x35, val, 5)   # Set volume
+        if self.param['Mode'] == 2:
+            self.send_command_long(0x09, val, 8)   # Set volume
+        else:
+            self.send_command_long(0x09, val)   # Set volume
 
 #######
