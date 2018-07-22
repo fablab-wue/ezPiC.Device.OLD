@@ -2,6 +2,7 @@
 Machine Plugin for Raspberry Pi
 """
 import RPi.GPIO as GPIO
+import smbus
 import serial
 from serial.tools.list_ports import comports
 
@@ -55,7 +56,6 @@ LIST_SPI = (
 
 LIST_I2C = (
 "I2C1 (GPIO03,GPIO02)",
-"I2C0 (GPIO01,GPIO00) DNC",
 )
 
 #######
@@ -93,6 +93,7 @@ class PluginMachine(Machine.PluginMachineBase):
 
         Machine.set_handler_class('PIN_IO', Pin_RPi)
         Machine.set_handler_class('UART', UART_RPi)
+        Machine.set_handler_class('I2C', I2C_RPi)
 
 # -----
 
@@ -235,3 +236,61 @@ class UART_RPi():
         self._ser.rts = rts
 
 # =====
+
+class I2C_RPi():
+    def __init__(self, id='1'):
+        if type(id) is str:
+            id = id.strip().split(' ', 1)[0]
+            if id.startswith('I2C'):
+                id = id[3:]
+            self._id = int(id)
+        elif type(id) is int:
+            self._id = id
+        else:
+            raise Exception('Wrong data type for id')
+        self._i2c = smbus.SMBus(self._id)
+
+    def init(self, scl, sda, *, freq=400000):
+        pass
+
+    def deinit(self):
+        pass
+    
+    def readfrom(self, addr, nbytes, stop=True):
+        buf = bytearray(nbytes)
+        self.readfrom_into(addr, buf, stop)
+        return buf
+
+    def readfrom_into(self, addr, buf, stop=True):
+        for i in range(len(buf)):
+            data = self._i2c.read_byte(addr)
+            buf[i] = data
+
+    def writeto(self, addr, buf, stop=True):
+        for i in range(len(buf)):
+            self._i2c.write_byte(addr, buf[i])
+
+    def readfrom_mem(self, addr, memaddr, nbytes, *, addrsize=8):
+        buf = self._i2c.read_i2c_block_data(addr, memaddr)
+        return buf
+
+    def readfrom_mem_into(self, addr, memaddr, buf, *, addrsize=8):
+        buf = self._i2c.read_i2c_block_data(addr, memaddr)
+        return buf
+
+    def writeto_mem(self, addr, memaddr, buf, *, addrsize=8):
+        self._i2c.write_i2c_block_data(addr, memaddr, buf)
+    
+    def set_freq(self, freq=400000):
+        #self.init(self._scl_pin, self._sda_pin, freq=freq)
+        pass
+
+    def testwrite(self, addr, reg, data):
+        self._i2c.write_byte_data(addr, reg, data)
+
+
+        data = self._i2c.read_byte_data(addr, reg)
+
+
+# =====
+
