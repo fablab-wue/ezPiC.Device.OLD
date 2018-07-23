@@ -27,7 +27,7 @@ class PluginGadget(GI2C):
             # must be params
             'NAME':'PCF8574',
             'ENABLE':False,
-            'TIMER':'1',
+            'TIMER':0.1,
             'PORT':'1',
             'ADDR':'3A',
             # instance specific params
@@ -78,16 +78,19 @@ class PluginGadget(GI2C):
     def _process_inputs(self):
         if not self._i2c:
             return
+        print('+', end='')
 
         try:
             name = self.param['RespVar']
             if name:
                 val = self._read()
+                print(val)
                 if val != self._last_val:
                     self._last_val = val
                     Variable.set(name, val)
 
         except Exception as e:
+            print(str(e))
             self._last_error = str(e)
 
 # =====
@@ -99,11 +102,14 @@ class PluginGadget(GI2C):
         try:
             name = self.param['TrigVar']
             if name and name in news:
-                val = int(Variable.get(name), 0)
+                val = Variable.get(name)
+                if type(val) == str:
+                    val = int(val, 0)
                 if 0 <= val <= 255:
                     self._write(val)
 
         except Exception as e:
+            print(str(e))
             self._last_error = str(e)
 
 # =====

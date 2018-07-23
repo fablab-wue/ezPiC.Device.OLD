@@ -24,13 +24,12 @@ def gadget_timer_handler(news, args):
         t = Timer.clock()
 
         for idx, gadget in enumerate(_GADGETS):
-            if gadget.prepare_next and (t >= gadget.prepare_next):
-                gadget.prepare_next = None
-                if gadget.get_params('ENABLE'):
+            if gadget.get_params('ENABLE'):
+                if gadget.prepare_next and (t >= gadget.prepare_next):
+                    gadget.prepare_next = None
                     gadget.timer(True)
 
-            if gadget.timer_next and (t >= gadget.timer_next):
-                if gadget.get_params('ENABLE'):
+                if gadget.timer_next and (t >= gadget.timer_next):
                     if gadget.timer_period: # cyclic timer
                         gadget.timer_next += gadget.timer_period
                         if gadget.timer_next < t: # missed some events
@@ -40,15 +39,15 @@ def gadget_timer_handler(news, args):
                     else: # singel event
                         gadget.timer_next = None
                     gadget.timer(False)
-                else: # disabled
-                    gadget.timer_next = None
+                #else: # disabled
+                #gadget.timer_next = None
 
-            if news:
-                if gadget.get_params('ENABLE'):
+                if news:
                     gadget.variables(news)
 
         for gadget in _GADGETS:
-            gadget.idle()
+            if gadget.get_params('ENABLE'):
+                gadget.idle()
 
 #######
 

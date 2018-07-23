@@ -17,10 +17,6 @@ class PluginGadgetI2C(Gadget.PluginGadgetBase):
         self._i2c = None
         self._addr = None
         
-        self.value = 0.0
-        self.unit = ''
-        self.form = ''
-
 # -----
 
     def init(self):

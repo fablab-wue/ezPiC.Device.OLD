@@ -1,211 +1,68 @@
 {
   "Device": {
-    "NAME": "ezPiC-Device",
-    "version": 1
+    "version": 1,
+    "NAME": "ezPiC-Device"
   },
+  "rules": [],
   "machines": [
     {
-      "MAPID": "maPCDEBUG",
       "version": "1.0",
       "params": {
-        "abc": 123,
-        "xyz": 456
-      }
-    },
-    {
-      "MAPID": "maPC",
-      "version": "1.0",
-      "params": {
-        "abc": 123,
-        "xyz": 456
-      }
+        "xyz": 456,
+        "abc": 123
+      },
+      "MAPID": "maRPi"
     }
   ],
   "gadgets": [
     {
-      "EZPID": "gdSerialGPIO",
-      "version": "1.0",
-      "params": {
-        "NAME": "SerialGPIO",
-        "ENABLE": false,
-        "TIMER": 0.1,
-        "Port": "COM3 - Intel(R) Active Management Technology - SOL (COM3)",
-        "TrigVarDTR": "L1",
-        "TrigVarRTS": "L2",
-        "TrigVarTXD": "L3",
-        "TrigVals1": "1 on ON",
-        "RespVarDSR": "DSR",
-        "RespVarCTS": "CTS",
-        "RespVarRI": "RI",
-        "RespVarCD": "CD",
-        "RespVarRXD": "RXD",
-        "RespVal0": "0",
-        "RespVal1": "1"
-      }
-    },
-    {
       "EZPID": "gdTestA",
       "version": "1.0",
       "params": {
-        "NAME": "A",
-        "ENABLE": true,
-        "TIMER": "10",
-        "name_t": "T",
-        "name_h": "H",
-        "name_p": "P",
-        "abc": 123,
         "xyz": "456",
-        "sel": "1",
-        "qwe": "Lorem ipsum",
+        "ENABLE": true,
+        "name_h": "H",
+        "abc": 123,
+        "NAME": "A",
         "asd": [
           1,
           2,
           3,
           4,
           5
-        ]
+        ],
+        "TIMER": "10",
+        "name_t": "T",
+        "qwe": "Lorem ipsum",
+        "name_p": "P",
+        "sel": "1"
       }
     },
     {
       "EZPID": "gdTestB",
       "version": "1.0",
       "params": {
-        "NAME": "B",
-        "ENABLE": true,
         "TIMER": "4",
-        "abc": "12345",
-        "xyz": 67890
-      }
-    },
-    {
-      "EZPID": "gdSerialGPIO",
-      "version": "1.0",
-      "params": {
-        "NAME": "SerialGPIO",
-        "ENABLE": false,
-        "TIMER": 0.1,
-        "Port": "COM3 - Intel(R) Active Management Technology - SOL (COM3)",
-        "TrigVarDTR": "",
-        "TrigVarRTS": "",
-        "TrigVarTXD": "TXD340",
-        "TrigVals1": "1 on ON",
-        "RespVarDSR": "",
-        "RespVarCTS": "",
-        "RespVarRI": "",
-        "RespVarCD": "",
-        "RespVarRXD": "RXD340",
-        "RespVal0": "0",
-        "RespVal1": "1"
-      }
-    },
-    {
-      "EZPID": "gdGPIOout",
-      "version": "1.0",
-      "params": {
-        "NAME": "GPIO Port Output",
-        "ENABLE": false,
-        "TIMER": 0,
-        "TrigVar": "TimeSwitchOut",
-        "TrigVals1": "1 on ON",
-        "Port": ""
-      }
-    },
-    {
-      "EZPID": "gdDMM_VC870",
-      "version": "1.0",
-      "params": {
-        "NAME": "DMM Voltcraft VC870 TODO",
-        "ENABLE": false,
-        "TIMER": 0.1,
-        "PORT": "COM3 - Intel(R) Active Management Technology - SOL (COM3)",
-        "RespVar": "DMM"
-      }
-    },
-    {
-      "EZPID": "gdMP3Ser",
-      "version": "1.0",
-      "params": {
-        "NAME": "Notify",
         "ENABLE": true,
-        "TIMER": 0,
-        "PORT": "COM9 - USB-SERIAL CH340 (COM9)",
-        "TrigVar": "CMD.Notify",
-        "Volume": "30",
-        "Mode": 1,
-        "Media": -1
+        "xyz": 67890,
+        "abc": "12345",
+        "NAME": "B"
       }
     },
     {
       "EZPID": "gdPCF8574",
       "version": "1.0",
       "params": {
-        "NAME": "PCF8574",
         "ENABLE": true,
-        "TIMER": 1000,
-        "PORT": "I2C1 (Lorem)",
-        "ADDR": "3A",
-        "InitVal": "0xFF",
+        "ADDR": "20 (Default)",
         "TrigVar": "I2C.T",
-        "RespVar": "I2C.R"
+        "NAME": "PCF8574-",
+        "TIMER": 1000,
+        "RespVar": "I2C.R1",
+        "InitVal": "0xFF",
+        "PORT": "I2C1 (GPIO03,GPIO02)"
       }
     }
   ],
-  "gateways": [
-    {
-      "EZPID": "gwTestGatewayG",
-      "version": "1.0",
-      "params": {
-        "NAME": "G",
-        "ENABLE": false,
-        "TIMER": 3000,
-        "FILTER": "",
-        "name_t": "T",
-        "name_h": "H",
-        "name_p": "P",
-        "abc": 123,
-        "xyz": 456,
-        "sel": 2,
-        "qwe": "Lorem ipsum",
-        "asd": [
-          1,
-          2,
-          3,
-          4,
-          5
-        ]
-      }
-    },
-    {
-      "EZPID": "gwFileLogger",
-      "version": "1.0",
-      "params": {
-        "NAME": "MeinDatenLogger",
-        "ENABLE": false,
-        "TIMER": 0,
-        "FILTER": "",
-        "FileName": "logger.log",
-        "Separator": ","
-      }
-    }
-  ],
-  "rules": [
-    {
-      "EZPID": "ruTimeSw",
-      "version": "1.0",
-      "params": {
-        "NAME": "TimeSwitch",
-        "ENABLE": false,
-        "trigger_key": "Bbbb.Voltage",
-        "trigger_val": "",
-        "trigger_re": "0",
-        "out_key": "TimeSwitchOut",
-        "out_val_0": "0",
-        "out_val_1": "1",
-        "out_time": "10",
-        "if_key": "",
-        "if_val": "0",
-        "if_com": "="
-      }
-    }
-  ]
+  "gateways": []
 }
