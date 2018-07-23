@@ -276,7 +276,6 @@ class I2C_RPi():
 
     def readfrom_mem_into(self, addr, memaddr, buf, *, addrsize=8):
         buf = self._i2c.read_i2c_block_data(addr, memaddr)
-        return buf
 
     def writeto_mem(self, addr, memaddr, buf, *, addrsize=8):
         self._i2c.write_i2c_block_data(addr, memaddr, buf)

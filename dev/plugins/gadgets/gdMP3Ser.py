@@ -14,7 +14,7 @@ import dev.Machine as Machine
 
 EZPID = 'gdMP3Ser'
 PTYPE = PT_SENSOR
-PNAME = 'MP3 Notification (serial)'
+PNAME = 'Notify - MP3 Notification (serial)'
 PINFO = '?'
 
 #######

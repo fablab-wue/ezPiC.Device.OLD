@@ -5,7 +5,15 @@
   },
   "machines": [
     {
-      "MAPID": "maTestPC",
+      "MAPID": "maPCDEBUG",
+      "version": "1.0",
+      "params": {
+        "abc": 123,
+        "xyz": 456
+      }
+    },
+    {
+      "MAPID": "maPC",
       "version": "1.0",
       "params": {
         "abc": 123,
@@ -123,7 +131,22 @@
         "PORT": "COM9 - USB-SERIAL CH340 (COM9)",
         "TrigVar": "CMD.Notify",
         "Volume": "30",
-        "Mode": 1
+        "Mode": 1,
+        "Media": -1
+      }
+    },
+    {
+      "EZPID": "gdPCF8574",
+      "version": "1.0",
+      "params": {
+        "NAME": "PCF8574",
+        "ENABLE": true,
+        "TIMER": 1000,
+        "PORT": "I2C1 (Lorem)",
+        "ADDR": "3A",
+        "InitVal": "0xFF",
+        "TrigVar": "I2C.T",
+        "RespVar": "I2C.R"
       }
     }
   ],

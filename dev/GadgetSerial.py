@@ -41,7 +41,9 @@ class PluginGadgetSerial(Gadget.PluginGadgetBase):
                 self._ser = ret
             else:
                 self._ser = None
+
         except Exception as e:
+            self._last_error = str(e)
             self._ser = None
 
 # -----
