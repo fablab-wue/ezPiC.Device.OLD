@@ -14,8 +14,7 @@ import dev.Machine as Machine
 
 EZPID = 'gdDMM_VC880'
 PTYPE = PT_SENSOR
-PNAME = 'DMM Voltcraft VC880'
-PINFO = 'Chip: ???<br>Voltcraft VC880; Voltcraft VC650BT'
+PNAME = 'DMM - Voltcraft VC880'
 
 #######
 
@@ -29,7 +28,7 @@ class PluginGadget(GS):
             'NAME':PNAME,
             'ENABLE':False,
             'TIMER':0.1,
-            'PORT':'COM22',
+            'PORT':'',
             # instance specific params
             'RespVar':'DMM',
             }

@@ -14,8 +14,7 @@ import dev.Machine as Machine
 
 EZPID = 'gdDust_SDS198'
 PTYPE = PT_SENSOR
-PNAME = 'Dust Sensor SDS198'
-PINFO = 'Nova Fitness SDS198'
+PNAME = 'Dust - SDS198'
 
 UNIT = 'µg/m³'   #ANSI
 #UNIT = 'ug/m3'   #ASCII

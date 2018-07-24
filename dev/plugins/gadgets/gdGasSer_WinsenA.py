@@ -14,8 +14,7 @@ import dev.Machine as Machine
 
 EZPID = 'gdGasSer_WinsenA'
 PTYPE = PT_SENSOR
-PNAME = 'Gas Winsen Active (UART)'
-PINFO = 'Winsen MZ06/07'
+PNAME = 'Gas - Winsen Active (serial)'
 
 #######
 

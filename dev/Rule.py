@@ -161,7 +161,6 @@ def get_plugin_list() -> tuple:
             p = {}
             p['EZPID'] = module.EZPID
             p['PNAME'] = module.PNAME
-            p['PINFO'] = module.PINFO
             p['PFILE'] = module.__name__
             pl.append(p)
 

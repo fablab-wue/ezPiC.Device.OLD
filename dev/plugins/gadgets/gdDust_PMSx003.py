@@ -14,8 +14,7 @@ import dev.Machine as Machine
 
 EZPID = 'gdDust_PMSx003'
 PTYPE = PT_SENSOR
-PNAME = 'Dust Sensor PMS5003/7003'
-PINFO = 'Plantower PMS5003; PMS7003'
+PNAME = 'Dust - PMS5003/7003'
 
 UNIT = 'µg/m³'   #ANSI
 #UNIT = 'ug/m3'   #ASCII

@@ -16,7 +16,6 @@ import dev.Machine as Machine
 MAPID = 'maRPi'
 PTYPE = PT_MACHINE
 PNAME = 'Raspberry Pi'
-PINFO = '???'
 
 LIST_PIN_IO = (
 "GPIO00 (Pin3@Rev1)",

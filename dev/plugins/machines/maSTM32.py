@@ -27,7 +27,6 @@ import dev.Machine as Machine
 MAPID = 'maPYB'
 PTYPE = PT_MACHINE
 PNAME = 'PyBoard'
-PINFO = '???'
 
 LIST_PIN_IO = (
 "A0 (X1)",

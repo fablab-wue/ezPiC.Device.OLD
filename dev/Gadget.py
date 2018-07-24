@@ -24,7 +24,7 @@ def gadget_timer_handler(news, args):
         t = Timer.clock()
 
         for idx, gadget in enumerate(_GADGETS):
-            if gadget.get_params('ENABLE'):
+            if gadget.is_enabled():
                 if gadget.prepare_next and (t >= gadget.prepare_next):
                     gadget.prepare_next = None
                     gadget.timer(True)
@@ -46,7 +46,7 @@ def gadget_timer_handler(news, args):
                     gadget.variables(news)
 
         for gadget in _GADGETS:
-            if gadget.get_params('ENABLE'):
+            if gadget.is_enabled():
                 gadget.idle()
 
 #######
@@ -169,7 +169,6 @@ def get_plugin_list() -> tuple:
             p = {}
             p['EZPID'] = module.EZPID
             p['PNAME'] = module.PNAME
-            p['PINFO'] = module.PINFO
             p['PFILE'] = module.__name__
             pl.append(p)
 
@@ -263,7 +262,7 @@ class PluginGadgetBase():
             t = int(float(t) * 1000)
             if t > 0:
                 self.timer_period = t
-        if self.timer_period and self.get_params('ENABLE'):
+        if self.timer_period and self.is_enabled():
             self.timer_next = Timer.clock() + self.timer_period
             if self.prepare_time:
                 self.prepare_next = self.timer_next - self.prepare_time
@@ -271,6 +270,10 @@ class PluginGadgetBase():
     def exit(self):
         """ exit an existing instance after removing from task list """
         pass
+
+    def is_enabled(self) -> bool:
+        """ get enable status """
+        return self.param['ENABLE']
 
     def get_name(self) -> str:
         """ get the name from the module """
@@ -295,7 +298,7 @@ class PluginGadgetBase():
                 for key in self.param:
                     if key in param_new:
                         self.param[key] = param_new[key]
-                if self.param.get('ENABLE', False):
+                if self.is_enabled():
                     self.init()
                 break
 

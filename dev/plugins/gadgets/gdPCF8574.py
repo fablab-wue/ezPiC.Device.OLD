@@ -14,7 +14,6 @@ import dev.Machine as Machine
 EZPID = 'gdPCF8574'
 PTYPE = PT_SENSOR | PT_ACTUATOR
 PNAME = 'IO - PCF8574 Port Expander (I2C)'
-PINFO = '?'
 
 #######
 
@@ -27,7 +26,7 @@ class PluginGadget(GI2C):
             # must be params
             'NAME':'PCF8574',
             'ENABLE':False,
-            'TIMER':0.1,
+            'TIMER':2.1,
             'PORT':'1',
             'ADDR':'3A',
             # instance specific params

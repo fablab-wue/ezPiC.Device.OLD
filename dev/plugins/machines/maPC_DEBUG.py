@@ -15,7 +15,6 @@ import dev.Machine as Machine
 MAPID = 'maPCDEBUG'
 PTYPE = PT_MACHINE
 PNAME = 'PC DEBUG'
-PINFO = '???'
 
 LIST_PIN_IO = (   # TEST ONLY
 "GPIO0 (Lorem)",

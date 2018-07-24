@@ -17,8 +17,7 @@ import math
 
 EZPID = 'gdGPSUART'
 PTYPE = PT_SENSOR
-PNAME = 'GPS NMEA (UART)'
-PINFO = ''
+PNAME = 'GPS - NMEA (serial)'
 
 #######
 

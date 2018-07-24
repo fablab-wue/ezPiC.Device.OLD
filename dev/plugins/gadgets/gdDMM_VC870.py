@@ -15,8 +15,7 @@ import dev.Machine as Machine
 
 EZPID = 'gdDMM_VC870'
 PTYPE = PT_SENSOR
-PNAME = 'DMM Voltcraft VC870'
-PINFO = 'Chip: ???<br>Voltcraft VC870'
+PNAME = 'DMM - Voltcraft VC870'
 
 #######
 

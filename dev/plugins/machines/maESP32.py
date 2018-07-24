@@ -27,7 +27,6 @@ import dev.Machine as Machine
 MAPID = 'maESP32'
 PTYPE = PT_MACHINE
 PNAME = 'ESP32'
-PINFO = '???'
 
 LIST_PIN_IO = (
 "36 (IN only)",

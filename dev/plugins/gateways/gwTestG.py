@@ -11,8 +11,7 @@ import dev.Variable as Variable
 
 EZPID = 'gwTestGatewayG'
 PTYPE = PT_GATEWAY
-PNAME = 'Test Gateway G'
-PINFO = 'Lorem ipsum dolor sit amet.'
+PNAME = 'Test - Gateway G'
 
 #######
 

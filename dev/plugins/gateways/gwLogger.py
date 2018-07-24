@@ -12,8 +12,7 @@ import dev.Variable as Variable
 
 EZPID = 'gwFileLogger'
 PTYPE = PT_GATEWAY
-PNAME = 'Data Logger to File'
-PINFO = 'Log all/filtered Variables to Text File (CSV)'
+PNAME = 'Logger - Data Logger to File'
 
 #######
 

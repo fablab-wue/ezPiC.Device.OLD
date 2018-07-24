@@ -19,7 +19,6 @@ import dev.Gadget as Gadget
 EZPID = 'gdDHTTempHumSensorGadget'
 PTYPE = PT_SENSOR
 PNAME = 'DHT / AM Temperature and Humidity Sensor Gadget'
-PINFO = 'Measurement device for the common DHT11 / DHT22 / DHT12 & AM2301 / AM2302 /  AM2320 / AM2321 / AM2322 .. Temperature and Humidity Sensors.'
 
 #######
 

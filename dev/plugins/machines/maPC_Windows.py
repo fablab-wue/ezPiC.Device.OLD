@@ -18,7 +18,6 @@ import dev.Machine as Machine
 MAPID = 'maPC'
 PTYPE = PT_MACHINE
 PNAME = 'PC'
-PINFO = '???'
 
 #######
 

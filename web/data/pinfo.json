@@ -1,0 +1,32 @@
+{ 
+"gdPyBAccel": "Onboard MMA766x at I2C-1",
+"gdDMM_ES51922": "Chip: ES51922<br>UNI-T UT61E<br>Note: Press REL button for 3 sec to start tranmition",
+"gdDMM_LCD14": "Chip: FS9721<br>HoldPeak HP-90K USB; Voltcraft VC 820; Vichy VC99<br>Note: Press PC-Link button to start tranmition",
+"gdDMM_M14C": "Chip: ???<br>Metex; Voltcraft; Peaktech",
+"gdDMM_M14P": "Chip: ???\nMetex; Voltcraft; Peaktech",
+"gdDMM_M15C": "Chip: ???<br>Metex; Voltcraft; Peaktech",
+"gdDMM_MT8": "Chip: ???<br>Mastech MS8050?, ELV MS8050?, Sinometer MS8050?",
+"gdDMM_MT14": "Chip: ???<br>Mastech MS8050, ELV MS8050, Sinometer MS8050<br>Note: Press yellow button for 3 sec to start tranmition",
+"gdDMM_VC870": "Chip: ???<br>Voltcraft VC870",
+"gdDMM_VC880": "Chip: ???<br>Voltcraft VC880; Voltcraft VC650BT",
+"gdDust_PMSx003": "Plantower PMS5003; PMS7003",
+"gdDust_SDS01x": "Nova Fitness SDS011; SDS018",
+"gdDust_SDS198": "Nova Fitness SDS198",
+"gdGasSer_WinsenA": "Winsen MZ06/07",
+"gdGasSer_WinsenP": "Winsen MH-Z14A; MH-Z19",
+"gdGPIOout": "Use Ports as Output triggered by Variables",
+"gdGPSUART": "GPS - NMEA (serial)",
+"gdMP3Ser": "?",
+"gdPCF8574": "8-Bit Port Expander",
+"gdPulseCountUART": "",
+"gdSerialGPIO": "GPIO with USB-Serial-Adapter at Windows/Linux",
+"gdDHTTempHumSensorGadget": "Measurement device for the common DHT11 / DHT22 / DHT12 & AM2301 / AM2302 /  AM2320 / AM2321 / AM2322 .. Temperature and Humidity Sensors.",
+"gdNeoPixelDecimalTempDisplayGadget": "Display a (room) temperature measurement as a decimal coded value on a NeoPixel controlled LED strip with a temperature related colour gradient.",
+
+"gwFileLogger": "Log all/filtered Variables to Text File (CSV)",
+"gwMQTT": "?",
+
+"ruTimeSw": "Generate (non)retriggerable Pulses triggered by Variable and output to Variable",
+
+"": "",
+}

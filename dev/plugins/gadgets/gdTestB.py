@@ -12,8 +12,7 @@ import dev.Variable as Variable
 
 EZPID = 'gdTestB'
 PTYPE = PT_SENSOR
-PNAME = 'Test Gadget B'
-PINFO = 'Fusce dolor leo, ornare vitae dolor nec, varius aliquam tellus.'
+PNAME = 'Test - Gadget B'
 
 class PluginGadget(Gadget.PluginGadgetBase):
 

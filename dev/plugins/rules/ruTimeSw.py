@@ -12,8 +12,7 @@ import dev.Timer as Timer
 
 EZPID = 'ruTimeSw'
 PTYPE = PT_RULE
-PNAME = 'Time Switch'
-PINFO = 'Generate (non)retriggerable Pulses triggered by Variable and output to Variable'
+PNAME = 'Time - Time Switch'
 
 #######
 

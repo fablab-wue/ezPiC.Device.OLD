@@ -17,8 +17,7 @@ import dev.Variable as Variable
 
 EZPID = 'gwMQTT'
 PTYPE = PT_GATEWAY
-PNAME = 'To MQTT Broker'
-PINFO = '???'
+PNAME = 'MQTT - MQTT Client'
 
 #######
 

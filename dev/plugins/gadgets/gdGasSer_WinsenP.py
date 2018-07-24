@@ -14,8 +14,7 @@ import dev.Machine as Machine
 
 EZPID = 'gdGasSer_WinsenP'
 PTYPE = PT_SENSOR
-PNAME = 'Gas Winsen Poll (UART)'
-PINFO = 'Winsen MH-Z14A; MH-Z19'
+PNAME = 'Gas - Winsen Poll (UART)'
 
 COMMAND_READ = b'\xFF\x01\x86\x00\x00\x00\x00\x00\x79'
 

@@ -3,15 +3,22 @@
     "version": 1,
     "NAME": "ezPiC-Device"
   },
-  "rules": [],
   "machines": [
     {
+      "MAPID": "maPCDEBUG",
       "version": "1.0",
       "params": {
-        "xyz": 456,
-        "abc": 123
-      },
-      "MAPID": "maRPi"
+        "abc": 123,
+        "xyz": 456
+      }
+    },
+    {
+      "MAPID": "maPC",
+      "version": "1.0",
+      "params": {
+        "abc": 123,
+        "xyz": 456
+      }
     }
   ],
   "gadgets": [
@@ -19,50 +26,51 @@
       "EZPID": "gdTestA",
       "version": "1.0",
       "params": {
-        "xyz": "456",
-        "ENABLE": true,
-        "name_h": "H",
-        "abc": 123,
         "NAME": "A",
+        "ENABLE": true,
+        "TIMER": "10",
+        "name_t": "T",
+        "name_h": "H",
+        "name_p": "P",
+        "abc": 123,
+        "xyz": "456",
+        "sel": "1",
+        "qwe": "Lorem ipsum",
         "asd": [
           1,
           2,
           3,
           4,
           5
-        ],
-        "TIMER": "10",
-        "name_t": "T",
-        "qwe": "Lorem ipsum",
-        "name_p": "P",
-        "sel": "1"
+        ]
       }
     },
     {
       "EZPID": "gdTestB",
       "version": "1.0",
       "params": {
-        "TIMER": "4",
+        "NAME": "B",
         "ENABLE": true,
-        "xyz": 67890,
+        "TIMER": "4",
         "abc": "12345",
-        "NAME": "B"
+        "xyz": 67890
       }
     },
     {
       "EZPID": "gdPCF8574",
       "version": "1.0",
       "params": {
+        "NAME": "PCF8574",
         "ENABLE": true,
+        "TIMER": 1,
+        "PORT": "I2C1 (Lorem)",
         "ADDR": "20 (Default)",
-        "TrigVar": "I2C.T",
-        "NAME": "PCF8574-",
-        "TIMER": 1000,
-        "RespVar": "I2C.R1",
         "InitVal": "0xFF",
-        "PORT": "I2C1 (GPIO03,GPIO02)"
+        "TrigVar": "I2C.T",
+        "RespVar": "I2C.R1"
       }
     }
   ],
-  "gateways": []
+  "gateways": [],
+  "rules": []
 }

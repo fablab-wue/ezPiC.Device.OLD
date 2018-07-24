@@ -14,8 +14,7 @@ import dev.Machine as Machine
 
 EZPID = 'gdDMM_MT14'
 PTYPE = PT_SENSOR
-PNAME = 'DMM Mastech MS8050 (14 Byte)'
-PINFO = 'Chip: ???<br>Mastech MS8050, ELV MS8050, Sinometer MS8050<br>Note: Press yellow button for 3 sec to start tranmition'
+PNAME = 'DMM - Mastech MS8050 (14 Byte)'
 
 #######
 

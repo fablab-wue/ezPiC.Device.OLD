@@ -12,8 +12,7 @@ import dev.Variable as Variable
 
 EZPID = 'gdPyBAccel'
 PTYPE = PT_SENSOR
-PNAME = 'PyBoard-Accelerometer'
-PINFO = 'Onboard MMA766x at I2C-1'
+PNAME = 'Acc. - PyBoard-Accelerometer'
 
 class PluginGadget(Gadget.PluginGadgetBase):
 

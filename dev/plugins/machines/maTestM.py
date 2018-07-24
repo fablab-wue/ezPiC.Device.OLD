@@ -14,7 +14,6 @@ import dev.Machine as Machine
 MAPID = 'maTestM'
 PTYPE = PT_MACHINE
 PNAME = 'Readable Name M'
-PINFO = '???'
 
 #######
 

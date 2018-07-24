@@ -14,8 +14,7 @@ import dev.Machine as Machine
 
 EZPID = 'gdDMM_M14C'
 PTYPE = PT_SENSOR
-PNAME = 'DMM ASCII 14 Byte Cont.'
-PINFO = 'Chip: ???<br>Metex; Voltcraft; Peaktech'
+PNAME = 'DMM - ASCII 14 Byte Cont.'
 
 #######
 

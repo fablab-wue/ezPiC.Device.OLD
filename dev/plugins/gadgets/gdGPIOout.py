@@ -12,8 +12,7 @@ import dev.Machine as Machine
 
 EZPID = 'gdGPIOout'
 PTYPE = PT_ACTUATOR
-PNAME = 'GPIO Port Output'
-PINFO = 'Use Ports as Output triggered by Variables'
+PNAME = 'IO - GPIO Port Output'
 
 #######
 

@@ -15,8 +15,7 @@ import dev.Machine as Machine
 
 EZPID = 'gdDMM_ES51922'
 PTYPE = PT_SENSOR
-PNAME = 'DMM ES51922'
-PINFO = 'Chip: ES51922<br>UNI-T UT61E<br>Note: Press REL button for 3 sec to start tranmition'
+PNAME = 'DMM - ES51922'
 
 #######
 

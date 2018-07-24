@@ -12,8 +12,7 @@ from . import gdDMM_M14C as M14C
 
 EZPID = 'gdDMM_M14P'
 PTYPE = PT_SENSOR
-PNAME = 'DMM ASCII 14 Byte P'
-PINFO = 'Chip: ???\nMetex; Voltcraft; Peaktech'
+PNAME = 'DMM - ASCII 14 Byte P'
 
 #######
 
