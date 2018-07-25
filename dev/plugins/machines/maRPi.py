@@ -249,11 +249,19 @@ class I2C_RPi():
             raise Exception('Wrong data type for id')
         self._i2c = smbus.SMBus(self._id)
 
-    def init(self, scl, sda, *, freq=400000):
-        pass
+    def init(self, addr, freq=400000):
+        if type(addr) is str:
+            addr = addr.strip().split(' ', 1)[0]
+            self._addr = int(addr, 0)
+        elif type(addr) is int:
+            self._addr = addr
+        else:
+            raise Exception('Wrong data type for addr')
+        if not 0 <= self._addr <= 127:
+            raise Exception('Wrong addr - out of range')
 
     def deinit(self):
-        pass
+        self._i2c = None
     
     def readfrom(self, addr, nbytes, stop=True):
         buf = bytearray(nbytes)
@@ -283,12 +291,44 @@ class I2C_RPi():
         #self.init(self._scl_pin, self._sda_pin, freq=freq)
         pass
 
-    def testwrite(self, addr, reg, data):
-        self._i2c.write_byte_data(addr, reg, data)
 
+    def read_byte(self) -> int:
+        return self._i2c.read_byte(self._addr)
 
-        data = self._i2c.read_byte_data(addr, reg)
+    def write_byte(self, data:int):
+        self._i2c.write_byte(self._addr, data)
 
+    def read_reg_byte(self, reg:int) -> int:
+        return self._i2c.read_byte_data(self._addr, reg)
+
+    def write_reg_byte(self, reg:int, data:int):
+        self._i2c.write_byte_data(self._addr, reg, data)
+
+    def read_reg_word(self, reg:int, little_endian=True, signed=False) -> int:
+        #data = self._i2c.read_i2c_block_data(self._addr, reg, 2)
+        #value = (data[0] << 8) | data[1]
+        #return value
+        data = self._i2c.read_word_data(self._addr, reg)
+        if not little_endian:
+            data = ((data & 0xFF) << 8) | ((data & 0xFF00) >> 8)
+        if signed and (data >= 32768):
+            data -= 65536
+        return data        
+
+    def write_reg_word(self, reg:int, data:int, little_endian=True):
+        #buf = bytearray(2)
+        #buf[0] = (data >> 8) & 0xFF
+        #buf[1] = data & 0xFF
+        #self._i2c.write_i2c_block_data(self._addr, reg, buf)
+        if not little_endian:
+            data = ((data & 0xFF) << 8) | ((data & 0xFF00) >> 8)
+        self._i2c.write_word_data(self._addr, reg, data)
+
+    def read_reg_buffer(self, reg:int, nbytes:int) -> bytearray:
+        return self._i2c.read_i2c_block_data(self._addr, reg, nbytes)   # nbytes is ignored?
+
+    def write_reg_buffer(self, reg:int, data:bytearray):
+        self._i2c.write_i2c_block_data(self._addr, reg, data)
 
 # =====
 

@@ -31,12 +31,9 @@ class PluginGadget(GI2C):
             'ADDR':'3A',
             # instance specific params
             'InitVal':'0xFF',
-
             'TrigVar':'I2C.T',
-
             'RespVar':'I2C.R',
             }
-        self._last_error = None
         self._last_val = None
 
 # -----
@@ -45,7 +42,7 @@ class PluginGadget(GI2C):
         super().init()
 
         if self._i2c and self.param['InitVal']:
-            self._write(int(self.param['InitVal'], 0))
+            self._i2c.write_byte(int(self.param['InitVal'], 0))
 
 # -----
 
@@ -65,36 +62,6 @@ class PluginGadget(GI2C):
 # -----
 
     def variables(self, news:dict):
-        self._process_outputs(news)
-
-# -----
-
-    def timer(self, prepare:bool):
-        self._process_inputs()
-
-#######
-
-    def _process_inputs(self):
-        if not self._i2c:
-            return
-        print('+', end='')
-
-        try:
-            name = self.param['RespVar']
-            if name:
-                val = self._read()
-                print(val)
-                if val != self._last_val:
-                    self._last_val = val
-                    Variable.set(name, val)
-
-        except Exception as e:
-            print(str(e))
-            self._last_error = str(e)
-
-# =====
-
-    def _process_outputs(self, news):
         if not self._i2c:
             return
 
@@ -105,22 +72,29 @@ class PluginGadget(GI2C):
                 if type(val) == str:
                     val = int(val, 0)
                 if 0 <= val <= 255:
-                    self._write(val)
+                    self._i2c.write_byte(val)
 
         except Exception as e:
             print(str(e))
             self._last_error = str(e)
 
-# =====
+# -----
 
-    def _read(self):
-        buf = self._i2c.readfrom(self._addr, 1)
-        return buf[0]
+    def timer(self, prepare:bool):
+        if not self._i2c:
+            return
 
-# =====
+        try:
+            name = self.param['RespVar']
+            if name:
+                val = self._i2c.read_byte()
+                #print(val)
+                if val != self._last_val:
+                    self._last_val = val
+                    Variable.set(name, val)
 
-    def _write(self, val):
-        buf = [val]
-        self._i2c.writeto(self._addr, buf)
+        except Exception as e:
+            print(str(e))
+            self._last_error = str(e)
 
 #######

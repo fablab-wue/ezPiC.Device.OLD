@@ -14,15 +14,15 @@ class PluginGadgetI2C(Gadget.PluginGadgetBase):
 
     def __init__(self, module):
         super().__init__(module)
+        self._last_error = None
         self._i2c = None
-        self._addr = None
         
 # -----
 
     def init(self):
         super().init()
 
-        if not self.param['ENABLE']:
+        if not self.is_enabled():
             return
 
         try:
@@ -31,7 +31,8 @@ class PluginGadgetI2C(Gadget.PluginGadgetBase):
 
             if not err:
                 self._i2c = ret
-                self._addr = int(self.param['ADDR'].split(' ', 1)[0], 16)
+                addr = int(self.param['ADDR'].split(' ', 1)[0], 16)
+                self._i2c.init(addr)
             else:
                 self._i2c = None
 
