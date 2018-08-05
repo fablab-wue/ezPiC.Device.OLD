@@ -13,6 +13,13 @@
       }
     },
     {
+      "MAPID": "maPCpigpio",
+      "version": "1.0",
+      "params": {
+        "RemoteURL": "10.23.42.92"
+      }
+    },
+    {
       "MAPID": "maPC",
       "version": "1.0",
       "params": {
@@ -69,8 +76,51 @@
         "TrigVar": "I2C.T",
         "RespVar": "I2C.R1"
       }
+    },
+    {
+      "EZPID": "gdDMM_LCD14",
+      "version": "1.0",
+      "params": {
+        "NAME": "rotesDMM",
+        "ENABLE": false,
+        "TIMER": 0.1,
+        "PORT": "COM3 - Intel(R) Active Management Technology - SOL (COM3)",
+        "RespVar": "DMM"
+      }
     }
   ],
-  "gateways": [],
+  "gateways": [
+    {
+      "EZPID": "gwFileLogger",
+      "version": "1.0",
+      "params": {
+        "NAME": "Logger",
+        "ENABLE": false,
+        "TIMER": 0,
+        "FILTER": "",
+        "FileName": "Logger.log",
+        "Separator": ","
+      }
+    },
+    {
+      "EZPID": "gwMQTT",
+      "version": "1.0",
+      "params": {
+        "NAME": "MQTT - MQTT Client",
+        "ENABLE": false,
+        "TIMER": 0,
+        "FILTER": "",
+        "BrokerAddr": "iot.eclipse.org",
+        "BrokerPort": "1883",
+        "BrokerUser": "",
+        "BrokerPW": "",
+        "SubTopic": "/12345/#",
+        "SubVarPrefix": "MQTT.",
+        "SubQOS": 0,
+        "PubTopicPrefix": "/",
+        "PubQOS": 0
+      }
+    }
+  ],
   "rules": []
 }
