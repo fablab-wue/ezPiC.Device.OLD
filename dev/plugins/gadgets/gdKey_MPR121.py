@@ -1,5 +1,5 @@
 """
-Gadget Plugin for ADC PCF8591
+Gadget Plugin for Touch Key MPR121
 """
 from com.Globals import *
 
@@ -11,9 +11,9 @@ import dev.Machine as Machine
 #######
 # Globals:
 
-EZPID = 'gdPDF8591'
-PTYPE = PT_SENSOR | PT_ACTUATOR
-PNAME = '@PLAN ADC+DAC - PDF8591 - 4-Ch 8-Bit ADC, 1-CH 8-Bit DAC (I2C)'
+EZPID = 'gdMPR121'
+PTYPE = PT_SENSOR
+PNAME = '@PLAN Key - MPR121 - 12-Ch Touch Key (I2C)'
 
 #######
 
@@ -24,17 +24,14 @@ class PluginGadget(GI2C):
         super().__init__(module)
         self.param = {
             # must be params
-            'NAME':'PDF8591',
+            'NAME':'MPR121',
             'ENABLE':False,
             'TIMER':2.1,
             'PORT':'1',
-            'ADDR':'48',
+            'ADDR':'5B',
             # instance specific params
-            'RespVar0':'Channel0',
-            'RespVar1':'Channel1',
-            'RespVar2':'Channel2',
-            'RespVar3':'Channel3',
-            'Mode':'0',
+            'RespVarKey':'ScanKey',
+            'RespVarCode':'ScanCode',
             }
         self._last_val = None
 
@@ -59,7 +56,7 @@ class PluginGadget(GI2C):
 # -----
 
     def get_addrs(self):
-        return ('48', '49', '4A', '4B', '4C', '4D', '4E', '4F')
+        return ('5A (ADDR-VDD)', '5B (ADDR-GND)', '5C (ADDR-SDA)', '5D (ADDR-SCL)')
 
 # -----
 

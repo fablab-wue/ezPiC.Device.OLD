@@ -120,6 +120,12 @@ class I2C_PC():
     def write_reg_buffer(self, reg:int, data:bytearray):
         self._pi.i2c_write_i2c_block_data(self._h, reg, data)
 
+    def read_buffer(self, nbytes:int) -> bytearray:
+        return self._pi.i2c_read_device(self._h, nbytes)
+
+    def write_buffer(self, data:bytearray):
+        self._pi.i2c_write_device(self._h, data)
+
 # =====
 
 

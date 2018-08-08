@@ -13,7 +13,7 @@ import dev.Machine as Machine
 
 EZPID = 'gd'
 PTYPE = PT_SENSOR | PT_ACTUATOR
-PNAME = 'IO -  (I2C)'
+PNAME = '@PLAN IO -  (I2C)'
 
 #######
 

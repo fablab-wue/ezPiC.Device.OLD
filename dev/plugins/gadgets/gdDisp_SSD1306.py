@@ -13,7 +13,7 @@ import dev.Machine as Machine
 
 EZPID = 'gdSSD1306'
 PTYPE = PT_SENSOR | PT_ACTUATOR
-PNAME = 'Disp - SSD1306 (I2C)'
+PNAME = '@PLAN Disp.Text - SSD1306, SSD1309 - OLED Display (I2C)'
 
 #######
 
@@ -26,18 +26,11 @@ class PluginGadget(GI2C):
             # must be params
             'NAME':'SSD1306',
             'ENABLE':False,
-            'TIMER':2.1,
+            'TIMER':3,
             'PORT':'1',
             'ADDR':'3C',
             # instance specific params
-            'Row0':'Text0',
-            'Row1':'Text1',
-            'Row2':'Text2',
-            'Row3':'Text3',
-            'Row3':'Text4',
-            'Row3':'Text5',
-            'Row3':'Text6',
-            'Row3':'Text7',
+            'Text':'Text',
             }
         self._last_val = None
 

@@ -1,5 +1,5 @@
 """
-Gadget Plugin for ADC PCF8591
+Gadget Plugin for Env. BME280
 """
 from com.Globals import *
 
@@ -11,9 +11,9 @@ import dev.Machine as Machine
 #######
 # Globals:
 
-EZPID = 'gdPDF8591'
-PTYPE = PT_SENSOR | PT_ACTUATOR
-PNAME = '@PLAN ADC+DAC - PDF8591 - 4-Ch 8-Bit ADC, 1-CH 8-Bit DAC (I2C)'
+EZPID = 'gdBME680'
+PTYPE = PT_SENSOR
+PNAME = '@PLAN Env.THPG - BME680, GY68 - Temp. Humidity Pressure Gas Sensor (I2C)'
 
 #######
 
@@ -24,17 +24,16 @@ class PluginGadget(GI2C):
         super().__init__(module)
         self.param = {
             # must be params
-            'NAME':'PDF8591',
+            'NAME':'BME680',
             'ENABLE':False,
             'TIMER':2.1,
             'PORT':'1',
-            'ADDR':'48',
+            'ADDR':'76',
             # instance specific params
-            'RespVar0':'Channel0',
-            'RespVar1':'Channel1',
-            'RespVar2':'Channel2',
-            'RespVar3':'Channel3',
-            'Mode':'0',
+            'RespVarT':'Temperature',
+            'RespVarH':'Humidity',
+            'RespVarP':'Pressure',
+            'RespVarG':'Gas',
             }
         self._last_val = None
 
@@ -59,7 +58,7 @@ class PluginGadget(GI2C):
 # -----
 
     def get_addrs(self):
-        return ('48', '49', '4A', '4B', '4C', '4D', '4E', '4F')
+        return ('76 (SDO-GND)', '77 (SDO-VCC)')
 
 # -----
 

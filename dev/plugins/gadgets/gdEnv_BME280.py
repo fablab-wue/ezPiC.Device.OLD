@@ -1,5 +1,5 @@
 """
-Gadget Plugin for Env. Si7021
+Gadget Plugin for Env. BME280
 """
 from com.Globals import *
 
@@ -11,9 +11,9 @@ import dev.Machine as Machine
 #######
 # Globals:
 
-EZPID = 'gdSi7021'
+EZPID = 'gdBME280'
 PTYPE = PT_SENSOR
-PNAME = 'Env - Si7021 (I2C)'
+PNAME = '@PLAN Env.THP - BMP280, BME280 - Temp. Humidity Pressure Sensor (I2C)'
 
 #######
 
@@ -24,15 +24,15 @@ class PluginGadget(GI2C):
         super().__init__(module)
         self.param = {
             # must be params
-            'NAME':'Si7021',
+            'NAME':'BME280',
             'ENABLE':False,
             'TIMER':2.1,
             'PORT':'1',
-            'ADDR':'40',
+            'ADDR':'76',
             # instance specific params
-            'InitVal':'0xFF',
             'RespVarT':'Temperature',
-            'RespVarH':'Humity',
+            'RespVarH':'Humidity',
+            'RespVarP':'Pressure',
             }
         self._last_val = None
 
@@ -57,7 +57,7 @@ class PluginGadget(GI2C):
 # -----
 
     def get_addrs(self):
-        return ('40')
+        return ('76 (SDO-GND)', '77 (SDO-VCC)')
 
 # -----
 

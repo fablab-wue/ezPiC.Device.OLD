@@ -13,7 +13,7 @@ import dev.Machine as Machine
 
 EZPID = 'gdMCP23017'
 PTYPE = PT_SENSOR | PT_ACTUATOR
-PNAME = 'IO - MCP23017 (I2C)'
+PNAME = '@PLAN IO - MCP23017 - 16-Bit Port Expander (I2C)'
 
 #######
 

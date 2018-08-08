@@ -13,7 +13,7 @@ import dev.Machine as Machine
 
 EZPID = 'gd'
 PTYPE = PT_SENSOR
-PNAME = 'Light - TSL256x (I2C)'
+PNAME = '@PLAN Light - TSL2561 GY2561 - Luminosity (I2C)'
 
 #######
 

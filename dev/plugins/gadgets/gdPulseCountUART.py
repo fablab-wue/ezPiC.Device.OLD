@@ -14,7 +14,7 @@ import dev.Timer as Timer
 
 EZPID = 'gdPulseCountUART'
 PTYPE = PT_SENSOR
-PNAME = 'IO - Pulse Counter (serial)'
+PNAME = '@WORK IO - Pulse Counter (serial)'
 
 #######
 

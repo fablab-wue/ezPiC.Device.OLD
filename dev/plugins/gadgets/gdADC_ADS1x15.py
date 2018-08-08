@@ -13,7 +13,7 @@ import dev.Machine as Machine
 
 EZPID = 'gdADS1x15'
 PTYPE = PT_SENSOR
-PNAME = 'ADC - ADS1x15 (I2C)'
+PNAME = '@PLAN ADC - ADS1015, ADS1115 - 4-Ch 12/16-Bit ADC (I2C)'
 
 #######
 

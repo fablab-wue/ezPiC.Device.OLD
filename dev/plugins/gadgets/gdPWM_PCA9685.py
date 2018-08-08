@@ -13,7 +13,7 @@ import dev.Machine as Machine
 
 EZPID = 'gdPCA9685'
 PTYPE = PT_ACTUATOR
-PNAME = 'PWM - PCA9685 (I2C)'
+PNAME = '@PLAN PWM - PCA9685 - 16-Ch 12-Bit PWM (I2C)'
 
 #######
 
@@ -30,24 +30,24 @@ class PluginGadget(GI2C):
             'PORT':'1',
             'ADDR':'7F',
             # instance specific params
-            'InitVal':'0x00',
-            'TrigVar0':'Channel0',
-            'TrigVar1':'Channel1',
-            'TrigVar2':'Channel2',
-            'TrigVar3':'Channel3',
-            'TrigVar4':'Channel4',
-            'TrigVar5':'Channel5',
-            'TrigVar6':'Channel6',
-            'TrigVar7':'Channel7',
-            'TrigVar8':'Channel8',
-            'TrigVar9':'Channel9',
-            'TrigVarA':'ChannelA',
-            'TrigVarB':'ChannelB',
-            'TrigVarC':'ChannelC',
-            'TrigVarD':'ChannelD',
-            'TrigVarE':'ChannelE',
-            'TrigVarF':'ChannelF',
             'Mode':'0',   # RC-Servo, LED, Gamma, 0...1
+            'MaxVal':'100',
+            'TrigVar0':'PWM-0',
+            'TrigVar1':'PWM-1',
+            'TrigVar2':'PWM-2',
+            'TrigVar3':'PWM-3',
+            'TrigVar4':'PWM-4',
+            'TrigVar5':'PWM-5',
+            'TrigVar6':'PWM-6',
+            'TrigVar7':'PWM-7',
+            'TrigVar8':'PWM-8',
+            'TrigVar9':'PWM-9',
+            'TrigVarA':'PWM-A',
+            'TrigVarB':'PWM-B',
+            'TrigVarC':'PWM-C',
+            'TrigVarD':'PWM-D',
+            'TrigVarE':'PWM-E',
+            'TrigVarF':'PWM-F',
             }
         self._last_val = None
 

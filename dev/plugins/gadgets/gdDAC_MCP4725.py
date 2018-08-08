@@ -1,5 +1,5 @@
 """
-Gadget Plugin for Light BH1721
+Gadget Plugin for DAC MCP4725
 """
 from com.Globals import *
 
@@ -11,9 +11,9 @@ import dev.Machine as Machine
 #######
 # Globals:
 
-EZPID = 'gdBH1721'
-PTYPE = PT_SENSOR
-PNAME = 'Light - BH1721 (I2C)'
+EZPID = 'gdMCP4725'
+PTYPE = PT_ACTUATOR
+PNAME = '@WORK DAC - MCP4725 - 1-Ch 12-Bit DAC (I2C)'
 
 #######
 
@@ -24,13 +24,14 @@ class PluginGadget(GI2C):
         super().__init__(module)
         self.param = {
             # must be params
-            'NAME':'BH1721',
+            'NAME':'MCP4725',
             'ENABLE':False,
-            'TIMER':2.1,
+            'TIMER':0,
             'PORT':'1',
-            'ADDR':'23',
+            'ADDR':'60',
             # instance specific params
-            'RespVar':'Light',
+            'TrigVar':'DAC',
+            'MaxVal':'4095',
             }
         self._last_val = None
 
@@ -55,7 +56,7 @@ class PluginGadget(GI2C):
 # -----
 
     def get_addrs(self):
-        return ('23')
+        return ('60', '61')
 
 # -----
 
@@ -69,27 +70,9 @@ class PluginGadget(GI2C):
                 val = Variable.get(name)
                 if type(val) == str:
                     val = int(val, 0)
-                if 0 <= val <= 255:
-                    self._i2c.write_byte(val)
-
-        except Exception as e:
-            print(str(e))
-            self._last_error = str(e)
-
-# -----
-
-    def timer(self, prepare:bool):
-        if not self._i2c:
-            return
-
-        try:
-            name = self.param['RespVar']
-            if name:
-                val = self._i2c.read_byte()
-                print(val)
-                if val != self._last_val:
-                    self._last_val = val
-                    Variable.set(name, val)
+                if 0 <= val <= 4095:
+                    data = [((val >> 8) & 0x0F), (val & 0xFF)]
+                    self._i2c.write_buffer(data)
 
         except Exception as e:
             print(str(e))

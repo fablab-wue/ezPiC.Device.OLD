@@ -13,7 +13,7 @@ import dev.Machine as Machine
 
 EZPID = 'gdPCF8574'
 PTYPE = PT_SENSOR | PT_ACTUATOR
-PNAME = 'IO - PCF8574 Port Expander (I2C)'
+PNAME = '@WORK IO - PCF8574, PCF8574A - 8-Bit Port Expander (I2C)'
 
 #######
 
