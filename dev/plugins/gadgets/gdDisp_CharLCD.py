@@ -22,7 +22,7 @@ import dev.Machine as Machine
 
 EZPID = 'gdCharLCD'
 PTYPE = PT_SENSOR | PT_ACTUATOR
-PNAME = '@PLAN Disp.Text - HD44780 over PCF8574 - Char.LCD Display with Adapter (I2C)'
+PNAME = '@WORK Disp.Text - HD44780 over PCF8574 - Char.LCD Display with Adapter (I2C)'
 
 #######
 
@@ -124,8 +124,7 @@ class PluginGadget(GI2C):
             MSb |= self.BL
             LSb |= self.BL
 
-        #self.pi.i2c_write_device(self._h,
-        self._i2c.write_reg_buffer(self, MSb | self.E, [MSb & ~self.E, LSb | self.E, LSb & ~self.E])
+        self._i2c.write_buffer([MSb | self.E, MSb & ~self.E, LSb | self.E, LSb & ~self.E])
 
     def _inst(self, bits):
 

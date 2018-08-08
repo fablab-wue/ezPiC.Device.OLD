@@ -13,7 +13,7 @@ import dev.Machine as Machine
 
 EZPID = 'gdSHT31'
 PTYPE = PT_SENSOR
-PNAME = '@WORK Env.TH - SHT31 - Temp. Humidity Sensor (I2C)'
+PNAME = '@TEST Env.TH - SHT31 - Temp. Humidity Sensor (I2C)'
 
 #######
 
@@ -71,10 +71,10 @@ class PluginGadget(GI2C):
             name_t = self.param['RespVarT']
             name_h = self.param['RespVarH']
             if name_t or name_h:
-                self._i2c.write_buffer(self, [0xE0, 0x00])
-                data = self._i2c.read_buffer(self, 6)
+                self._i2c.write_buffer([0xE0, 0x00])
+                data = self._i2c.read_buffer(6)
                 #TODO Checksum data[2] data[5]
-                print(data)
+                #print(data)
                 if name_t:
                     t = ((data[0] << 8) | data[1]) / (65535/175) - 45
                     Variable.set(name_t, t)
