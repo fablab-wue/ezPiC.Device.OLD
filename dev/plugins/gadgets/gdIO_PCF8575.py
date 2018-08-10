@@ -11,9 +11,9 @@ import dev.Machine as Machine
 #######
 # Globals:
 
-EZPID = 'gdPCF8574'
+EZPID = 'gdPCF8575'
 PTYPE = PT_SENSOR | PT_ACTUATOR
-PNAME = '@WORK IO - PCF8574, PCF8574A - 8-Bit Port Expander (I2C)'
+PNAME = '@WORK IO - PCF8575 - 16-Bit Port Expander (I2C)'
 
 #######
 
@@ -24,15 +24,15 @@ class PluginGadget(GI2C):
         super().__init__(module)
         self.param = {
             # must be params
-            'NAME':'PCF8574',
+            'NAME':'PCF8575',
             'ENABLE':False,
             'TIMER':0.1,
             'PORT':'1',
             'ADDR':'20',
             # instance specific params
-            'InitVal':'0xFF',
-            'TrigVar':'PCF8574.out',
-            'RespVar':'PCF8574.in',
+            'InitVal':'0xFFFF',
+            'TrigVar':'PCF8575.out',
+            'RespVar':'PCF8575.in',
             }
         self._last_val = None
 
@@ -42,8 +42,8 @@ class PluginGadget(GI2C):
         super().init()
 
         if self._i2c and self.param['InitVal']:
-            val = int(self.param['InitVal'], 0) & 0xFF
-            self._i2c.write_byte(val)
+            val = int(self.param['InitVal'], 0) & 0xFFFF
+            self._i2c.write_buffer([val & 0xFF, (val >> 8) & 0xFF])
 
 # -----
 
@@ -58,7 +58,7 @@ class PluginGadget(GI2C):
 # -----
 
     def get_addrs(self):
-        return ('20 (Default)', '21', '22', '23', '24', '25', '26', '27', '38 (Default Type A)', '39', '3A', '3B', '3C', '3D', '3E', '3F')
+        return ('20 (Default)', '21', '22', '23', '24', '25', '26', '27')
 
 # -----
 
@@ -72,8 +72,8 @@ class PluginGadget(GI2C):
                 val = Variable.get(name)
                 if type(val) == str:
                     val = int(val, 0)
-                if 0 <= val <= 255:
-                    self._i2c.write_byte(val)
+                if 0 <= val <= 0xFFFF:
+                    self._i2c.write_buffer([val & 0xFF, (val >> 8) & 0xFF])
 
         except Exception as e:
             print(str(e))
@@ -88,7 +88,8 @@ class PluginGadget(GI2C):
         try:
             name = self.param['RespVar']
             if name:
-                val = self._i2c.read_byte()
+                data = self._i2c.read_buffer(2)
+                val = (data[1] << 8) | data[0]
                 #print(val)
                 if val != self._last_val:
                     self._last_val = val
