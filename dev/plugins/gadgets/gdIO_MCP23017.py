@@ -13,7 +13,7 @@ import dev.Machine as Machine
 
 EZPID = 'gdMCP23017'
 PTYPE = PT_SENSOR | PT_ACTUATOR
-PNAME = '@PLAN IO - MCP23017 - 16-Bit Port Expander (I2C)'
+PNAME = '@WORK IO - MCP23017 - 16-Bit Port Expander (I2C)'
 
 MCP23017_IODIRA	 =	0x00 # I/O DIRECTION REGISTER   IO7 IO6 IO5 IO4 IO3 IO2 IO1 IO0 1111 1111
 MCP23017_IODIRB	 =	0x01 # I/O DIRECTION REGISTER   IO7 IO6 IO5 IO4 IO3 IO2 IO1 IO0 1111 1111
@@ -60,11 +60,11 @@ class PluginGadget(GI2C):
             'ADDR':'20',
             # instance specific params
             'InputA':'0xFF',
-            'InitValA':'0xFF',
+            'InitValA':'0x00',
             'TrigVarA':'MCP23017.A.out',
             'RespVarA':'MCP23017.A.in',
             'InputB':'0xFF',
-            'InitValB':'0xFF',
+            'InitValB':'0x00',
             'TrigVarB':'MCP23017.B.out',
             'RespVarB':'MCP23017.B.in',
             }
@@ -80,11 +80,13 @@ class PluginGadget(GI2C):
 
         if self._i2c and self.param['InputA']:
             self._i2c.write_reg_byte(MCP23017_IODIRA, int(self.param['InputA'], 0))
+            self._i2c.write_reg_byte(MCP23017_GPPUA, int(self.param['InputA'], 0))
         if self._i2c and self.param['InitValA']:
             self._i2c.write_reg_byte(MCP23017_GPIOA, int(self.param['InitValA'], 0))
 
         if self._i2c and self.param['InputB']:
             self._i2c.write_reg_byte(MCP23017_IODIRB, int(self.param['InputB'], 0))
+            self._i2c.write_reg_byte(MCP23017_GPPUB, int(self.param['InputB'], 0))
         if self._i2c and self.param['InitValB']:
             self._i2c.write_reg_byte(MCP23017_GPIOB, int(self.param['InitValB'], 0))
 

@@ -82,11 +82,33 @@
   </h4>
 
   <div class="form-group row">
-    <label for="InitVal" class="col-sm-2 form-text">Init Out Value</label>
+    <label for="InputA" class="col-sm-2 form-text">Input Mask A</label>
     <div class="col-sm-1">
-      <input type="text" class="form-control" name="InitVal" id="InitVal" value="{{InitVal}}">
+      <input type="text" class="form-control" name="InputA" id="InputA" value="{{InputA}}">
     </div>
-    <div class="col-sm-7 form-text text-muted">(Set Bit=1 for Input)</div>
+    <div class="col-sm-7 form-text text-muted">(Bit=0 for Output; Bit=1 for Input)</div>
+  </div>
+
+  <div class="form-group row">
+    <label for="InputB" class="col-sm-2 form-text">Input Mask B</label>
+    <div class="col-sm-1">
+      <input type="text" class="form-control" name="InputB" id="InputB" value="{{InputB}}">
+    </div>
+    <div class="col-sm-7 form-text text-muted">(Bit=0 for Output; Bit=1 for Input)</div>
+  </div>
+
+  <div class="form-group row">
+    <label for="InitValA" class="col-sm-2 form-text">Init Out Value A</label>
+    <div class="col-sm-1">
+      <input type="text" class="form-control" name="InitValA" id="InitValA" value="{{InitValA}}">
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <label for="InitValB" class="col-sm-2 form-text">Init Out Value B</label>
+    <div class="col-sm-1">
+      <input type="text" class="form-control" name="InitValB" id="InitValB" value="{{InitValB}}">
+    </div>
   </div>
 
 
@@ -95,9 +117,16 @@
   </h4>
 
   <div class="form-group row">
-    <label for="TrigVar" class="col-sm-2 form-text">Trigger Variable</label>
+    <label for="TrigVarA" class="col-sm-2 form-text">Trigger Variable A</label>
     <div class="col-sm-7">
-      <input type="text" class="form-control" name="TrigVar" id="TrigVar" value="{{TrigVar}}">
+      <input type="text" class="form-control" name="TrigVarA" id="TrigVarA" value="{{TrigVarA}}">
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <label for="TrigVarB" class="col-sm-2 form-text">Trigger Variable B</label>
+    <div class="col-sm-7">
+      <input type="text" class="form-control" name="TrigVarB" id="TrigVarB" value="{{TrigVarB}}">
     </div>
   </div>
 
@@ -107,9 +136,16 @@
   </h4>
 
   <div class="form-group row">
-    <label for="RespVar" class="col-sm-2 form-text">Resp. Variable</label>
+    <label for="RespVarA" class="col-sm-2 form-text">Resp. Variable A</label>
     <div class="col-sm-7">
-      <input type="text" class="form-control" name="RespVar" id="RespVar" value="{{RespVar}}">
+      <input type="text" class="form-control" name="RespVarA" id="RespVarA" value="{{RespVarA}}">
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <label for="RespVarB" class="col-sm-2 form-text">Resp. Variable B</label>
+    <div class="col-sm-7">
+      <input type="text" class="form-control" name="RespVarB" id="RespVarB" value="{{RespVarB}}">
     </div>
   </div>
 

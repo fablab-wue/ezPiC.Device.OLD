@@ -3,7 +3,7 @@ Machine Plugin for Testing on PC
 """
 import pigpio
 
-REMOTE_URL = '10.23.42.92'
+REMOTE_URL = '10.23.42.20'
 PI = pigpio.pi(REMOTE_URL)
 
 from com.Globals import *
@@ -31,7 +31,7 @@ class PluginMachine(Machine.PluginMachineBase):
         super().__init__(module)
         self.param = {
             # instance specific params
-            'RemoteURL':'10.23.42.92',
+            #'RemoteURL':'10.23.42.92',
             }
 
 # -----

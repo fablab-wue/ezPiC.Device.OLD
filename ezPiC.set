@@ -15,9 +15,7 @@
     {
       "MAPID": "maPCpigpio",
       "version": "1.0",
-      "params": {
-        "RemoteURL": "10.23.42.92"
-      }
+      "params": {}
     },
     {
       "MAPID": "maPC",
@@ -68,7 +66,7 @@
       "version": "1.0",
       "params": {
         "NAME": "PCF8574",
-        "ENABLE": true,
+        "ENABLE": false,
         "TIMER": 1,
         "PORT": "I2C1 (Lorem)",
         "ADDR": "20 (Default)",
@@ -93,7 +91,7 @@
       "version": "1.0",
       "params": {
         "NAME": "SHT31",
-        "ENABLE": true,
+        "ENABLE": false,
         "TIMER": 5,
         "PORT": "1",
         "ADDR": "44",
@@ -106,12 +104,31 @@
       "version": "1.0",
       "params": {
         "NAME": "CharLCD",
-        "ENABLE": true,
+        "ENABLE": false,
         "TIMER": 3,
         "PORT": "1",
         "ADDR": "3F",
         "Size": "2004",
         "Text": "Hallo"
+      }
+    },
+    {
+      "EZPID": "gdMCP23017",
+      "version": "1.0",
+      "params": {
+        "NAME": "MCP23017",
+        "ENABLE": true,
+        "TIMER": 3.1,
+        "PORT": "I2C1 (GPIO03,GPIO02)",
+        "ADDR": "20",
+        "InputA": "0x00",
+        "InitValA": "0xAA",
+        "TrigVarA": "MCP23017.A.out",
+        "RespVarA": "MCP23017.A.in",
+        "InputB": "0x00",
+        "InitValB": "0x55",
+        "TrigVarB": "MCP23017.B.out",
+        "RespVarB": "MCP23017.B.in"
       }
     }
   ],
