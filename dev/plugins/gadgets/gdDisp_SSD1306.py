@@ -60,39 +60,23 @@ class PluginGadget(GI2C):
 # -----
 
     def variables(self, news:dict):
-        if not self._i2c:
-            return
-
-        try:
-            name = self.param['TrigVar']
-            if name and name in news:
-                val = Variable.get(name)
-                if type(val) == str:
-                    val = int(val, 0)
-                if 0 <= val <= 255:
-                    self._i2c.write_byte(val)
-
-        except Exception as e:
-            print(str(e))
-            self._last_error = str(e)
+        name = self.param['TrigVar']
+        if name and name in news:
+            val = Variable.get(name)
+            if type(val) == str:
+                val = int(val, 0)
+            if 0 <= val <= 255:
+                self._i2c.write_byte(val)
 
 # -----
 
     def timer(self, prepare:bool):
-        if not self._i2c:
-            return
-
-        try:
-            name = self.param['RespVar']
-            if name:
-                val = self._i2c.read_byte()
-                print(val)
-                if val != self._last_val:
-                    self._last_val = val
-                    Variable.set(name, val)
-
-        except Exception as e:
-            print(str(e))
-            self._last_error = str(e)
+        name = self.param['RespVar']
+        if name:
+            val = self._i2c.read_byte()
+            print(val)
+            if val != self._last_val:
+                self._last_val = val
+                Variable.set(name, val)
 
 #######

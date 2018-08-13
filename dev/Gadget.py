@@ -27,7 +27,11 @@ def gadget_timer_handler(news, args):
             if gadget.is_enabled():
                 if gadget.prepare_next and (t >= gadget.prepare_next):
                     gadget.prepare_next = None
-                    gadget.timer(True)
+                    try:
+                        gadget.timer(True)
+                    except Exception as e:
+                        #print(str(e))
+                        gadget._last_error = str(e)
 
                 if gadget.timer_next and (t >= gadget.timer_next):
                     if gadget.timer_period: # cyclic timer
@@ -38,16 +42,28 @@ def gadget_timer_handler(news, args):
                             gadget.prepare_next = gadget.timer_next - gadget.prepare_time
                     else: # singel event
                         gadget.timer_next = None
-                    gadget.timer(False)
+                    try:
+                        gadget.timer(False)
+                    except Exception as e:
+                        #print(str(e))
+                        gadget._last_error = str(e)
                 #else: # disabled
                 #gadget.timer_next = None
 
                 if news:
-                    gadget.variables(news)
+                    try:
+                        gadget.variables(news)
+                    except Exception as e:
+                        #print(str(e))
+                        gadget._last_error = str(e)
 
         for gadget in _GADGETS:
             if gadget.is_enabled():
-                gadget.idle()
+                try:
+                    gadget.idle()
+                except Exception as e:
+                    #print(str(e))
+                    gadget._last_error = str(e)
 
 #######
 

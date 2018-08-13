@@ -67,15 +67,12 @@ class PluginGadget(Gadget.PluginGadgetBase):
 # -----
 
     def variables(self, news:dict):
-        try:
-            key = self.param['TrigVar']
-            if key in news:
-                out = self._get_variable(key)
+        key = self.param['TrigVar']
+        if key in news:
+            out = self._get_variable(key)
 
-                if self._pin:
-                    self._pin.set(out)
-        except:
-            pass
+            if self._pin:
+                self._pin.set(out)
 
 # =====
 

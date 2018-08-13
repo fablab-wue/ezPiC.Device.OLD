@@ -86,20 +86,12 @@ class PluginGadget(GI2C):
 # -----
 
     def timer(self, prepare:bool):
-        if not self._i2c:
-            return
-
-        try:
-            name = self.param['Text']
-            if name:
-                val = Variable.get(name)
-                if type(val) != str:
-                    val = str(val)
-                val = val.split('\r')
-
-        except Exception as e:
-            print(str(e))
-            self._last_error = str(e)
+        name = self.param['Text']
+        if name:
+            val = Variable.get(name)
+            if type(val) != str:
+                val = str(val)
+            val = val.split('\r')
 
 # =====
 

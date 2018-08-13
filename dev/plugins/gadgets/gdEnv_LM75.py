@@ -1,5 +1,5 @@
 """
-Gadget Plugin for Light BH1721
+Gadget Plugin for 
 """
 from com.Globals import *
 
@@ -11,9 +11,9 @@ import dev.Machine as Machine
 #######
 # Globals:
 
-EZPID = 'gdBH1750'
+EZPID = 'gdLM75'
 PTYPE = PT_SENSOR
-PNAME = '@PLAN Light - BH1750 GY30 GY302 - Luminosity (I2C)'
+PNAME = '@WORK Env.T - LM75 - Temp. Sensor (I2C)'
 
 #######
 
@@ -24,13 +24,13 @@ class PluginGadget(GI2C):
         super().__init__(module)
         self.param = {
             # must be params
-            'NAME':'BH1750',
+            'NAME':'LM75',
             'ENABLE':False,
-            'TIMER':2.1,
+            'TIMER':3,
             'PORT':'1',
-            'ADDR':'23',
+            'ADDR':'48',
             # instance specific params
-            'RespVar':'Light',
+            'RespVar':'LM75.T',
             }
         self._last_val = None
 
@@ -39,8 +39,10 @@ class PluginGadget(GI2C):
     def init(self):
         super().init()
 
-        if self._i2c and self.param['InitVal']:
-            self._i2c.write_byte(int(self.param['InitVal'], 0))
+        #if self._i2c and self.param['InitVal']:
+        self._i2c.write_byte(0)
+
+        Variable.set_meta(self.param['RespVar'], '°C', '{:.1f}')
 
 # -----
 
@@ -55,7 +57,7 @@ class PluginGadget(GI2C):
 # -----
 
     def get_addrs(self):
-        return ('23')
+        return ('48 (Default)', '49', '4A', '4B', '4C', '4D', '4E', '4F')
 
 # -----
 
@@ -79,20 +81,14 @@ class PluginGadget(GI2C):
 # -----
 
     def timer(self, prepare:bool):
-        if not self._i2c:
-            return
-
-        try:
-            name = self.param['RespVar']
-            if name:
-                val = self._i2c.read_byte()
-                print(val)
-                if val != self._last_val:
-                    self._last_val = val
-                    Variable.set(name, val)
-
-        except Exception as e:
-            print(str(e))
-            self._last_error = str(e)
+        name = self.param['RespVar']
+        if name:
+            data = self._i2c.read_buffer(2)
+            val = ((data[0] & 0xFF) << 3) | ((data[1] & 0x01) >> 5)
+            if val >= 0x400:
+                val -= 0x800
+            val /= 8
+            print(val)
+            Variable.set(name, val)
 
 #######

@@ -61,25 +61,17 @@ class PluginGadget(GI2C):
 # -----
 
     def timer(self, prepare:bool):
-        if not self._i2c:
-            return
-
-        try:
-            name_t = self.param['RespVarT']
-            name_h = self.param['RespVarH']
-            if name_t or name_h:
-                data = self._i2c.read_reg_buffer(self, 0, 5)
-                #TODO Checksum data[4]
-                print(data)
-                if name_t:
-                    t = data[2] + data[3]/10
-                    Variable.set(name_t, t)
-                if name_h:
-                    h = data[0] + data[1]/10
-                    Variable.set(name_h, h)
-
-        except Exception as e:
-            print(str(e))
-            self._last_error = str(e)
+        name_t = self.param['RespVarT']
+        name_h = self.param['RespVarH']
+        if name_t or name_h:
+            data = self._i2c.read_reg_buffer(self, 0, 5)
+            #TODO Checksum data[4]
+            print(data)
+            if name_t:
+                t = data[2] + data[3]/10
+                Variable.set(name_t, t)
+            if name_h:
+                h = data[0] + data[1]/10
+                Variable.set(name_h, h)
 
 #######

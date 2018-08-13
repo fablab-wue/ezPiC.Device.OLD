@@ -13,7 +13,15 @@ import dev.Machine as Machine
 
 EZPID = 'gdPCA9685'
 PTYPE = PT_ACTUATOR
-PNAME = '@PLAN PWM - PCA9685 - 16-Ch 12-Bit PWM (I2C)'
+PNAME = '@WORK PWM - PCA9685 - 16-Ch 12-Bit PWM (I2C)'
+
+INIT_SEQUENCE = (
+    (0x00, 0x30),  # Mode1 = AI SLEEP
+    (0x01, 0x04),  # Mode2 = OUTDRV
+    (0xFE, 30),    # PRE_SCALE = 200Hz
+    #(0xFE, 121),   # PRE_SCALE = 50Hz
+    (0x00, 0x20),  # Mode1 = AI
+)
 
 #######
 
@@ -26,11 +34,12 @@ class PluginGadget(GI2C):
             # must be params
             'NAME':'PCA9685',
             'ENABLE':False,
-            'TIMER':2.1,
+            'TIMER':0,
             'PORT':'1',
             'ADDR':'7F',
             # instance specific params
-            'Mode':'0',   # RC-Servo, LED, Gamma, 0...1
+            'Mode':'LED',   # 0=LED 1=LED-Gamma 2=RC-Servo
+            'Active':'H',   # 'L'=Low-Active 'H'=High-Active
             'MaxVal':'100',
             'TrigVar0':'PWM-0',
             'TrigVar1':'PWM-1',
@@ -56,8 +65,20 @@ class PluginGadget(GI2C):
     def init(self):
         super().init()
 
-        if self._i2c and self.param['InitVal']:
-            self._i2c.write_byte(int(self.param['InitVal'], 0))
+        for reg, val in INIT_SEQUENCE:
+            self._i2c.write_reg_byte(reg, val)
+
+        if self.param['Mode'].upper().startswith('RC'):
+            self._offset = 819
+            self._scale = 819 / float(self.param['MaxVal'])
+        else:   # LED
+            self._offset = 0
+            self._scale = 4096 / float(self.param['MaxVal'])
+
+        self._gamma = self.param['Mode'].upper().endswith('GAMMA')
+
+        for i in range(16):
+            self._set_val(i, 0)
 
 # -----
 
@@ -77,39 +98,54 @@ class PluginGadget(GI2C):
 # -----
 
     def variables(self, news:dict):
-        if not self._i2c:
-            return
-
-        try:
-            name = self.param['TrigVar']
+        for i, key in enumerate(
+            'TrigVar0',
+            'TrigVar1',
+            'TrigVar2',
+            'TrigVar3',
+            'TrigVar4',
+            'TrigVar5',
+            'TrigVar6',
+            'TrigVar7',
+            'TrigVar8',
+            'TrigVar9',
+            'TrigVarA',
+            'TrigVarB',
+            'TrigVarC',
+            'TrigVarD',
+            'TrigVarE',
+            'TrigVarF',
+            ):
+            name = self.param[key]
             if name and name in news:
                 val = Variable.get(name)
-                if type(val) == str:
-                    val = int(val, 0)
-                if 0 <= val <= 255:
-                    self._i2c.write_byte(val)
+                if type(val) == list:
+                    for ii, subval in enumerate(val, i):
+                        self._set_val(ii, subval)
+                else:
+                    self._set_val(i, val)
 
-        except Exception as e:
-            print(str(e))
-            self._last_error = str(e)
+# =====
 
-# -----
+    def _set_val(self, i, val):
+        i &= 0xF
+        if type(val) == str:
+            val = float(val)
+        val = val * self._scale + self._offset
+        if self._gamma:
+            val /= 0x1000
+            val *= val
+            val *= 0x1000
 
-    def timer(self, prepare:bool):
-        if not self._i2c:
-            return
-
-        try:
-            name = self.param['RespVar']
-            if name:
-                val = self._i2c.read_byte()
-                print(val)
-                if val != self._last_val:
-                    self._last_val = val
-                    Variable.set(name, val)
-
-        except Exception as e:
-            print(str(e))
-            self._last_error = str(e)
+        val = int(val + 0.5)
+        if self.param['Active'] == 'L':
+            val = 0x1000 - val
+        if val <= 0:
+            data = [0, i, 0, i | 0x10]
+        elif val >= 0x1000:
+            data = [0, i | 0x10, 0, i]
+        else:
+            data = [0, i, (val & 0xFF), ((val >> 8 + i) & 0x0F) ]
+        self._i2c.write_reg_buffer(6 + i<<2, data)
 
 #######

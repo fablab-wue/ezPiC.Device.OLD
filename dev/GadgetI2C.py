@@ -40,6 +40,9 @@ class PluginGadgetI2C(Gadget.PluginGadgetBase):
             self._last_error = str(e)
             self._i2c = None
 
+        if not self._i2c:
+            self.param['ENABLE'] = False
+
 # -----
 
     def exit(self):

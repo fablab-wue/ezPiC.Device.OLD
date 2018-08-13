@@ -108,41 +108,25 @@ class PluginGadget(GI2C):
 # -----
 
     def variables(self, news:dict):
-        if not self._i2c:
-            return
-
-        try:
-            for key, reg in (('TrigVarA', MCP23017_GPIOA), ('TrigVarB', MCP23017_GPIOB)):
-                name = self.param[key]
-                if name and name in news:
-                    val = Variable.get(name)
-                    if type(val) == str:
-                        val = int(val, 0)
-                    if 0 <= val <= 255:
-                        self._i2c.write_reg_byte(reg, val)
-
-        except Exception as e:
-            print(str(e))
-            self._last_error = str(e)
+        for key, reg in (('TrigVarA', MCP23017_GPIOA), ('TrigVarB', MCP23017_GPIOB)):
+            name = self.param[key]
+            if name and name in news:
+                val = Variable.get(name)
+                if type(val) == str:
+                    val = int(val, 0)
+                if 0 <= val <= 255:
+                    self._i2c.write_reg_byte(reg, val)
 
 # -----
 
     def timer(self, prepare:bool):
-        if not self._i2c:
-            return
-
-        try:
-            for key, reg in (('RespVarA', MCP23017_GPIOA), ('RespVarB', MCP23017_GPIOB)):
-                name = self.param[key]
-                if name:
-                    val = self._i2c.read_reg_byte(reg)
-                    print(val)
-                    if val != self._last_val:
-                        self._last_val = val
-                        Variable.set(name, val)
-
-        except Exception as e:
-            print(str(e))
-            self._last_error = str(e)
+        for key, reg in (('RespVarA', MCP23017_GPIOA), ('RespVarB', MCP23017_GPIOB)):
+            name = self.param[key]
+            if name:
+                val = self._i2c.read_reg_byte(reg)
+                print(val)
+                if val != self._last_val:
+                    self._last_val = val
+                    Variable.set(name, val)
 
 #######

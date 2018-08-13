@@ -1,5 +1,5 @@
 """
-Gadget Plugin for GPIO output
+Gadget Plugin for Light BH1721
 """
 from com.Globals import *
 
@@ -11,9 +11,9 @@ import dev.Machine as Machine
 #######
 # Globals:
 
-EZPID = 'gdPCF8575'
-PTYPE = PT_SENSOR | PT_ACTUATOR
-PNAME = '@WORK IO - PCF8575 - 16-Bit Port Expander (I2C)'
+EZPID = 'gdBH1750'
+PTYPE = PT_SENSOR
+PNAME = '@PLAN ALS - BH1750 GY30 GY302 - Luminosity (I2C)'
 
 #######
 
@@ -24,15 +24,13 @@ class PluginGadget(GI2C):
         super().__init__(module)
         self.param = {
             # must be params
-            'NAME':'PCF8575',
+            'NAME':'BH1750',
             'ENABLE':False,
-            'TIMER':0.1,
+            'TIMER':2.1,
             'PORT':'1',
-            'ADDR':'20',
+            'ADDR':'23',
             # instance specific params
-            'InitVal':'0xFFFF',
-            'TrigVar':'PCF8575.out',
-            'RespVar':'PCF8575.in',
+            'RespVar':'Light',
             }
         self._last_val = None
 
@@ -42,8 +40,7 @@ class PluginGadget(GI2C):
         super().init()
 
         if self._i2c and self.param['InitVal']:
-            val = int(self.param['InitVal'], 0) & 0xFFFF
-            self._i2c.write_buffer([val & 0xFF, (val >> 8) & 0xFF])
+            self._i2c.write_byte(int(self.param['InitVal'], 0))
 
 # -----
 
@@ -58,7 +55,7 @@ class PluginGadget(GI2C):
 # -----
 
     def get_addrs(self):
-        return ('20 (Default)', '21', '22', '23', '24', '25', '26', '27')
+        return ('23')
 
 # -----
 
@@ -68,17 +65,16 @@ class PluginGadget(GI2C):
             val = Variable.get(name)
             if type(val) == str:
                 val = int(val, 0)
-            if 0 <= val <= 0xFFFF:
-                self._i2c.write_buffer([val & 0xFF, (val >> 8) & 0xFF])
+            if 0 <= val <= 255:
+                self._i2c.write_byte(val)
 
 # -----
 
     def timer(self, prepare:bool):
         name = self.param['RespVar']
         if name:
-            data = self._i2c.read_buffer(2)
-            val = (data[1] << 8) | data[0]
-            #print(val)
+            val = self._i2c.read_byte()
+            print(val)
             if val != self._last_val:
                 self._last_val = val
                 Variable.set(name, val)

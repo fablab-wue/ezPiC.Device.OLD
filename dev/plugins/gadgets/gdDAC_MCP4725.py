@@ -30,7 +30,7 @@ class PluginGadget(GI2C):
             'PORT':'1',
             'ADDR':'60',
             # instance specific params
-            'TrigVar':'DAC',
+            'TrigVar':'MCP4725.out',
             'MaxVal':'4095',
             }
         self._last_val = None
@@ -40,8 +40,7 @@ class PluginGadget(GI2C):
     def init(self):
         super().init()
 
-        if self._i2c and self.param['InitVal']:
-            self._i2c.write_byte(int(self.param['InitVal'], 0))
+        self._scale = 0xFFF / float(self.param['MaxVal'])
 
 # -----
 
@@ -61,21 +60,15 @@ class PluginGadget(GI2C):
 # -----
 
     def variables(self, news:dict):
-        if not self._i2c:
-            return
-
-        try:
-            name = self.param['TrigVar']
-            if name and name in news:
-                val = Variable.get(name)
-                if type(val) == str:
-                    val = int(val, 0)
-                if 0 <= val <= 4095:
-                    data = [((val >> 8) & 0x0F), (val & 0xFF)]
-                    self._i2c.write_buffer(data)
-
-        except Exception as e:
-            print(str(e))
-            self._last_error = str(e)
+        name = self.param['TrigVar']
+        if name and name in news:
+            val = Variable.get(name)
+            if type(val) == str:
+                val = float(val)
+            val = int(val * self._scale + 0.5)
+            if val < 0: val = 0
+            if val > 0xFFF: val = 0xFFF
+            data = [((val >> 8) & 0x0F), (val & 0xFF)]
+            self._i2c.write_buffer(data)
 
 #######
