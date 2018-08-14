@@ -30,11 +30,13 @@ class PluginGadget(GI2C):
             'PORT':'1',
             'ADDR':'48',
             # instance specific params
-            'RespVar0':'Channel0',
-            'RespVar1':'Channel1',
-            'RespVar2':'Channel2',
-            'RespVar3':'Channel3',
-            'FSR':'0',
+            'RespVar':'ADS1x15.value',
+            #'RespVar0':'Channel0',
+            #'RespVar1':'Channel1',
+            #'RespVar2':'Channel2',
+            #'RespVar3':'Channel3',
+            'PGA':'0',
+            'Mux':'0',
             }
         self._last_val = None
 
@@ -43,8 +45,14 @@ class PluginGadget(GI2C):
     def init(self):
         super().init()
 
-        if self._i2c and self.param['InitVal']:
-            self._i2c.write_byte(int(self.param['InitVal'], 0))
+        test = self._i2c.read_reg_word(1, little_endian=False, signed=False)
+
+        mux = 0x4
+        pga = 0x1
+        sps = 0x0
+        data = (mux << 12) | (pga << 9) | (sps << 5)
+        # MSB first
+        self._i2c.write_reg_word(1, data, little_endian=False, signed=False)
 
 # -----
 
@@ -63,40 +71,11 @@ class PluginGadget(GI2C):
 
 # -----
 
-    def variables(self, news:dict):
-        if not self._i2c:
-            return
-
-        try:
-            name = self.param['TrigVar']
-            if name and name in news:
-                val = Variable.get(name)
-                if type(val) == str:
-                    val = int(val, 0)
-                if 0 <= val <= 255:
-                    self._i2c.write_byte(val)
-
-        except Exception as e:
-            print(str(e))
-            self._last_error = str(e)
-
-# -----
-
     def timer(self, prepare:bool):
-        if not self._i2c:
-            return
-
-        try:
-            name = self.param['RespVar']
-            if name:
-                val = self._i2c.read_byte()
-                print(val)
-                if val != self._last_val:
-                    self._last_val = val
-                    Variable.set(name, val)
-
-        except Exception as e:
-            print(str(e))
-            self._last_error = str(e)
+        name = self.param['RespVar']
+        if name:
+            val = self._i2c.read_reg_word(0, little_endian=False, signed=True)
+            print(val)
+            Variable.set(name, val)
 
 #######

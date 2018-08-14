@@ -95,8 +95,11 @@ class I2C_PC():
     def write_byte(self, data:int):
         self._pi.i2c_write_byte(self._h, data)
 
-    def read_reg_byte(self, reg:int) -> int:
-        return self._pi.i2c_read_byte_data(self._h, reg)
+    def read_reg_byte(self, reg:int, signed=False) -> int:
+        data = self._pi.i2c_read_byte_data(self._h, reg)
+        if signed and (data >= 128):
+            data -= 256
+        return data
 
     def write_reg_byte(self, reg:int, data:int):
         self._pi.i2c_write_byte_data(self._h, reg, data)
