@@ -6,6 +6,9 @@ import pigpio
 REMOTE_URL = '10.23.42.20'
 PI = pigpio.pi(REMOTE_URL)
 
+if not PI.connected:
+    raise Exception('Remote connection to RPi failed')
+
 from com.Globals import *
 
 import dev.Machine as Machine
@@ -19,7 +22,7 @@ PNAME = 'PCpigpio'
 
 
 LIST_I2C = (
-"I2C1 (GPIO03,GPIO02)",
+"I2C1 @RPi (GPIO03,GPIO02)",
 )
 
 #######
@@ -38,9 +41,6 @@ class PluginMachine(Machine.PluginMachineBase):
 
     def init(self):
         super().init()
-
-        #self._pi = pigpio.pi(self.param['RemoteURL'])
-        #I2C_PC._pi = self._pi
 
         Machine.set_feature('I2C', LIST_I2C)
 
@@ -66,7 +66,6 @@ class I2C_PC():
             self._id = id
         else:
             raise Exception('Wrong data type for id')
-        #self._pi = pigpio.pi(REMOTE_URL)
         self._h = None
 
     def init(self, addr, freq=400000):
@@ -95,6 +94,12 @@ class I2C_PC():
     def write_byte(self, data:int):
         self._pi.i2c_write_byte(self._h, data)
 
+    def read_buffer(self, nbytes:int) -> bytearray:
+        return self._pi.i2c_read_device(self._h, nbytes)[1]
+
+    def write_buffer(self, data:bytearray):
+        self._pi.i2c_write_device(self._h, data)
+
     def read_reg_byte(self, reg:int, signed=False) -> int:
         data = self._pi.i2c_read_byte_data(self._h, reg)
         if signed and (data >= 128):
@@ -118,16 +123,10 @@ class I2C_PC():
         self._pi.i2c_write_word_data(self._h, reg, data)
 
     def read_reg_buffer(self, reg:int, nbytes:int) -> bytearray:
-        return self._pi.i2c_read_i2c_block_data(self._h, reg, nbytes)
+        return self._pi.i2c_read_i2c_block_data(self._h, reg, nbytes)[1]
 
     def write_reg_buffer(self, reg:int, data:bytearray):
         self._pi.i2c_write_i2c_block_data(self._h, reg, data)
-
-    def read_buffer(self, nbytes:int) -> bytearray:
-        return self._pi.i2c_read_device(self._h, nbytes)[1]
-
-    def write_buffer(self, data:bytearray):
-        self._pi.i2c_write_device(self._h, data)
 
 # =====
 

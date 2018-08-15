@@ -104,12 +104,13 @@
       "version": "1.0",
       "params": {
         "NAME": "CharLCD",
-        "ENABLE": false,
-        "TIMER": 3,
-        "PORT": "1",
+        "ENABLE": true,
+        "TIMER": "5",
+        "PORT": "I2C1 @RPi (GPIO03,GPIO02)",
         "ADDR": "3F",
-        "Size": "2004",
-        "Text": "Hallo"
+        "Lines": "4",
+        "Width": "20",
+        "Text": "Hallo\r\n<PDF8591.Channel1>2\r\nLorem <B.Voltage> Ipsum\r\n4"
       }
     },
     {
@@ -117,9 +118,9 @@
       "version": "1.0",
       "params": {
         "NAME": "MCP23017",
-        "ENABLE": true,
+        "ENABLE": false,
         "TIMER": 3.1,
-        "PORT": "I2C1 (GPIO03,GPIO02)",
+        "PORT": "I2C1 @RPi (GPIO03,GPIO02)",
         "ADDR": "20",
         "InputA": "0x00",
         "InitValA": "0xAA",
@@ -129,6 +130,47 @@
         "InitValB": "0x55",
         "TrigVarB": "MCP23017.B.out",
         "RespVarB": "MCP23017.B.in"
+      }
+    },
+    {
+      "EZPID": "gdADS1x15",
+      "version": "1.0",
+      "params": {
+        "NAME": "ADS1x15",
+        "ENABLE": false,
+        "TIMER": "1",
+        "PORT": "I2C1 @RPi (GPIO03,GPIO02)",
+        "ADDR": "48 (ADDR-GND)",
+        "RespVar": "ADS1x15.value",
+        "PGA": "1",
+        "Mux": "4",
+        "MapADC0": "0",
+        "MapADC1": "20000",
+        "MapVal0": "0",
+        "MapVal1": "100.0"
+      }
+    },
+    {
+      "EZPID": "gdPDF8591",
+      "version": "1.0",
+      "params": {
+        "NAME": "PDF8591",
+        "ENABLE": true,
+        "TIMER": "1",
+        "PORT": "I2C1 @RPi (GPIO03,GPIO02)",
+        "ADDR": "48",
+        "TrigVar": "PDF8591.out",
+        "RespVar0": "PDF8591.Channel0",
+        "RespVar1": "PDF8591.Channel1",
+        "RespVar2": "PDF8591.Channel2",
+        "RespVar3": "PDF8591.Channel3",
+        "Mode": "0",
+        "MapOut0": "0.0",
+        "MapOut1": "100.0",
+        "MapADC0": "0",
+        "MapADC1": "0",
+        "MapVal0": "0.0",
+        "MapVal1": "100.0"
       }
     }
   ],

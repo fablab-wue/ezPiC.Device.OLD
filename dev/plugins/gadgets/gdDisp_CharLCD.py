@@ -16,6 +16,7 @@ import dev.Gadget as Gadget
 from dev.GadgetI2C import PluginGadgetI2C as GI2C
 import dev.Variable as Variable
 import dev.Machine as Machine
+#import com.Tool as Tool
 
 #######
 # Globals:
@@ -40,8 +41,9 @@ class PluginGadget(GI2C):
             'PORT':'1',
             'ADDR':'3F',
             # instance specific params
-            'Size':'2004',
-            'Text':'Hallo',
+            'Lines':'4',
+            'Width':'20',
+            'Text':'Hello',
             }
         self._last_val = None
 
@@ -54,6 +56,7 @@ class PluginGadget(GI2C):
         #    self._i2c.write_byte(int(self.param['InitVal'], 0))
 
         self.width = 20
+        self.lines = 4
         self.backlight_on = True
 
         self.RS = (1<<0)
@@ -65,7 +68,7 @@ class PluginGadget(GI2C):
 
         self._init()
 
-        self.put_line(0, "Hallo")
+        self.put_line(0, "-ezPiC-")
 
 
 # -----
@@ -86,12 +89,13 @@ class PluginGadget(GI2C):
 # -----
 
     def timer(self, prepare:bool):
-        name = self.param['Text']
-        if name:
-            val = Variable.get(name)
-            if type(val) != str:
-                val = str(val)
-            val = val.split('\r')
+        text = self.param['Text']
+        if text:
+            text = Variable.texter(text)
+
+            lines = text.replace('\r', '').split('\n')
+            for i, line in enumerate(lines):
+                self.put_line(i, line)
 
 # =====
 

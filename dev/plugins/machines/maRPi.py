@@ -1,8 +1,13 @@
 """
 Machine Plugin for Raspberry Pi
 """
+import pigpio
+PI = pigpio.pi()
+if not PI.connected:
+    raise Exception('Remote connection to RPi failed')
+
 import RPi.GPIO as GPIO
-import smbus
+#import smbus
 import serial
 from serial.tools.list_ports import comports
 
@@ -237,6 +242,8 @@ class UART_RPi():
 # =====
 
 class I2C_RPi():
+    _pi = PI
+
     def __init__(self, id='1'):
         if type(id) is str:
             id = id.strip().split(' ', 1)[0]
@@ -247,7 +254,7 @@ class I2C_RPi():
             self._id = id
         else:
             raise Exception('Wrong data type for id')
-        self._i2c = smbus.SMBus(self._id)
+        self._h = None
 
     def init(self, addr, freq=400000):
         if type(addr) is str:
@@ -259,33 +266,10 @@ class I2C_RPi():
             raise Exception('Wrong data type for addr')
         if not 0 <= self._addr <= 127:
             raise Exception('Wrong addr - out of range')
+        self._h = self._pi.i2c_open(self._id, self._addr)
 
     def deinit(self):
-        self._i2c = None
-    
-    def readfrom(self, addr, nbytes, stop=True):
-        buf = bytearray(nbytes)
-        self.readfrom_into(addr, buf, stop)
-        return buf
-
-    def readfrom_into(self, addr, buf, stop=True):
-        for i in range(len(buf)):
-            data = self._i2c.read_byte(addr)
-            buf[i] = data
-
-    def writeto(self, addr, buf, stop=True):
-        for i in range(len(buf)):
-            self._i2c.write_byte(addr, buf[i])
-
-    def readfrom_mem(self, addr, memaddr, nbytes, *, addrsize=8):
-        buf = self._i2c.read_i2c_block_data(addr, memaddr)
-        return buf
-
-    def readfrom_mem_into(self, addr, memaddr, buf, *, addrsize=8):
-        buf = self._i2c.read_i2c_block_data(addr, memaddr)
-
-    def writeto_mem(self, addr, memaddr, buf, *, addrsize=8):
-        self._i2c.write_i2c_block_data(addr, memaddr, buf)
+        self._pi.i2c_close(self._h)
     
     def set_freq(self, freq=400000):
         #self.init(self._scl_pin, self._sda_pin, freq=freq)
@@ -293,22 +277,28 @@ class I2C_RPi():
 
 
     def read_byte(self) -> int:
-        return self._i2c.read_byte(self._addr)
+        return self._pi.i2c_read_byte(self._h)
 
     def write_byte(self, data:int):
-        self._i2c.write_byte(self._addr, data)
+        self._pi.i2c_write_byte(self._h, data)
 
-    def read_reg_byte(self, reg:int) -> int:
-        return self._i2c.read_byte_data(self._addr, reg)
+    def read_buffer(self, nbytes:int) -> bytearray:
+        return self._pi.i2c_read_device(self._h, nbytes)[1]
+
+    def write_buffer(self, data:bytearray):
+        self._pi.i2c_write_device(self._h, data)
+
+    def read_reg_byte(self, reg:int, signed=False) -> int:
+        data = self._pi.i2c_read_byte_data(self._h, reg)
+        if signed and (data >= 128):
+            data -= 256
+        return data
 
     def write_reg_byte(self, reg:int, data:int):
-        self._i2c.write_byte_data(self._addr, reg, data)
+        self._pi.i2c_write_byte_data(self._h, reg, data)
 
     def read_reg_word(self, reg:int, little_endian=True, signed=False) -> int:
-        #data = self._i2c.read_i2c_block_data(self._addr, reg, 2)
-        #value = (data[0] << 8) | data[1]
-        #return value
-        data = self._i2c.read_word_data(self._addr, reg)
+        data =  self._pi.i2c_read_word_data(self._h, reg)
         if not little_endian:
             data = ((data & 0xFF) << 8) | ((data & 0xFF00) >> 8)
         if signed and (data >= 32768):
@@ -316,19 +306,15 @@ class I2C_RPi():
         return data        
 
     def write_reg_word(self, reg:int, data:int, little_endian=True):
-        #buf = bytearray(2)
-        #buf[0] = (data >> 8) & 0xFF
-        #buf[1] = data & 0xFF
-        #self._i2c.write_i2c_block_data(self._addr, reg, buf)
         if not little_endian:
             data = ((data & 0xFF) << 8) | ((data & 0xFF00) >> 8)
-        self._i2c.write_word_data(self._addr, reg, data)
+        self._pi.i2c_write_word_data(self._h, reg, data)
 
     def read_reg_buffer(self, reg:int, nbytes:int) -> bytearray:
-        return self._i2c.read_i2c_block_data(self._addr, reg, nbytes)   # nbytes is ignored?
+        return self._pi.i2c_read_i2c_block_data(self._h, reg, nbytes)
 
     def write_reg_buffer(self, reg:int, data:bytearray):
-        self._i2c.write_i2c_block_data(self._addr, reg, data)
+        self._pi.i2c_write_i2c_block_data(self._h, reg, data)
 
 # =====
 

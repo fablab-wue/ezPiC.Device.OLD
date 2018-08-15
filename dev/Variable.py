@@ -255,3 +255,22 @@ class Filter():
         return ''
 
 #######
+
+def texter_token(token:str) -> str:
+    if token in VARIABLES:
+        return get_str(token)
+        
+    return token
+
+def texter(text_in:str) -> str:
+    text_out = ''
+    parts = text_in.split('>')
+    for part in parts:
+        subpart = part.split('<', 1)
+        text_out += subpart[0]
+        if len(subpart) > 1:
+            text_out += texter_token(subpart[1])
+
+    return text_out
+
+#######

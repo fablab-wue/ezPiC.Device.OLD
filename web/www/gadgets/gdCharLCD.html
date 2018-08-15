@@ -87,81 +87,20 @@
   </div>
 
 
-  <h4>
-    <span class="badge badge-dark col-sm-12">ADC Settings</span>
-  </h4>
 
-  <div class="form-group row align-items-center">
-    <label for="Mux" class="col-sm-2 form-text">Input Multiplexer</label>
-    <div class="col-sm-3">
-      <select class="form-control" name="Mux" id="Mux" value="{{Mux}}">
-        <option value="0">Ain0 - Ain1</option>
-        <option value="1">Ain0 - Ain3</option>
-        <option value="2">Ain1 - Ain3</option>
-        <option value="3">Ain2 - Ain3</option>
-        <option value="4">Ain0 - GND</option>
-        <option value="5">Ain1 - GND</option>
-        <option value="6">Ain2 - GND</option>
-        <option value="7">Ain3 - GND</option>
-      </select>
-    </div>
+<h4>
+  <span class="badge badge-dark col-sm-12">Display Content</span>
+</h4>
+
+<div class="form-group row">
+  <label for="Text" class="col-sm-2 form-text">Text Template</label>
+  <div class="col-sm-10">
+    <textarea class="form-control" name="Text" id="Text" rows="4">{{Text}}</textarea>
   </div>
-
-  <div class="form-group row align-items-center">
-    <label for="PGA" class="col-sm-2 form-text">Full Scale Range</label>
-    <div class="col-sm-3">
-      <select class="form-control" name="PGA" id="PGA" value="{{PGA}}">
-        <option value="0">&plusmn;6.144V</option>
-        <option value="1">&plusmn;4.096V</option>
-        <option value="2">&plusmn;2.048V</option>
-        <option value="3">&plusmn;1.024V</option>
-        <option value="4">&plusmn;0.512V</option>
-        <option value="5">&plusmn;0.256V</option>
-      </select>
-    </div>
-  </div>
-
-
-  <h4>
-    <span class="badge badge-dark col-sm-12">ADC Input Response</span>
-  </h4>
-
-  <div class="form-group row">
-    <label for="RespVar" class="col-sm-2 form-text">Resp. Variable</label>
-    <div class="col-sm-7">
-      <input type="text" class="form-control" name="RespVar" id="RespVar" value="{{RespVar}}">
-    </div>
-  </div>
-
-
-  <h4>
-    <span class="badge badge-dark col-sm-12">Resp. Variable Value Mapping</span>
-  </h4>
-  
-  <div class="form-group row align-items-center">
-      <label for="MapADC0" class="col-sm-2 form-text">Map ADC Value 0</label>
-      <div class="input-group col-sm-2">
-        <input type="number" class="form-control" name="MapADC0" id="MapADC0" value="{{MapADC0}}">
-      </div>
-
-      <label for="MapVal0" class="col-sm-2 form-text">to Output Value 0</label>
-      <div class="col-sm-2">
-        <input type="text" class="form-control" name="MapVal0" id="MapVal0" value="{{MapVal0}}">
-      </div>
-  </div>
-          
-  <div class="form-group row align-items-center">
-    <label for="MapADC1" class="col-sm-2 form-text">Map ADC Value 1</label>
-    <div class="input-group col-sm-2">
-      <input type="number" class="form-control" name="MapADC1" id="MapADC1" value="{{MapADC1}}">
-    </div>
-
-    <label for="MapVal1" class="col-sm-2 form-text">to Output Value 1</label>
-    <div class="col-sm-2">
-      <input type="text" class="form-control" name="MapVal1" id="MapVal1" value="{{MapVal1}}">
-    </div>
 </div>
-        
+
+
+
 <hr>
 
   <button type="submit" class="btn btn-warning btn-lg float-right">Submit</button>

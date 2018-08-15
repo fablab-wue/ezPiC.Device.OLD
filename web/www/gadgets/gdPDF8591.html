@@ -92,31 +92,13 @@
   </h4>
 
   <div class="form-group row align-items-center">
-    <label for="Mux" class="col-sm-2 form-text">Input Multiplexer</label>
-    <div class="col-sm-3">
-      <select class="form-control" name="Mux" id="Mux" value="{{Mux}}">
-        <option value="0">Ain0 - Ain1</option>
-        <option value="1">Ain0 - Ain3</option>
-        <option value="2">Ain1 - Ain3</option>
-        <option value="3">Ain2 - Ain3</option>
-        <option value="4">Ain0 - GND</option>
-        <option value="5">Ain1 - GND</option>
-        <option value="6">Ain2 - GND</option>
-        <option value="7">Ain3 - GND</option>
-      </select>
-    </div>
-  </div>
-
-  <div class="form-group row align-items-center">
-    <label for="PGA" class="col-sm-2 form-text">Full Scale Range</label>
-    <div class="col-sm-3">
-      <select class="form-control" name="PGA" id="PGA" value="{{PGA}}">
-        <option value="0">&plusmn;6.144V</option>
-        <option value="1">&plusmn;4.096V</option>
-        <option value="2">&plusmn;2.048V</option>
-        <option value="3">&plusmn;1.024V</option>
-        <option value="4">&plusmn;0.512V</option>
-        <option value="5">&plusmn;0.256V</option>
+    <label for="Mode" class="col-sm-2 form-text">Input Multiplexer</label>
+    <div class="col-sm-7">
+      <select class="form-control" name="Mode" id="Mode" value="{{Mode}}">
+        <option value="0">Ch0: Ain0-GND, Ch1: Ain1-GND, Ch2: Ain2-GND, Ch3: Ain3-GND</option>
+        <option value="1">Ch0: Ain0-Ain3, Ch1: Ain1-Ain3, Ch2: Ain2-Ain3</option>
+        <option value="2">Ch0: Ain0-GND, Ch1: Ain1-GND, Ch2: Ain2-Ain3</option>
+        <option value="3">Ch0: Ain0-Ain1, Ch1: Ain2-Ain3</option>
       </select>
     </div>
   </div>
@@ -127,9 +109,30 @@
   </h4>
 
   <div class="form-group row">
-    <label for="RespVar" class="col-sm-2 form-text">Resp. Variable</label>
+    <label for="RespVar0" class="col-sm-2 form-text">Resp. Variable</label>
     <div class="col-sm-7">
-      <input type="text" class="form-control" name="RespVar" id="RespVar" value="{{RespVar}}">
+      <input type="text" class="form-control" name="RespVar0" id="RespVar0" value="{{RespVar0}}">
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <label for="RespVar1" class="col-sm-2 form-text">Resp. Variable</label>
+    <div class="col-sm-7">
+      <input type="text" class="form-control" name="RespVar1" id="RespVar1" value="{{RespVar1}}">
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <label for="RespVar2" class="col-sm-2 form-text">Resp. Variable</label>
+    <div class="col-sm-7">
+      <input type="text" class="form-control" name="RespVar2" id="RespVar2" value="{{RespVar2}}">
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <label for="RespVar3" class="col-sm-2 form-text">Resp. Variable</label>
+    <div class="col-sm-7">
+      <input type="text" class="form-control" name="RespVar3" id="RespVar3" value="{{RespVar3}}">
     </div>
   </div>
 
@@ -161,7 +164,43 @@
       <input type="text" class="form-control" name="MapVal1" id="MapVal1" value="{{MapVal1}}">
     </div>
 </div>
+   
+
+<h4>
+  <span class="badge badge-dark col-sm-12">DAC Output Triggers</span>
+</h4>
+
+<div class="form-group row">
+  <label for="TrigVar" class="col-sm-2 form-text">Trigger Variable</label>
+  <div class="col-sm-7">
+    <input type="text" class="form-control" name="TrigVar" id="TrigVar" value="{{TrigVar}}">
+  </div>
+</div>
+
+
+
+<h4>
+  <span class="badge badge-dark col-sm-12">Trig. Variable Value Mapping</span>
+</h4>
+
+<div class="form-group row align-items-center">
+    <label for="MapOut0" class="col-sm-2 form-text">Map Variable Value 0</label>
+    <div class="input-group col-sm-2">
+      <input type="text" class="form-control" name="MapOut0" id="MapOut0" value="{{MapOut0}}">
+    </div>
+
+    <label for="MapVal0" class="col-sm-2 form-text">to 0 on DAC</label>
+</div>
         
+<div class="form-group row align-items-center">
+  <label for="MapOut1" class="col-sm-2 form-text">Map Variable Value 1</label>
+  <div class="input-group col-sm-2">
+    <input type="text" class="form-control" name="MapOut1" id="MapOut1" value="{{MapOut1}}">
+  </div>
+
+  <label for="MapVal1" class="col-sm-2 form-text">to Full Scale on DAC</label>
+</div>
+
 <hr>
 
   <button type="submit" class="btn btn-warning btn-lg float-right">Submit</button>
