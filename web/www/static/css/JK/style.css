@@ -1,58 +1,70 @@
 
 body {
-    background-color: #d0d7e0 !important;
+    background-color: #fcfaf3 !important;
 }
+
+input[type=checkbox]
+{
+  /* Double-sized Checkboxes */
+  -ms-transform: scale(1.8); /* IE */
+  -moz-transform: scale(1.8); /* FF */
+  -webkit-transform: scale(1.8); /* Safari and Chrome */
+  -o-transform: scale(1.8); /* Opera */
+  margin-left: -0.75rem;
+  margin-right: 1.75rem;
+}
+
 
 .card {
     background-color: #fcf7e4;
-    //border: 3px solid #ffffff !important;
+    border: 1px solid #d1d7dd !important;
     border-radius: 4px;
     margin-bottom: 0.5rem;
 }
-.card-header {
-    background-color: #e7ebf0;
+.gadgets .card-header {
+    background-color: #d6fdd7;
 }
-
-.card .card-header{
-    color: #e2e2e2;
+.gadgets .card {
+    background-color: #e4fce4;
 }
-
-.card .card-header .mr-auto {
-    color: rgb(27, 36, 65);
-    margin: 0;
-    padding: 0;
-    font-size: 1rem;
-    line-height: 2rem;
+.gateways .card-header {
+    background-color: #e9e0ff;
+}
+.gateways .card {
+    background-color: #f3effc;
+}
+.rules .card-header {
+    background-color: #fde2be;
+}
+.rules .card {
+    background-color: #fff2df;
 }
 
 
 .badge-dark {
     text-align: left;
-    font-weight: 600;
-    color: #0f3b55 !important;
-    background-color: rgb(225, 230, 235) !important;
-    border-left: 7px solid #FFCE3B;
-    border-radius: 5;
-    padding: 0.6rem 0.6rem 0.7rem 0.6rem;
+    font-weight: 500;
+    color: #38cae0 !important;
+    background-color: #343A40 !important;
+    border-bottom: 1px solid #FFCE3B;
+    border-radius: 0;
+    padding: 0.5rem;
     margin-top: 1.5rem;
-    margin-bottom: 0.9rem;
+    margin-bottom: 0.5rem;
 }
 .badge-secondary {
     text-align: left;
     font-weight: 500;
-    color: #38cae0 !important;
-    background-color: rgb(225, 230, 235) !important;
-    border-left: 7px solid #FFCE3B;
-    border-radius: 5;
-    padding: 0.6rem;
+    border-radius: 0;
+    padding: 0.5rem;
     margin-top: 1.5rem;
     margin-bottom: 0.5rem;
 }
 
 
 .navbar-dark .navbar-nav .active > .nav-link, .navbar-dark .navbar-nav .nav-link.active, .navbar-dark .navbar-nav .nav-link.show, .navbar-dark .navbar-nav .show > .nav-link {
-    color: rgb(27, 36, 65) !important;
-    background-color: #d0d7e0 !important;
+    color: #ED5121 !important;
+    background-color: #fcfaf3 !important;
 }
 .navbar-dark .navbar-nav .nav-link {
     color: #FFCE3B;
@@ -71,16 +83,16 @@ body {
 
 .nav-link:hover {
     color: #38cae0 !important;
-    border: 0 solid #38cae0 !important;
+    border: 1px solid #38cae0 !important;
 }
 
 
 .table .thead-dark th {
     color: #FFCE3B !important;
     background-color: #343A40 !important;
-    //border-left: 7px solid #38cae0 !important;
-    padding: 0.6rem 0.6rem 0.7rem 0.6rem;
-    border-radius: 5;
+    border-bottom: 1px solid #38cae0 !important;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
 }
 .table td {
     padding-top: 0.2rem;

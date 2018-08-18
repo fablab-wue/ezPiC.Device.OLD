@@ -17,6 +17,7 @@ from dev.GadgetI2C import PluginGadgetI2C as GI2C
 import dev.Variable as Variable
 import dev.Machine as Machine
 #import com.Tool as Tool
+import time
 
 #######
 # Globals:
@@ -42,10 +43,10 @@ class PluginGadget(GI2C):
             'ADDR':'3F',
             # instance specific params
             'Lines':'4',
-            'Width':'20',
+            'CPL':'20',
             'Text':'Hello',
             }
-        self._last_val = None
+        self._last_text = {}
 
 # -----
 
@@ -56,8 +57,9 @@ class PluginGadget(GI2C):
         #    self._i2c.write_byte(int(self.param['InitVal'], 0))
 
         self.width = 20
-        self.lines = 4
+        self.rows = 4
         self.backlight_on = True
+        self._last_text = {}
 
         self.RS = (1<<0)
         self.E  = (1<<2)
@@ -94,8 +96,12 @@ class PluginGadget(GI2C):
             text = Variable.texter(text)
 
             lines = text.replace('\r', '').split('\n')
+            while len(lines) < self.rows:
+                lines.append('')
             for i, line in enumerate(lines):
-                self.put_line(i, line)
+                if line != self._last_text.get(i, None):
+                    self._last_text[i] = line
+                    self.put_line(i, line)
 
 # =====
 
@@ -108,10 +114,17 @@ class PluginGadget(GI2C):
     def _init(self):
 
         self._inst(0x33) # Initialise 1
+        time.sleep(0.01)
+        self._inst(0x33) # Initialise 1
+        time.sleep(0.01)
         self._inst(0x32) # Initialise 2
-        self._inst(0x06) # Cursor increment
-        self._inst(0x0C) # Display on,move_to off, blink off 
+        time.sleep(0.01)
         self._inst(0x28) # 4-bits, 1 line, 5x8 font
+        time.sleep(0.01)
+        self._inst(0x06) # Cursor increment
+        time.sleep(0.01)
+        self._inst(0x0C) # Display on,move_to off, blink off 
+        time.sleep(0.01)
         self._inst(0x01) # Clear display
 
     def _byte(self, MSb, LSb):

@@ -108,9 +108,9 @@
         "TIMER": "5",
         "PORT": "I2C1 @RPi (GPIO03,GPIO02)",
         "ADDR": "3F",
-        "Lines": "4",
-        "Width": "20",
-        "Text": "Hallo\r\n<PDF8591.Channel1>2\r\nLorem <B.Voltage> Ipsum\r\n4"
+        "Rows": "4",
+        "CPL": "20",
+        "Text": "Hello 1:<PDF8591.Channel1> 2:<PDF8591.Channel2>\r\nLorem <B.Voltage> Ipsum\r\n<PDF8591.Channel0>\r\n<PDF8591.Channel3> <time>\r\n"
       }
     },
     {
